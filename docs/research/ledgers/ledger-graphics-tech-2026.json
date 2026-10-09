@@ -1,0 +1,226 @@
+{
+  "key": "graphics-tech-2026",
+  "title": "State of real-time graphics for a UGC virtual world in 2026",
+  "file": "docs/research/briefs/graphics-tech-2026.md",
+  "summary": "\"Best graphics of the era\" in late 2026 means the Unreal Engine 5.7/5.8 feature set: Nanite (now including Nanite Foliage and Skinning, Experimental in 5.7), Substrate materials (production-ready in 5.7), MegaLights (production-ready in 5.8), Lumen plus the new Lumen Lite path targeted at 60 fps on Switch 2 and low-end PCs, MetaHuman Creator embedded in-engine with a license that now allows use in any engine, and MetaHuman Collections for crowds. Epic calls 5.8 (June 2026) the last planned UE5 release before UE6. Unity 6.3 LTS and Godot 4.6/4.7 are credible for mid-fidelity clients but have no Nanite/Lumen equivalent. The modal consumer target is far below the showcase: the September 2026 Steam survey's top card is the RTX 5070 (5.86%), with xx60-class cards filling the top five, 32 GB RAM just overtook 16 GB, only ~1.8% of Steam users connect a VR headset, Quest shipments fell 16% YoY in 2025, and Vision Pro shipped on the order of tens of thousands of units in 2025. Switch 2 (23.68M units by 30 June 2026) is now the device Epic explicitly optimizes for. ML upscaling/frame generation is mature across all three GPU vendors (DLSS transformer out of beta June 2025, 5x/6x MFG April 2026; FSR 4.1 extended to RDNA 3 June 2026; XeSS 3 multi-frame March 2026), but neural shaders and neural texture compression remain previews: NVIDIA's RTXNTC SDK promises ~5x smaller textures yet its DX12 path is stamped \"DO NOT SHIP\" and is incompatible with AMD preview drivers. Gaussian splatting has broad plugin support (NanoGS, XScene, Babylon.js native) and is production-usable as a scanned backdrop, not as collidable, relightable geometry. WebGPU is shipped in Chrome, Safari 26 (macOS/iOS/visionOS) and Firefox on Windows/macOS, but Linux Firefox, Samsung Exynos and old Android still need WebGL2. Cloud rendering costs roughly US$1 per user-hour on T4-class instances against a US$19.99/month, 100-hour-capped GeForce NOW price anchor, so it is a premium tier. Third-party avatar platforms collapsed (Ready Player Me shut 31 Jan 2026 after Netflix's acquisition; Union Avatars gone), while platform owners (Apple Persona, Meta Hologram) capture realism behind their own sensors. UGC worlds that look good (Roblox, UEFN, VRChat) all enforce per-device budgets; Second Life's 2024 mirrors/PBR terrain show what happens without them. Recommended target: a three-tier fidelity contract (UE5-class Reference, Lumen-Lite-class Lite including WebGPU browser, WebGL2/low-Android Compat) with server-enforced asset budgets and auto-generated fallbacks.",
+  "design_implications": [
+    "Define a three-tier fidelity contract and enforce it server-side: Tier A Reference (UE5-class Nanite/Lumen/MegaLights/Substrate, optional path tracing, ML upscaling; RTX 4060/5060-class at 1080p-1440p), Tier B Lite (Lumen-Lite-class GI, probe/baked lighting; Switch 2, Quest 3, M-series Mac, mid Android, WebGPU browser), Tier C Compat (WebGL2/low Android, ~200-500 stud-equivalent draw distance, VRChat-Quest-style avatar caps).",
+    "Every uploaded asset must carry per-tier budgets (triangles, texture memory, bones, materials, splat count) with auto-generated LODs, impostors and transcoded textures; over-budget content is hidden or placeholdered per tier, never rendered at full cost (the Second Life mirror anti-pattern).",
+    "Build Tier A/B on Unreal 5.8-to-UE6 (Lumen Lite, MegaLights, MetaHuman Collections already exist) but keep the content format engine-neutral (glTF 2.0 + PBR extensions, MetaHuman-compatible rigs now licensed for any engine) so Godot/Three.js/Babylon clients can serve Tier B/C and avoid engine lock-in.",
+    "Make the browser (WebGPU with mandatory WebGL2 fallback) the zero-install entry for visiting and socializing; reserve native clients for building and Tier A, because WebGPU is shipped in Chrome, Safari 26 and desktop Firefox but not Linux Firefox, Samsung Exynos or old Android.",
+    "Treat Gaussian splatting as a first-class 'place capture' format for scanned real venues rendered as backdrops with proxy collision meshes, with per-tier splat budgets (<=500K mobile, millions on PC with NanoGS-style LOD) and commercially licensed training pipelines.",
+    "Integrate DLSS/FSR/XeSS upscaling and frame generation from day one behind one abstraction; schedule neural texture compression as a 2027 upgrade once SM 6.10 LinAlg leaves preview and AMD/Intel drivers support cooperative vectors, since its ~5x on-disk texture savings attack a UGC world's biggest download cost.",
+    "Own the avatar pipeline end to end (no third-party avatar API dependency after the Ready Player Me and Union Avatars shutdowns); MetaHuman-class humans in Tier A, cheaper stylized rigs in B/C, and Persona/Hologram-style volumetric avatars only as a sensor-gated option on eye/face-tracked headsets.",
+    "Offer cloud/pixel streaming as a paid premium path for Tier C devices to see Tier A worlds, with explicit hour caps (GeForce NOW 100 h, Xbox 15 h are precedents), given ~US$1 per user-hour raw GPU cost versus a US$19.99/month consumer anchor.",
+    "Design VR as an optional view of a flat-screen-first world (only ~1.8% of Steam users have a headset connected; Quest shipments fell 16% YoY in 2025), with Quest 3-class budgets defining Tier B rather than a separate VR product.",
+    "Ship a visible, Roblox-style quality-level and draw-distance floor so creators design for the low end, and publish the per-tier budgets as the platform's 'performance rank' system the way VRChat does."
+  ],
+  "open_questions": [
+    "Independent frame-cost measurements of Lumen Lite and MegaLights on Switch 2 / RTX 4060 / Quest 3-class hardware; Epic's 60 fps is a company target.",
+    "When does DirectX LinAlg / Shader Model 6.10 leave preview, and will AMD RDNA 4 and Intel Arc ship Cooperative Vector drivers in 2027? Without them neural texture compression is NVIDIA-only.",
+    "What is the real Steam share of GPUs below RTX 3060 / 8 GB VRAM (the Tier B/C PC population)? Only the top-10 cards were captured.",
+    "IDC's exact 2025 Vision Pro and Quest shipment numbers are contested in secondary reporting (45K vs 4,500; Q4 vs full year); IDC's release was not read directly.",
+    "Does Roblox's 'Roblox Reality' AI video layer ship in 2026-27, and at what latency and cost per user?",
+    "Current official VRChat PC performance-rank thresholds (2025-26 table) and Roblox 4K texture support were not confirmed from primary documentation.",
+    "How many concurrent pixel-streaming sessions per RTX 5080 / L40S-class GPU are achievable at acceptable quality, which decides whether cloud can be a mid tier rather than premium.",
+    "Whether UE6 (reported late-2027 Early Access) actually merges UEFN and deprecates Blueprints, affecting an engine decision for a 2027-28 launch.",
+    "Path-tracing performance on midrange 2026 GPUs was not benchmarked (search budget exhausted); treat full path tracing as Tier A optional only.",
+    "This sandbox could only fetch github.com in full; Epic, Valve, Roblox, Linden, Microsoft and NVIDIA news pages were seen only through search excerpts and should be re-verified from the primary pages."
+  ],
+  "claims": [
+    {
+      "claim": "Unreal Engine 5.8 (2026) adds Lumen Lite aimed at 60 fps on Nintendo Switch 2 and low-end PCs, makes MegaLights production-ready, cut Fortnite's shader count by 68%, and is described by Epic as the last planned major UE5 release before UE6.",
+      "source_url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Epic's page unreachable and the shared WebSearch budget was already exhausted. Only partial corroboration: Epic's PixelStreamingInfrastructure repo ships ue5.8 packages from 13 Jul (2026 inferred), so UE 5.8 exists and shipped by mid-2026. Lumen Lite, MegaLights production-ready, the 68% Fortnite shader cut and 'last planned UE5 release before UE6' all rest on the researcher's search excerpts and were not checked against Epic's text; treat the 'last UE5' framing as unconfirmed.",
+          "source_url": "https://github.com/EpicGamesExt/PixelStreamingInfrastructure/releases"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "UE 5.8 shipped 17 Jun 2026 (State of Unreal). Independent corroboration: Lumen Lite targets 60 fps on Switch 2/low-end PC (ithome 18 Jun 2026 headline; Epic docs digests), MegaLights 'Production Ready in 5.8 (Experimental 5.5, Beta 5.7)', Unreal Fest Chicago 2026 talk 'How We Cut Fortnite's Shaders by 68%', official wording '5.8 is the last planned major release for UE5... reserving the option to release a 5.9, if needed'. Nuance omitted by the brief: Lumen Lite is Beta in 5.8 (Medium scalability, r.Lumen.FinalGatherMethod=0), not production-ready. Cited unrealengine.com page could not be fetched (DNS blocked); verdict rests on multiple independent secondary documents.",
+          "source_url": "https://github.com/search?q=%22Lumen+Lite%22+%225.8%22&type=code"
+        }
+      ]
+    },
+    {
+      "claim": "Unreal Engine 5.7 (November 2025) introduced Nanite Foliage (Experimental, with Nanite Assemblies and Nanite Skinning), moved Substrate to Production-Ready and MegaLights from Experimental to Beta.",
+      "source_url": "https://www.unrealengine.com/news/unreal-engine-5-7-is-now-available",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Primary page unreachable from sandbox; matches Epic's November 2025 UE 5.7 announcement as known before cutoff (Nanite Foliage/Assemblies/Skinning Experimental, Substrate Production-Ready, MegaLights Beta). No contradicting evidence found.",
+          "source_url": "https://www.unrealengine.com/news/unreal-engine-5-7-is-now-available"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Several independent release digests agree: UE 5.7, November 2025: Substrate and PCG Production-Ready, Nanite Foliage Experimental (using Nanite Voxels, Assemblies and Skinning), MegaLights moved to Beta. Cited unrealengine.com page not fetchable; secondary corroboration only.",
+          "source_url": "https://github.com/AndrewAltimit/Documentation/blob/main/github-pages/docs/technology/unreal.md"
+        }
+      ]
+    },
+    {
+      "claim": "In the September 2026 Steam Hardware Survey the RTX 5070 is the most common GPU at 5.86% (6.15% in Valve's all-cards view), followed by RTX 5060 4.20%, RTX 5060 Ti 3.87%, RTX 4060 3.72%, RTX 3060 3.54%; 32 GB RAM overtook 16 GB.",
+      "source_url": "https://mixed-news.com/en/steam-september-2026-hardware-survey-rtx-5070-32gb-ram/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Community dataset of Valve's survey (jdegene/steamHWsurvey shs.csv) rows for 2026-09-01: RTX 5070 5.86% (+2.30), RTX 5060 4.20%, RTX 5060 Ti 3.87%, RTX 4060 3.72%, RTX 3060 3.54%; System RAM 32 GB 42.22% vs 16 GB 37.82%, and August back-computes to 37.45% vs 41.20%, so September is the first crossover. The 6.15% 'all-cards' figure was not independently seen. Caveat: the 5070 rose 3.56% -> 5.86% in one month and the dataset maintainer flags Feb 2026 as faulty; Valve's monthly samples swing.",
+          "source_url": "https://raw.githubusercontent.com/jdegene/steamHWsurvey/master/shs.csv"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Headline figures corroborated independently: 'Steam Hardware Survey, August-September 2026 ... The RTX 5070 is #1 at 5.86%' and ithome (Oct 2026) 'Steam September 2026 survey: 32GB RAM share surpasses 16GB for the first time'. The 6.15% all-cards figure and the 4.20/3.87/3.72/3.54 per-card percentages could not be independently verified (mixed-news unreachable, search budget exhausted); treat the ranking below #1 as unverified.",
+          "source_url": "https://github.com/mahalisyarifuddin/LLMCalculator/blob/main/AUDIT.md"
+        }
+      ]
+    },
+    {
+      "claim": "Per the gpuweb Implementation-Status wiki (edited 2 Oct 2026): Chrome ships WebGPU on Windows/macOS/ChromeOS (113), Android 12+ ARM/Qualcomm/Intel (121), Linux Intel Gen12+ (144) and NVIDIA-on-Wayland (147); Firefox ships on Windows (141) and macOS (145/147) with Linux Nightly-only and Android behind a flag; Safari ships in macOS 26, iOS 26, iPadOS 26 and visionOS 26.",
+      "source_url": "https://github.com/gpuweb/gpuweb/wiki/Implementation-Status",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Wiki fetched directly: edited Oct 2, 2026; Chrome 113 (Mac/Win/ChromeOS), 121 Android 12+ ARM/Qualcomm/Intel, 139 Imagination Android 16+, 144 Linux Intel Gen12+, 147 NVIDIA Wayland; Samsung Xclipse TBD, Win ARM64 behind flag; Firefox 141 Windows, 145 on macOS 26+, 147 all macOS, Linux Nightly only (ship expected 2026), Android behind flag; Safari 26 on macOS/iOS/iPadOS/visionOS.",
+          "source_url": "https://github.com/gpuweb/gpuweb/wiki/Implementation-Status"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Wiki read directly; last edited Oct 2, 2026 (121 revisions). Chromium: Mac/Windows/ChromeOS 113; Android 12+ ARM/Qualcomm/Intel 121 (Imagination Android 16+ 139); Linux Intel Gen12+ 144; NVIDIA (driver 535.183.01+) Wayland 147. Firefox: Windows 141; macOS 26+ 145, all macOS 147; Linux Nightly only; Android behind a flag. Safari: 'In macOS Tahoe 26, iOS 26, iPadOS 26, and visionOS 26, WebGPU is supported and enabled by default.' Exact match.",
+          "source_url": "https://github.com/gpuweb/gpuweb/wiki/Implementation-Status"
+        }
+      ]
+    },
+    {
+      "claim": "NVIDIA's RTX Neural Texture Compression SDK v0.10.0 beta claims ~5 bits/texel at BCn-comparable quality (a 2k x 2k five-map material: 2.5 MB vs 12 MB BCn), but its DX12 path needs the SM 6.10 LinAlg preview (Agility SDK 1.721.0-preview, driver 620.12+), is marked 'DO NOT SHIP ANY PRODUCTS USING IT', and is incompatible with current AMD preview drivers.",
+      "source_url": "https://github.com/NVIDIA-RTX/RTXNTC",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Numbers confirmed (v0.10.0 BETA, ~5 bits/texel at 40-50 dB, 2k x 2k five-map BCn 12 MB vs NTC 2.5 MB, Agility SDK 1.721.0-preview, driver 620.12+, 'DO NOT SHIP ANY PRODUCTS USING IT'). Scope correction: the do-not-ship warning applies only to the DX12 LinAlg / SM 6.10 preview path; the README says all non-CoopVec DX12 paths and all Vulkan paths including CoopVec (VK_NV_cooperative_vector, driver 570+) are fine to ship. AMD note is narrower: DX12 LinAlg inference is incompatible with AMD developer preview driver 26.10.07.02 and Inference-on-Feedback is broken on AMD, while the SDK is validated on some RX 6000 GPUs. NTC-on-Load keeps VRAM at 12 MB; only NTC-on-Sample reaches 2.5 MB VRAM.",
+          "source_url": "https://github.com/NVIDIA-RTX/RTXNTC"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "README read directly: 'RTX Neural Texture Compression (NTC) SDK v0.10.0 BETA'; 'about 5 bits/texel'; 2k x 2k five-map table BCn 12.00 MB vs NTC 2.50 MB on disk (NTC-on-Load still 12 MB VRAM, NTC-on-Sample 2.5 MB VRAM); Agility SDK '1.721.0-preview'; 'pre-release NVIDIA GPU driver version 620.12 or later' for SM 6.10 LinAlg; 'DO NOT SHIP ANY PRODUCTS USING IT'; 'DX12 LinAlg inference is incompatible with the current version of AMD developer preview drivers (26.10.07.02)'; 2-4x inference throughput on Ada/Blackwell.",
+          "source_url": "https://github.com/NVIDIA-RTX/RTXNTC"
+        }
+      ]
+    },
+    {
+      "claim": "NVIDIA DLSS SDK 310.3.0 (25 Jun 2025) took the transformer model out of beta and 310.6.0 (21 Apr 2026) introduced 5x and 6x frame generation; AMD FidelityFX SDK v2.3.0 (24 Jun 2026) shipped FSR Upscaling 4.1.1 with support for Radeon RX 7000 (RDNA 3); Intel XeSS SDK 3.0.0 (9 Mar 2026) added 3x/4x multi-frame generation on Arc.",
+      "source_url": "https://github.com/NVIDIA/DLSS/releases",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "DLSS releases: v310.3.0 '25 Jun' 'DLSS Transformer Model is officially out of Beta'; v310.6.0 '21 Apr' 'Added DLSS Frame Generation 5x and 6x Modes' (years inferred from ordering, anchored by v3.1.0 Feb 2023 and v310.1.0 Jan 2025). FSR SDK v2.3.0 '24 Jun': Upscaling 4.1.1 and 'Added support for AMD FSR Upscaling 4.1 on AMD Radeon RX 7000 Series (AMD RDNA 3 architecture) discrete GPUs'. XeSS 3.0.0 '09 Mar': 'Added 3x and 4x Multi-Frame Generation for Intel Arc GPUs'. GitHub omits years; 2025/2026 assignments are consistent with ordering.",
+          "source_url": "https://github.com/NVIDIA/DLSS/releases"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "DLSS releases page: 310.3.0, 25 Jun, 'DLSS Transformer Model is officially out of Beta'; 310.6.0, 21 Apr, 'Added DLSS Frame Generation 5x and 6x Modes'. FidelityFX SDK releases: v2.3.0, 24 Jun, 'Added support for AMD FSR Upscaling 4.1 on AMD Radeon RX 7000 Series (AMD RDNA 3 architecture) discrete GPUs' (Upscaling 4.1.1). XeSS releases: 3.0.0, 09 Mar, 'Added 3x and 4x Multi-Frame Generation for Intel Arc GPUs'. GitHub omits years; ordering (DLSS 310.1.0 = DLSS 4 launch Jan 2025; FidelityFX v2.0.0 = FSR 4 source Aug 2025) makes 2025/2026 inferences consistent. Minor attribution issue: the one URL attached to the claim covers only NVIDIA; AMD/Intel facts come from the separately cited FidelityFX and XeSS release pages, both verified.",
+          "source_url": "https://github.com/NVIDIA/DLSS/releases"
+        }
+      ]
+    },
+    {
+      "claim": "The reference Unity Gaussian-splat renderer draws a 6.1M-splat scene at 6.8 ms (147 fps) on an RTX 3080 Ti using ~1.3 GB VRAM versus 21.5 ms on an M1 Max, needs ~48 bytes GPU memory per splat, does not run on OpenGL/WebGL, and the original INRIA training code is non-commercial without a license.",
+      "source_url": "https://github.com/aras-p/UnityGaussianSplatting",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "README: 'Unity, DX12 or Vulkan: 6.8ms (147FPS) ... 1.3GB VRAM usage' on RTX 3080 Ti for the 6.1M-splat bicycle scene; 'Unity, Metal: 21.5ms (46FPS)' on M1 Max; 'about 48 bytes of GPU memory per splat'; 'Anything using OpenGL or OpenGL ES' does not work (only D3D12/Metal/Vulkan; WebGPU named as lacking required features); INRIA training software 'for educational / academic / non-commercial purpose', 'commercial usage requires getting license from INRIA'. Minor: README names OpenGL/OpenGL ES rather than WebGL explicitly. Also: official SIBR viewer 7.4 ms / 4.8 GB VRAM.",
+          "source_url": "https://github.com/aras-p/UnityGaussianSplatting"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "README read directly: 'bicycle' scene, 6.1M splats, 1200x797 Medium quality; RTX 3080 Ti 'Unity, DX12 or Vulkan: 6.8ms (147FPS)', '1.3GB VRAM usage'; 'Unity, Metal: 21.5ms (46FPS)' on M1 Max; 'about 48 bytes of GPU memory per splat'; only D3D12/Metal/Vulkan work, OpenGL/OpenGL ES a known issue, 'not tested at all on mobile/web' (WebGL not named explicitly, but implied); official training software 'for educational / academic / non-commercial purpose', 'commercial usage requires getting license from INRIA'; development stopped Dec 2023.",
+          "source_url": "https://github.com/aras-p/UnityGaussianSplatting"
+        }
+      ]
+    },
+    {
+      "claim": "Ready Player Me's public avatar creator, PlayerZero and developer APIs were shut down on 31 January 2026 following Netflix's acquisition; Union Avatars has also closed.",
+      "source_url": "https://avatarsdk.com/blog/2026/01/15/switch-from-ready-player-me-to-avatar-sdk-fast-familiar-production-ready/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Only source is a competitor's (Avatar SDK) blog, unreachable; Variety/Wikipedia unreachable; no search budget. Circumstantial GitHub support: rpm-unity-sdk-core 'archived by the owner on Feb 3, 2026'; every readyplayerme repo's last push is Aug-Oct 2025; no shutdown notice in READMEs or issues. Consistent with a 31 Jan 2026 shutdown but does not prove the date, the PlayerZero/API scope, or the Netflix attribution. Union Avatars not checked.",
+          "source_url": "https://github.com/orgs/readyplayerme/repositories?type=all&sort=pushed"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Many independent project READMEs quote the RPM notice: 'Netflix acquires gaming avatar maker Ready Player Me [TechCrunch 2025-12-19]. Following the acquisition, Ready Player Me will be winding down its services on January 31, 2026. This includes both of its online avatar creation tools, Ready Player Me and PlayerZero', plus developer APIs; readyplayerme/rpm-unity-sdk-core was archived by the owner on Feb 3, 2026. Union Avatars closure (July 2026) is corroborated only by documents that trace back to the Avatar SDK blog, a competitor; one independent note flags it 'competitor-sourced (verify)'. avatarsdk.com not fetchable.",
+          "source_url": "https://github.com/readyplayerme/rpm-unity-sdk-core"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox announced at RDC (September 2026) that minimum draw distance rises to 500 studs by late 2026, more than double the 200-stud floor on quality-level-1 low-end Android devices, plus a terrain rework with up to 64 custom materials and an AI video 'Roblox Reality' layer.",
+      "source_url": "https://devforum.roblox.com/t/rdc26-what-we-announced/4865880",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "devforum.roblox.com unreachable, no search budget, and RDC26 post-dates the checker's knowledge. Roblox creator-docs on GitHub currently document 22 terrain materials (23 with Air) plus custom materials, with no mention of 64 materials, 500 studs, or 'Roblox Reality'; recent docs commits are generic bot syncs. The 500-stud, 200-stud, 64-material and Roblox Reality details remain researcher-sourced.",
+          "source_url": "https://github.com/Roblox/creator-docs/blob/main/content/en-us/parts/terrain.md"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "RDC 2026 ran 10-12 Sep 2026 in San Jose. Independent digest of the DevForum wrap-up and Fall roadmap: 'Minimum draw distance 500 studs (was 200) on low-end devices incl. Android - COMING Late 2026'; 'Roblox Reality' (video world model layered over the engine, 'Super Upsampler' on edge GPUs) demoed at RDC, undated/early access planned 2027. Caveat: the '64 custom terrain materials' figure is found only in GamesBeat's press-briefing write-up, not in the DevForum post the claim cites; the terrain rework itself is early-access-by-application with roadmap Mid 2027. devforum.roblox.com not fetchable.",
+          "source_url": "https://github.com/MosheBarami/StudPilot/blob/main/research/roblox/11-rdc-2026-and-roadmap.md"
+        }
+      ]
+    },
+    {
+      "claim": "Second Life launched Mirrors, PBR Terrain and 2K textures grid-wide on 10 June 2024 (viewer 7.1.8); mirrors are reflection-probe based, only the nearest probe renders, and Linden warns of a performance drop 'since everything is being rendered twice'; PBR terrain was private-region only at launch.",
+      "source_url": "https://releasenotes.secondlife.com/viewer/7.1.8.9375512768.html",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Gist confirmed; exact date and quotes not re-read because secondlife.com hosts are unreachable. secondlife/viewer GitHub release stream: release/materials_featurette 7.1.8 RC builds dated 14 May-7 Jun 2024 (tag 2024.5.14.1-pmfp) carry 'Add mirrors prototype UI + data model', 'First mirrors optimization pass', 'Mirrors quality pass 1', 'PBR Terrain UI second pass', 'respect simulator feature PBRTerrainEnabled', 'Allow for upload of 2k textures', 'Make viewer respect MaxTextureResolution from SimulatorFeatures'; 7.1.9 maint builds begin 11 Jun 2024, bracketing a 7.1.8 production release around 10 Jun 2024. Simulator-feature gating is consistent with region-limited PBR terrain rollout. The 'rendered twice' and nearest-probe-only statements were not independently re-read.",
+          "source_url": "https://github.com/secondlife/viewer/releases?page=62"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Mechanism verified in the viewer source: llheroprobemanager.cpp '// Find our nearest hero candidate', single mNearestHero, heroProbeCount = 1, '// Don't even try to do anything if we didn't find a single mirror present.'; llviewerobject.h 'mIsHeroProbe ... special case for mirrors'. Version string 'Second Life Release 7.1.8.9375512768' appears in the repo issue template and the tag Second_Life_Release#7.1.8.9375512768 exists. The 10 June 2024 date, the 'everything is being rendered twice' quote and the private-region-only PBR-terrain launch match Linden's launch post as I recall it, but releasenotes.secondlife.com and community.secondlife.com were unreachable, so those three details are not re-verified here. Extra: featuretable.txt recommends RenderMirrors=0 at every preset including Ultra (hero-probe resolution 256-2048).",
+          "source_url": "https://raw.githubusercontent.com/secondlife/viewer/main/indra/newview/llheroprobemanager.cpp"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Steam Sept 2026 long tail (same dataset): 'Other' 8.82%, RTX 3050 2.77%, RTX 4060 Laptop 3.35%, RTX 5060 Laptop 2.33%, RTX 5090 0.38%, Steam Deck GPU 0.28%. The RTX 5070 swung +2.3 points in one month, so fidelity-tier targets should be set from 3-6 month survey averages, not a single month.",
+    "NTC already has a shippable path: only the DX12 LinAlg / SM 6.10 preview is 'do not ship'; the Vulkan CoopVec path (VK_NV_cooperative_vector, driver 570+) and non-CoopVec DX12 paths are cleared to ship on NVIDIA. NTC-on-Load mode delivers the 2.5 MB disk/PCIe saving (VRAM stays at BCn size), which attacks a UGC world's download-size problem without requiring inference-on-sample on weak GPUs.",
+    "XeSS Super Resolution runs on any GPU with SM 6.4 / DP4a, and XeSS Frame Generation + XeLL run on non-Intel GPUs: a vendor-neutral upscaling and frame-generation fallback for the hardware long tail that DLSS (NVIDIA-only) and FSR 4.x (RDNA 3/4 only) do not cover.",
+    "AMD FSR SDK 2.3.0 lists 'Vulkan is currently not supported in SDK' as a known issue, which matters if the mid-tier client is Vulkan-based (Godot, Linux, Android).",
+    "WebGPU gaps that still need a WebGL2 fallback: Chrome on Samsung Xclipse Android GPUs is 'TBD', Chrome on Windows ARM64 is behind a flag, Firefox Linux is Nightly-only (Mozilla targets 2026), Firefox Android is behind a flag.",
+    "Second Life's viewer is now on a 26.x release train (26.4/26.5 builds dated Oct 2026) and recent notes show glTF mesh import (2025.05), SLua scripting with async parsing, 'visual polish' and 'graphics care package' projects and a fragment-shader sky/cloud path. SL's renderer is still actively evolving, so a successor's edge must come from enforced content budgets, economy and purpose design, not renderer features alone.",
+    "Ready Player Me's GitHub activity ceased Aug-Oct 2025 and its core Unity SDK was archived 3 Feb 2026; regardless of the exact shutdown date, a hosted third-party avatar API is confirmed as a dead dependency, supporting self-hosted, glTF/VRM-style avatar pipelines.",
+    "The reference 3DGS viewer comparison: official SIBR viewer 7.4 ms and 4.8 GB VRAM vs Unity port 6.8 ms and 1.3 GB on the same RTX 3080 Ti, and the README says WebGPU still lacks required features for the port; browser-tier splat rendering needs a separate, reduced pipeline.",
+    "Lumen Lite is Beta in UE 5.8 (not production-ready); it is the Medium scalability level inside Lumen (sg.GlobalIlluminationQuality=1, r.Lumen.FinalGatherMethod=0 irradiance-field gather), roughly 2x cheaper than Lumen High; SSGI is deprecated in 5.8 and Lumen mesh-SDF detail tracing deprecated since 5.7.",
+    "MegaLights (production-ready in 5.8) excludes directional/sun lights by default (needs r.MegaLights.DirectionalLights 1), requires hardware ray tracing, and front-layer translucency can double its cost; since UE 5.6 Virtual Shadow Maps require Nanite enabled project-wide and need Apple Silicon M2+.",
+    "UE 5.8 shipped 17 Jun 2026; 5.8.1 shipped 28 Jul 2026 and is being treated as the long-lived maintenance baseline; UE6 was announced at the same State of Unreal with deep generative-AI integration, and Epic launched 'Lore', a free open-source version control system for source plus large binary assets (relevant to a UGC asset pipeline).",
+    "Second Life ships mirrors disabled by default at every graphics preset (featuretable.txt RenderMirrors recommended 0 even at Ultra; RenderHeroProbeResolution 256-2048, RenderHeroProbeDistance 4-16 m), and the engine renders exactly one 'hero' probe per frame, so mirrors are an opt-in per-object luxury rather than a baseline feature.",
+    "Roblox Reality's own stated unsolved limits are a 2K/60 Hz real-time goal, rule enforcement, multiplayer agent simulation and input control; the Q2 2026 earnings call framed it as a possible subscription product; early access is planned for 2027. Roblox also announced web play in Chrome by end of 2026, offline play mid 2027 and 'Roblox Everywhere' standalone apps.",
+    "Roblox SLIM (Scalable Lightweight Interactive Models) composites low-poly LODs for streamed-out models and is credited with letting a single game run on low-end Android and high-end PC; SLIM for NPCs and welded items is due early 2027. It is the closest shipped analogue to the brief's 'auto-generated per-tier fallback' recommendation.",
+    "Roblox's '64 custom terrain materials' figure is single-sourced to GamesBeat; the terrain rework (scattering, splines, projected decals, virtual texturing, SDF) is early access by application with a Mid 2027 roadmap date, so it should not be treated as shipped.",
+    "RTXNTC: Cooperative Vector was renamed 'LinAlg' in Shader Model 6.10; NTC-on-Load keeps the 2.5 MB disk/PCIe saving but still costs 12 MB VRAM (same as BCn); only NTC-on-Sample mode reduces VRAM to 2.5 MB.",
+    "The third-party avatar collapse is broader than RPM and Union Avatars: Spatial also announced closure in July 2026 per the same vendor reports; web projects are converging on VRM (@pixiv/three-vrm) as the durable path because exported files keep working after a hosted service dies.",
+    "Steam figures below the #1 card (6.15% all-cards view, 4.20/3.87/3.72/3.54%) remain unverified; design decisions should rest on the verified facts only: RTX 5070 at 5.86% is the modal card and 32 GB RAM now exceeds 16 GB."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/graphics-tech-2026-refute.md",
+    "docs/research/fact-checks/graphics-tech-2026-precision.md"
+  ]
+}

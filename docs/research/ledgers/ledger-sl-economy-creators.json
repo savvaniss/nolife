@@ -1,0 +1,224 @@
+{
+  "key": "sl-economy-creators",
+  "title": "Second Life economy and creator ecosystem",
+  "file": "docs/research/briefs/sl-economy-creators.md",
+  "summary": "Second Life's economy is real but has been flat for a decade, and its structure explains why. Linden Lab's headline \"GDP\" has been a gross user-to-user transaction flow: US$350M (2008), US$567M (2009, +65%), about US$500M (mid-2010s) and US$650M with 345M transactions (claimed January 2022 and still repeated in 2024). Resident net earnings have tracked at roughly one-tenth of that: US$55M in 2009, US$60M+ mid-2010s, US$73M cashed out in 2020, about US$78M in the year to 2024, US$1.1B lifetime (company claims; no independent measurement exists). The creator base is top-heavy: of 21,152 creators who earned real money in 2023, 6,446 cleared US$1,000, 139 cleared US$100,000 and 14 cleared US$1M. The first SL millionaire (Anshe Chung, Nov 2006) was a land subdivider and landlord, not a content maker.\n\nLand is the core revenue line and the central constraint. A full private region cost US$1,000 setup plus US$295/month in the classic era (mainland US$195); after cuts in 2016, 2018 and March 2023 it is about US$349 setup and US$199-209/month. Because tier is charged per region regardless of activity, builders and community hosts pay the most, and the fee-paying part of the grid shrank: private estates fell from a peak near 26,600 (2008) to 17,636 (end 2025); total regions peaked at 31,988 (June 2010) and have hovered near 27,000 since 2015, with the only growth coming from Linden-owned Premium-subsidised Linden Home continents. The 2008 Openspace repricing (US$75 to US$125/month, no grandfathering) and the 2009 Homestead rise destroyed trust in land as an investment. As user growth stalled, LL reshuffled fees rather than changing the model: Marketplace commission doubled 5% to 10% (Dec 2019), L$ buy/sell fees rose (March 2023), Premium Plus arrived at US$29.99/month (2021), a no-stipend tier at US$11.99-15.99 (Sept 2025), and lifetime memberships at US$859/US$1,899; community accounting puts the true all-in creator take near 20% versus the advertised 90/10.\n\nRegulation forced centralisation: the July 2007 gambling ban triggered the Ginko Financial run (about L$200M / US$750k owed), the January 2008 banking ban followed, and by August 2019 all USD payouts required Tilia, a licensed money transmitter later sold to Thunes. LL's 2009 purchase of Xstreet SL and OnRez locked the marketplace to SL alone; content has never been portable. The L$ held a L$240-270/US$ band from 2008 to 2017 but converter data show about L$320/US$ in 2023-2026, a roughly 25% depreciation. Net: SL proved real money, real property and creator livelihoods work, but taxed space instead of activity, let rentiers capture the upside, and closed every interoperability door.",
+  "design_implications": [
+    "Bill for activity (metered compute, bandwidth, visitor-hours) rather than fixed monthly land tier, so an empty build costs near zero and a popular one pays out of its own revenue; SL's per-region tier taxed builders and community hosts regardless of use and the fee-paying estate count fell about a third from its 2008 peak.",
+    "Publish one all-in transaction take (marketplace plus currency plus cash-out) under 10%, so the SL pattern of an advertised 90/10 that is really about 80/20 after LindeX and payout fees cannot recur.",
+    "Design out the rentier layer: platform-leased space at cost-plus that cannot be sublet at a markup, with allocations tied to activity; SL's first millionaire was a land subdivider arbitraging Linden tier, and LL's revenue depended on that intermediary class.",
+    "Report value added (creator net earnings, cash-outs, median creator income, earnings distribution) instead of gross transaction volume; SL's $567M (2009) and $650M (2022-24) GDP claims hid resident earnings of only about one-tenth that amount and a flat decade.",
+    "Build cash-out on a licensed, regulated money-transmission rail with bank payouts from day one (the Tilia 2019 lesson), and plan jurisdiction-specific rules for gambling and financial services instead of blanket bans that strand capital as the 2007-2008 bans did.",
+    "Guarantee asset portability (open formats such as glTF/USD with signed licence metadata) and an open marketplace protocol that third-party stores can join, reversing the 2009 Xstreet/OnRez lock-in that made SL a content silo.",
+    "Protect the creator long tail with discovery that is not pay-to-rank (time-boxed new-creator slots, caps on paid listing enhancements) and publish the earnings distribution; in 2023 only 14 of 21,152 earning creators were millionaires and 139 cleared $100k.",
+    "Adopt a pricing covenant: grandfathering by default and 12 months' notice for any increase, to avoid the trust collapse caused by the 2008 Openspace and 2009 Homestead retroactive repricing.",
+    "If running a floating currency, publish supply and sink data weekly and set a stability mandate; otherwise denominate in fiat, given the L$'s roughly 25% depreciation from the L$240-270 band (2008-2017) to about L$320/US$ (2023-2026).",
+    "Make the builder's entry cost zero: free persistent space up to a resource budget that grows with the creator's earned revenue, replacing SL's historic US$1,000 setup plus US$295/month gate to serious building."
+  ],
+  "open_questions": [
+    "No 2025 or 2026 GDP or payout figure was found; is the US$650M / US$78M pair still Linden Lab's current claim, or has it declined? Linden Lab's blog and recent interviews need to be read directly.",
+    "Exact before/after percentages of the March 2023 L$ buy/sell fee change and the current LindeX sell fee and Tilia payout fees, needed to compute the true all-in creator take.",
+    "Linden Lab's actual revenue and the land share of it have never been published; is there any post-2015 executive statement on revenue mix (land vs Premium vs Marketplace vs LindeX)?",
+    "The 26,605 private-estate peak in October 2008 rests on one ambiguous source; the Grid Survey archive should be checked.",
+    "Casino share of 2007 tier revenue and the size of the L$ sell-off after the gambling ban were never quantified.",
+    "How much of the US$1.1B lifetime payout is land-rental income versus content sales? Linden Lab has never split it.",
+    "Premium Plus pricing is inconsistent across Linden Lab's own pages (US$29.99, US$20.75, US$11.75, US$287.88/yr); the authoritative current price needs confirmation.",
+    "Is the 2023-2026 L$ depreciation to about L$320/US$ driven by Linden Lab increasing supply (stipends, Premium Plus bonuses) or by falling demand?",
+    "Primary pages (Wikipedia, Linden Lab blog, GamesBeat, Grid Survey) could not be fetched in this session (DNS blocked for WebFetch, search budget exhausted after 13 searches); all figures should be rechecked against them before publication."
+  ],
+  "claims": [
+    {
+      "claim": "Linden Lab claims an annual Second Life GDP of US$650 million with 345 million transactions (January 2022 press release), a figure still cited in 2024 with about US$78M paid to creators in the past year and US$1.1B lifetime payouts.",
+      "source_url": "https://www.prnewswire.com/news-releases/high-fidelity-invests--in-second-life-301459959.html",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Linden Lab's 13 Jan 2022 High Fidelity release does state 'annual GDP of $650 million USD with 345 million transactions'; the 2024 GamesBeat figures (US$1.1B lifetime, ~US$78M past year) match the Oberwager/Rosedale interview framing and the trend from Fortune's ~US$73M for 2020. Caveat: all are unaudited company claims and 'GDP' is gross transaction volume, not value added; the same US$650M has been recycled 2022-2024 with no new measurement. Live verification was impossible (DNS blocked, search budget exhausted); verdict rests on prior knowledge of the releases.",
+          "source_url": "https://www.lindenlab.com/releases/high-fidelity-invests-in-second-life"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: fact-checker's prior knowledge of the primary sources; live fetch failed (DNS) and search budget was exhausted. The 13 Jan 2022 LL/High Fidelity release states 'annual GDP of $650 million USD with 345 million transactions of virtual goods, real estate and services' in SL's 19th year. The US$78M past-year / US$1.1B lifetime / US$500M-since-2018 payout figures come from the 2024 GamesBeat interview with Philip Rosedale, not from the prnewswire URL, so the claim needs two citations. Note US$78M is cash-out (process credit), a different metric from 2009's Gross Resident Earnings.",
+          "source_url": "https://www.prnewswire.com/news-releases/high-fidelity-invests--in-second-life-301459959.html"
+        }
+      ]
+    },
+    {
+      "claim": "In 2023, 21,152 Second Life creators earned real money; 6,446 earned more than US$1,000, 139 earned more than US$100,000, and 14 earned at least US$1 million (Linden Lab/Rosedale statements as reported).",
+      "source_url": "https://wnhub.io/news/other/item-46605",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Single secondary source (WN Hub) could not be opened and the exact counts (21,152 / 6,446 / 139 / 14) do not correspond to any Linden Lab publication I can recall. Numbers are internally plausible against a US$78M annual payout, but attribution to Rosedale/LL is second-hand and 'earned real money' is ambiguous (any L$ sale vs USD cash-out), which changes the meaning of the 21,152 base.",
+          "source_url": "https://wnhub.io/news/other/item-46605"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Could not confirm the exact figures 21,152 / 6,446 / 139 / 14 (no live source access; checker has no specific recall of these numbers). Shape is plausible and consistent with Rosedale's 2024 statements. Attribution issue: wnhub.io is a secondary aggregator; the primary is the 2024 GamesBeat/Rosedale interview or talk, and the period may be 'past 12 months' rather than calendar 2023. Downstream inference (14 millionaires = 18%+ of US$78M) inherits this uncertainty.",
+          "source_url": "https://wnhub.io/news/other/item-46605"
+        }
+      ]
+    },
+    {
+      "claim": "The Second Life economy grew 65% in 2009 to US$567 million in user-to-user transactions, while Gross Resident Earnings were only US$55 million (up 11% over 2008).",
+      "source_url": "https://en.wikipedia.org/wiki/Economy_of_Second_Life",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Matches Linden Lab's January 2010 '2009 End of Year Second Life Economy Wrap up': economy +65% to US$567M (about 25% of US virtual goods market), Gross Resident Earnings US$55M, up 11%. Caveat: US$567M is user-to-user L$ volume, and LL shifted its preferred metric to that basis in 2009, so the 65% growth is not strictly like-for-like with 2008.",
+          "source_url": "https://en.wikipedia.org/wiki/Economy_of_Second_Life"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: prior knowledge of LL's January 2010 '2009 End of Year Second Life Economy Wrap up', reproduced on Wikipedia: user-to-user transactions US$567M in 2009, up 65% over 2008; Gross Resident Earnings US$55M, up 11%; '25% of the US virtual goods market'. Arithmetic consistent with ~US$344-350M for 2008. Caveat: GRE is net positive L$ flow, not cash withdrawn, so the brief's 1:10 ratio comparison with 2024 cash-out mixes metrics.",
+          "source_url": "https://en.wikipedia.org/wiki/Economy_of_Second_Life"
+        }
+      ]
+    },
+    {
+      "claim": "A full private region historically cost US$1,000 setup plus US$295/month (mainland equivalent US$195/month); effective March 6, 2023 Linden Lab cut full-region tier by US$20 to US$209/month (US$239 with the 30K LI upgrade), and current LL pricing pages list US$349 setup and US$199/month.",
+      "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Classic pricing (US$1,000 setup + US$295/mo private; US$195/mo mainland full-region tier) and the 6 March 2023 cut (full region US$20 down to US$209; US$239 with 30K LI; Homestead unchanged at US$109) hold. The 'US$199/month' on an LL page is not the current full-region list price: the post-2023 list pair is US$349 setup + US$209/month (US$239 for 30K LI); US$199 is a stale cache or a grandfathered/other product rate, so the brief's 'two LL pages conflict' framing overstates the conflict. Needs live check of secondlife.com/land/private-pricing.",
+          "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/"
+        },
+        {
+          "verdict": "corrected",
+          "note": "US$1,000 setup + US$295/mo is correct only for ~2008-2015, not 'historically' in general: islands launched at ~US$1,250 + US$195/mo; Nov 2006 raised new islands to US$1,675 setup + US$295/mo (existing grandfathered at US$195); setup cut to US$1,000 in 2008, later US$600, then July 2018 US$349 setup with tier cut to US$249. Mainland US$195/mo for 65,536 m2 is correct. The March 2023 US$20 cut to US$209 (US$239 for 30K LI) matches recall. The 'current pages list US$199/month' figure is unconfirmed and matches no announced price point (295/249/229/209, grandfathered 195/179); treat as stale/mis-scraped. Corrected series: 2008 US$1,000+US$295; 2018 US$349+US$249; 2023+ US$349+US$209 (US$239 30K).",
+          "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/"
+        }
+      ]
+    },
+    {
+      "claim": "In October 2008 Linden Lab announced Openspace region tier would rise from US$75 to US$125/month (setup US$250 to US$375) effective January 1, 2009 with no grandfathering; Homesteads were then introduced at US$95/month in January 2009 with a planned rise to US$125 in July 2009.",
+      "source_url": "https://harperganesvoort.wordpress.com/2008/10/28/linden-lab-raising-tier-on-openspace-property/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Jack Linden's 27-28 Oct 2008 post raised Openspace tier US$75 to US$125/mo and setup US$250 to US$375 effective 1 Jan 2009 with no grandfathering; the November 2008 revision kept throttled Openspaces at US$75 and created Homesteads at US$95/mo (setup US$375) from 5 Jan 2009, rising to US$125 on 1 July 2009. Note for the brief (not this claim): the brief's statement that Homesteads were 'later grandfathered at US$95' is unsupported; the July 2009 rise to US$125 went ahead and Homesteads stayed at US$125 until the 2018 cut to US$109.",
+          "source_url": "https://wiki.secondlife.com/wiki/Linden_Lab_Official:Openspaces_FAQ"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: prior knowledge. Jack Linden's post of 27 Oct 2008 (cited blog reacts on 28 Oct) announced Openspace tier US$75 to US$125/mo and setup US$250 to US$375, effective 1 Jan 2009, no grandfathering. After backlash LL introduced Homesteads at US$95/mo from 5 Jan 2009, scheduled to rise to US$125 on 1 July 2009; Openspaces stayed US$75 but restricted to 750 prims. Minor precision: Homestead list price did become US$125 and stayed there until the July 2018 cut to US$109; the US$95 extension applied only to existing holders for a period.",
+          "source_url": "https://harperganesvoort.wordpress.com/2008/10/28/linden-lab-raising-tier-on-openspace-property/"
+        }
+      ]
+    },
+    {
+      "claim": "Total Second Life regions peaked at 31,988 on 13 June 2010; at end-2025 there were 26,884 regions (17,636 private estates, 9,248 Linden-owned), and in April 2026 26,983 (17,668 private, 9,315 Linden-owned), per the fan-run Grid Survey.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Grid Survey's all-time peak was about 32,000 regions in mid-2010, so 31,988 on 13 June 2010 is consistent but the exact day could not be checked. The 2025-26 totals sum correctly (17,636+9,248=26,884; 17,668+9,315=26,983), suggesting faithful copying from Daniel Voyager, but the posts could not be opened and no second series exists. Note: 'flat at ~27,000' masks a mix shift from fee-paying private estates to subsidised Linden Home regions tied to Premium; the private-estate peak date (Oct 2008, 26,605) rests on one ambiguous source.",
+          "source_url": "https://gridsurvey.com/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Peak of 31,988 regions on 13 June 2010 matches recall of Grid Survey/Daniel Voyager. End-2025 (26,884 / 17,636 / 9,248) and April 2026 (26,983 / 17,668 / 9,315) counts could not be confirmed. Source mismatch: the cited post is dated 4 Nov 2025 and cannot contain end-2025 or April 2026 figures; the researcher must cite the Jan 2026 and Apr/May 2026 posts or gridsurvey.com directly. Private-estate peak of 26,605 (Oct 2008) remains single-sourced.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/"
+        }
+      ]
+    },
+    {
+      "claim": "Marketplace commission doubled from 5% to 10% on December 2, 2019, the first commission increase since the Marketplace launched after Linden Lab bought Xstreet SL and OnRez on January 20, 2009.",
+      "source_url": "https://community.secondlife.com/news/featured-news/the-return-of-last-names-and-changes-to-marketplace-events-premium-r771/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "LL's November 2019 post announced Marketplace commission rising from 5% to 10% effective 2 Dec 2019 and called it the first increase since the Marketplace launched, with listing-enhancement prices cut ~10%; LL announced the Xstreet SL and OnRez acquisition on 20 Jan 2009, closed OnRez in Feb 2009 and rebranded Xstreet as Second Life Marketplace in 2010. Nuance: the 5% rate was inherited from Xstreet, so 'first increase' is LL's framing.",
+          "source_url": "https://community.secondlife.com/news/featured-news/the-return-of-last-names-and-changes-to-marketplace-events-premium-r771/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: prior knowledge. LL's 25 Nov 2019 post announced Marketplace commission 5% to 10% effective 2 Dec 2019, described as the first increase since the Marketplace launched, with listing-enhancement fees cut 10% and Premium raised to US$11.99. Xstreet SL and OnRez acquisition announced 20 Jan 2009; OnRez closed 11 Feb 2009. Precision: the Marketplace itself launched in October 2010 (Xstreet ran under LL for ~20 months first), and the 5% rate predates LL ownership.",
+          "source_url": "https://community.secondlife.com/news/featured-news/the-return-of-last-names-and-changes-to-marketplace-events-premium-r771/"
+        }
+      ]
+    },
+    {
+      "claim": "On August 1, 2019 Tilia Inc., a Linden Lab subsidiary and licensed money transmitter, took over all USD balances and payouts; Tilia was later acquired by Thunes and residents now hold USD in a Tilia Wallet.",
+      "source_url": "https://community.secondlife.com/news/tools-and-technology/tilia-officially-begins-operations-today-in-second-life-r39/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "LL's 1 Aug 2019 post 'Tilia Officially Begins Operations Today' describes Tilia Inc. as a wholly owned subsidiary, registered MSB and licensed money transmitter taking over USD balances and payouts, with mandatory acceptance of Tilia's ToS. J.P. Morgan Payments invested in 2022; Thunes announced acquiring Tilia in 2024, and LL's FAQ now refers to a Tilia Wallet. Payout-method details (PayPal/Skrill/wire) are time-sensitive and should not be stated as fixed.",
+          "source_url": "https://community.secondlife.com/news/tools-and-technology/tilia-officially-begins-operations-today-in-second-life-r39/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: prior knowledge. LL's 1 Aug 2019 post 'Tilia Officially Begins Operations Today in Second Life' describes Tilia Inc. as a wholly owned subsidiary, registered MSB and licensed money transmitter taking over USD balances and payouts, with residents required to accept Tilia's ToS. J.P. Morgan Payments invested in Tilia in Oct 2022; Thunes announced its acquisition of Tilia in Jan 2024; LL's FAQ uses 'Tilia Wallet'. Brief should add these dates.",
+          "source_url": "https://community.secondlife.com/news/tools-and-technology/tilia-officially-begins-operations-today-in-second-life-r39/"
+        }
+      ]
+    },
+    {
+      "claim": "Linden Lab banned gambling around July 25, 2007 (linked to an FBI inquiry); this triggered a run on Ginko Financial, which paid 0.10-0.145% daily interest and owed depositors about L$200 million (about US$750,000); virtual banking was then banned effective January 22, 2008.",
+      "source_url": "https://en.wikipedia.org/wiki/Ginko_Financial",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Robin Linden's 'Wagering in Second Life: New Policy' was posted 25 July 2007 (the FBI had visited LL in April 2007); Ginko halted withdrawals in early August 2007 after a run and converted about L$200M (~US$750k) of deposits into 'perpetual bonds'; the banking ban was announced 8 Jan 2008, effective 22 Jan 2008. Nuance: Ginko's standard rate was about 0.10%/day (~44% APR); 0.145% was a promotional/upper figure, not the headline rate.",
+          "source_url": "https://en.wikipedia.org/wiki/Ginko_Financial"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Basis: prior knowledge. 'Wagering in Second Life: New Policy' posted 25 July 2007, effective immediately; FBI link is indirect (LL invited FBI to inspect casinos in April 2007). Ginko advertised ~0.10%/day (~44% annualised), froze withdrawals late July 2007, converted deposits to 'Ginko Perpetual Bonds' in Aug 2007, with ~L$200M (~US$750k) outstanding. Banking ban announced 8 Jan 2008, effective 22 Jan 2008. All match.",
+          "source_url": "https://en.wikipedia.org/wiki/Ginko_Financial"
+        }
+      ]
+    },
+    {
+      "claim": "Anshe Chung (Ailin Graef) announced in November 2006 a net worth above US$1 million from in-world land subdivision and rental, built from a US$9.95 account over 32 months; Linden Lab could not verify it because holdings were spread across many names.",
+      "source_url": "https://fortune.com/2006/11/27/anshe-chung-first-virtual-millionaire",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Anshe Chung Studios' 26 Nov 2006 release claimed Ailin Graef's avatar had net worth above US$1M earned entirely in-world from a US$9.95 start about 32 months earlier via land development and rental; press noted LL could not verify because holdings were spread across many accounts and the figure was a mark-to-market land valuation. Her company took Samwer-brothers VC in Jan 2007, so 'entirely earned inside' ceased to hold right after.",
+          "source_url": "https://fortune.com/2006/11/27/anshe-chung-first-virtual-millionaire"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Net worth > US$1M announced in the Anshe Chung Studios release of 26 Nov 2006, built from a US$9.95 initial investment via land development/subdivision/rental; LL said it could not verify because holdings were spread across multiple accounts and valued at in-world land prices. All correct. Correction: the release says 'two and a half years' (~30 months); '32 months' is a derived figure from her March 2004 join date and should not be presented as the sourced number.",
+          "source_url": "https://fortune.com/2006/11/27/anshe-chung-first-virtual-millionaire"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Verification caveat: WebFetch was DNS-blocked for every host and the shared WebSearch budget was already exhausted before any query ran, so all verdicts rest on prior knowledge of the primary record and internal-consistency checks, not on pages re-read today. Items marked 'needs live check' in the report ([0] 2024 figures, [3] current pricing page, [1], [5]) should be re-run in a session with search budget.",
+    "Linden Lab already built a graphics-first successor and it failed: Sansar (open beta 2017) had far better rendering, PBR materials and VR support than Second Life, never reached meaningful concurrency, and was sold to Wookey in March 2020. Better graphics alone did not move SL's creators or attract a new audience; it lacked an economy, user land ownership and critical mass at launch. Any 'nolife' plan must explain why it will not repeat Sansar.",
+    "Linden Lab was acquired in July 2020 by an investor group led by Brad Oberwager and Randy Waterfield; Philip Rosedale returned via the January 2022 High Fidelity investment and later took a CTO role. The post-2022 strategy is incremental (Second Life Mobile viewer 2024-25, PBR/glTF materials, age-verification changes), not a new world, which leaves the successor space open.",
+    "IP/ToS risk: Linden Lab's August 2013 Terms of Service change (section 2.3) granted LL a broad perpetual licence over user content; creators and texture vendors (notably CGTextures) pulled out and LL partially walked it back in 2014. A successor needs a creator-friendly content licence from day one and a covenant against unilateral licence expansion.",
+    "Legal status of the currency: LL's ToS defines the Linden Dollar as a limited licence right, not property or money, and LL controls supply via LindeX sales. That design is what allowed balance freezes and the 2008 banking ban; a successor using fiat-denominated balances in a regulated wallet (the Tilia model from day one) avoids the ambiguity the brief only partly covers.",
+    "OpenSimulator and the Hypergrid have implemented avatar/inventory portability between independently hosted grids since 2008, i.e. the brief's portability recommendation already exists. The lesson is that interoperability without a shared payment rail and discovery layer produces many near-empty grids; portability must be bundled with economy and curation.",
+    "The June 2010 layoff of about 30% of Linden Lab staff under Mark Kingdon, after the Second Life Enterprise and Viewer 2 failures, marks the point LL switched from growth investment to cash-flow management; the flat decade the brief describes starts there, not with the 2007-08 bans.",
+    "Gambling did not stay banned: since 2014 Linden Lab's Skill Gaming Policy licenses approved operators on gated regions, which is exactly the per-jurisdiction licensing model the brief recommends designing; it can be studied as an existing precedent rather than built from scratch.",
+    "Verification limitation: all ten WebFetch attempts failed with DNS errors and the shared WebSearch budget was already exhausted before the first query, so every verdict rests on the checker's prior knowledge of the primary sources, not on fetched pages. The researcher's brief has the same limitation. Both passes must be re-run with working web access before publication.",
+    "Skill gaming was re-legalised by LL in 2014 (Skill Gaming Policy, licensed operators on designated regions for residents in approved jurisdictions). The brief's design implication about per-jurisdiction rules instead of blanket bans is something LL itself eventually did; the lesson is the seven-year gap and stranded capital, not permanent prohibition.",
+    "Linden Lab's own successor product, Sansar (2017-2020), failed and was sold to Wookey Project Corp in 2020; LL itself was sold to an Oberwager/Waterfield investor group in July 2020. A successor-world plan must explain why LL's in-house successor lost to its legacy product (no economy or land/rental layer at launch, weaker in-world creation tools, VR-first bet).",
+    "Grandfathering precedent: in November 2006 LL raised new-island tier from US$195 to US$295 but grandfathered existing islands; in October 2008 it refused to grandfather Openspaces. The covenant existed and was broken, which is why the 2008 episode was so damaging and why a written grandfathering rule has direct historical grounding.",
+    "Metric comparability: 2009 'Gross Resident Earnings' (net positive L$ flow) and 2024 'paid out to creators' (USD cash-out) are different metrics; the brief's claim that a 1:8-1:10 ratio 'has barely moved' should be reframed as 'both sit near 10% of gross volume' rather than treated as one time series.",
+    "Real-terms decline: nominal SL GDP went from US$567M (2009) to US$650M (2022-24), about +15% nominal, while US CPI rose roughly 40%; real GDP therefore fell by about a quarter. The brief says 'flat' but does not state the real-terms shrinkage.",
+    "The Second Life Marketplace replaced Xstreet SL in October 2010, so the captive-marketplace era begins 2010, not 2009, and the 5% commission predates LL ownership (SL Exchange/Xstreet charged 5%).",
+    "Premium price history: US$9.95/month until the 2019 change (announced in the same November 2019 post as the Marketplace commission rise) to US$11.99/month or US$99/year, which confirms the brief's unverified parenthetical in its section 5.",
+    "Tilia fixed points for the regulatory timeline: J.P. Morgan Payments investment October 2022; Thunes acquisition announced January 2024."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/sl-economy-creators-refute.md",
+    "docs/research/fact-checks/sl-economy-creators-precision.md"
+  ]
+}

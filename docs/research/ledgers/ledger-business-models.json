@@ -1,0 +1,222 @@
+{
+  "key": "business-models",
+  "title": "Business models and unit economics of virtual worlds",
+  "file": "docs/research/briefs/business-models.md",
+  "summary": "IMPORTANT CAVEAT: this brief could not be verified live. The run's shared WebSearch budget was already exhausted by sibling agents (0 of the required 10 searches executed), and WebFetch failed DNS resolution for every host tried (Wikipedia, SEC EDGAR, Roblox IR, secondlife.com, fortnite.com, hello.vrchat.com), so 0 of the required 6 primary sources were read. All figures come from prior knowledge (training data through mid-2026), are tagged with confidence levels in the file, and are pointed at the primary URL where they should be checked. A follow-up pass with working web tools is needed before any number is reused in a plan.\n\nSubstance: Virtual worlds have tried four monetization families. (1) Land rent (Second Life: ~$229/month per Full Region, $99/yr Premium, 10% Marketplace cut, 5% cash-out fee; estimated $75-100M/yr Linden revenue with land historically the majority) taxes persistence rather than success, so estate counts fall whenever users plateau (31k regions in 2010 to ~22-25k). Crypto worlds (Decentraland, 90,601 LAND; Sandbox, 166,464 LAND) replayed the same mistake at 10x speed, selling scarce land to speculators before users existed; DappRadar's Oct 2022 count of ~38 Decentraland DAU exposed the gap. (2) Engagement-share pools: Roblox paid creators $923M in 2024 (~21% of $4.37B bookings) at $0.0038 per Robux, and Fortnite Creator Economy 2.0 puts 40% of net revenue into an engagement pool; both align platform growth with creator income but produce power-law outcomes and need formula policing (Epic rewrote it in March 2025). (3) Subscriptions (FFXIV/WoW $13-15/month; VRChat Plus $9.99; SL Premium) provide stable ARPU of $100-180/yr but limit reach. (4) Subsidized metaverses (Reality Labs losses $10.2B/13.7B/16.1B/17.7B for 2021-2024, Horizon's 47.5% creator take; Rec Room and VRChat layoffs) show that growth without a self-funding loop is not durable.\n\nUnit-economic anchors derived from Roblox's reported structure: infrastructure plus trust & safety ~$1.0B/yr ≈ $12-13 per DAU per year ≈ ~1.4 cents per engaged hour all-in; app-store fees ~20% of bookings are the single largest cost; marketing under 3% of bookings (growth is organic); ~$55 bookings per DAU per year. A new world should plan on 1.5-2 cents per engaged hour, $1-3/DAU/month for safety, $30-60/yr blended ARPU, and near-zero paid CAC. The model that aligns platform growth with creator and community wealth is an activity-priced infrastructure layer (no upfront land rent) plus a published engagement pool of 35-45% of net revenue with a reserved slice for recurring communities, delivered on web/PC with owned billing so creator share can reach 50-70% instead of the 25-30% that store taxes leave on Roblox.",
+  "design_implications": [
+    "Do not make upfront land rent the core revenue line: price persistence of idle space near zero and charge for activity (compute-minutes, storage, voice) near cost, so the platform earns only when people show up and creators carry minimal fixed costs.",
+    "Run a published engagement pool of 35-45% of net revenue (Fortnite precedent) plus a direct-sales marketplace (Roblox precedent), weighting return visits to the same community over raw sessions to defeat churn-farming.",
+    "Reserve 10-20% of the pool for communities and venues that hold recurring events, measured by distinct returning members, so purpose-giving groups are funded even if they ship no assets.",
+    "Launch on web/PC with owned billing so creator share can be 50-70% of consumer spend instead of the 25-30% that 30% store taxes leave on Roblox; treat mobile/VR stores as top-up channels only.",
+    "Budget trust & safety at Roblox's ratio (~$1/DAU/month, 20-25% of bookings) from day one and build it as a product (reputation, community moderation tools), not an overhead.",
+    "Keep the in-world currency closed and non-transferable (avoid VCOIN/MANA paths); earn on transparent exchange spreads and keep cash-out fees at or below 5%.",
+    "Add a $10-12/month membership tier (SL Premium / VRChat Plus precedent) bundling stipend, storage and avatar features as the stabilizing revenue line that covers fixed costs without taxing creators.",
+    "Model unit economics at 1.5-2 cents per engaged hour all-in, $30-60/yr blended ARPU, and near-zero paid CAC; design invitations, events and groups as the acquisition engine because every successful world grew organically with marketing under ~5% of revenue.",
+    "Stay hardware-agnostic and avoid dependence on a subsidized headset platform whose store take and roadmap you do not control (Horizon, AltspaceVR).",
+    "Never sell scarce land to speculators before there are users; any scarcity should be earned by activity and expire when activity stops."
+  ],
+  "open_questions": [
+    "All figures need live verification: the session had no working web access (search budget exhausted, DNS failures on WebFetch), so none of the 10 searches / 6 primary reads required by the brief were performed.",
+    "Exact 2024-2026 Second Life tier prices and LindeX/Process Credit fee schedule after Linden's 2023-2025 changes.",
+    "Roblox FY2024 and FY2025 'infrastructure and trust & safety' line items, FY2025 DevEx total, and whether the DevEx rate changed again in 2025.",
+    "Creator revenue share on Roblox immersive and rewarded-video ads, and ads' actual share of bookings.",
+    "Epic's audited cumulative Creator Economy 2.0 payouts and the final terms of in-island item sales from December 2025.",
+    "VRChat and Rec Room actual creator payout totals and the exact Credit/token redemption rates.",
+    "Precise end date and stated reason for VCOIN's discontinuation at Together Labs.",
+    "Whether Minecraft Marketplace cumulative creator payouts passed $500M and the current partner revenue split.",
+    "Linden Lab's current revenue mix (land vs premium vs fees) and independent estimates of total revenue since the 2020 ownership change.",
+    "Independent Horizon Worlds MAU after the 2024-2025 mobile relaunch, and real moderation cost per DAU for 100k-1M DAU worlds, which no company publishes."
+  ],
+  "claims": [
+    {
+      "claim": "Roblox FY2024 bookings were about $4.37B and revenue about $3.60B, with creators paid $923M via DevEx (vs $741M in 2023), i.e. roughly 21% of bookings.",
+      "source_url": "https://ir.roblox.com/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No web access this session (search budget exhausted, all hosts failed DNS). Checker's recollection of the 6 Feb 2025 release agrees: revenue $3,602M, bookings $4,370M, DevEx $922.8M (2024) vs $740.8M (2023) = 21.1% of bookings. Verify against the Roblox FY2024 10-K.",
+          "source_url": "https://ir.roblox.com/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable (DNS/proxy 403; search budget exhausted). Prior knowledge: Roblox FY2024 release reported revenue $3,602M, bookings $4,370M, creators earned $923M (2023: $741M); 923/4370 = 21.1%. Caveat: $923M is 'creator earnings', not the 10-K cash 'developer exchange fees' line.",
+          "source_url": "https://ir.roblox.com/"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox's DevEx rate is $0.0038 per Robux (raised from $0.0035 in September 2023), with a 30,000 Robux minimum cash-out; since users buy Robux at ~$0.0125 each, creators receive ~30% of face value before Roblox's marketplace cut.",
+      "source_url": "https://en.help.roblox.com/hc/en-us/articles/203314100-Developer-Exchange-DevEx-FAQs",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees on $0.0038/Robux (raised from $0.0035, announced RDC Sept 2023) and 30,000 Robux minimum. Caveat: 30% of face value is a ceiling because Robux bundles are discounted (down to ~$0.01/Robux), and Roblox may have changed DevEx terms again in 2025. Verify on the DevEx FAQ.",
+          "source_url": "https://en.help.roblox.com/hc/en-us/articles/203314100-Developer-Exchange-DevEx-FAQs"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge: DevEx rate $0.0038/Robux effective 1 Sept 2023 (from $0.0035), 30,000 Robux minimum; $9.99/800 Robux = $0.0125 so 0.0038/0.0125 = 30.4%. Caveat: per-Robux retail price varies by pack size and (2025) region, so '30%' is pack-dependent.",
+          "source_url": "https://en.help.roblox.com/hc/en-us/articles/203314100-Developer-Exchange-DevEx-FAQs"
+        }
+      ]
+    },
+    {
+      "claim": "Fortnite Creator Economy 2.0 (launched 22 March 2023) allocates 40% of Fortnite's net revenue from the item shop and real-money purchases to an engagement payout pool shared among creator and Epic islands.",
+      "source_url": "https://www.fortnite.com/news/introducing-the-creator-economy-2-0",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees: announced 22 Mar 2023 at GDC; 40% of Fortnite net revenue from Item Shop and most real-money purchases goes to the engagement pool, shared with Epic's own islands, so creators collectively realise well under 40%. Verify on the Fortnite news post.",
+          "source_url": "https://www.fortnite.com/news/introducing-the-creator-economy-2-0"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge consistent: announced 22 March 2023 at State of Unreal/GDC with UEFN; Epic's wording is '40% of Fortnite's net revenues from the Item Shop and most real-money Fortnite purchases' paid to eligible island creators, including Epic's own experiences.",
+          "source_url": "https://www.fortnite.com/news/introducing-the-creator-economy-2-0"
+        }
+      ]
+    },
+    {
+      "claim": "Meta's Reality Labs posted operating losses of about $10.2B (2021), $13.7B (2022), $16.1B (2023) and $17.7B (2024), cumulatively over $70B since 2020.",
+      "source_url": "https://investor.atmeta.com/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Yearly figures match recollection ($10.19B, $13.72B, $16.12B, $17.73B). Probable correction on the cumulative: 2020-2024 sums to ~$64B (~$69B with 2019); '>$70B since 2020' only holds once 2025 quarters (~$4.2B Q1, ~$4.5B Q2) are added. Verify in Meta 10-K segment note.",
+          "source_url": "https://investor.atmeta.com/"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Annual figures ($10.19B/$13.72B/$16.12B/$17.73B) are prior-knowledge consistent but unfetched. The cumulative statement fails arithmetic on the brief's own numbers: 2021-2024 sums to $57.7B; adding 2020 (~$6.6B) gives ~$64B for 2020-2024 (~$69B from 2019). '>$70B' is reached only when H1 2025 (~$8.7B) is included, i.e. ~$73B through mid-2025. Corrected wording: '~$64B cumulative 2020-2024; >$70B including 2025'.",
+          "source_url": "https://investor.atmeta.com/"
+        }
+      ]
+    },
+    {
+      "claim": "Horizon Worlds creator monetization (announced April 2022) takes a 30% Quest store fee plus 25% of the remainder, about 47.5% total.",
+      "source_url": "https://about.fb.com/news/2022/04/testing-creator-monetization-horizon-worlds/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees: 11 Apr 2022 Meta post; 30% Quest hardware platform fee plus 25% Horizon fee on the remainder = 47.5% effective on Quest (30% did not apply on web). Verify on about.fb.com.",
+          "source_url": "https://about.fb.com/news/2022/04/testing-creator-monetization-horizon-worlds/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge consistent: announced 11 April 2022; 30% hardware platform (Quest Store) fee then Horizon Worlds takes 25% of the remainder = 47.5%; the 30% did not apply to non-Quest/web purchases.",
+          "source_url": "https://about.fb.com/news/2022/04/testing-creator-monetization-horizon-worlds/"
+        }
+      ]
+    },
+    {
+      "claim": "Second Life Premium costs $11.99/month or $99/year (raised from $9.95/$72 in 2019), and a privately owned Full Region costs roughly $349 setup plus ~$229/month.",
+      "source_url": "https://secondlife.com/land/pricing",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees for 2019 Premium increase ($9.95/$72 to $11.99/$99, effective 24 Jun 2019) and Full Region $349 setup / $229 monthly as of ~2021. Risk: Linden Lab made further 2023-2025 changes; the live pricing page must be read before reuse.",
+          "source_url": "https://secondlife.com/land/pricing"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge consistent: Premium rose to $11.99/mo, $99/yr in June 2019 (announced May 2019) from $9.95/$72; Full Region $349 setup (from $600, 2018) and $229/month (from $249, 2019; earlier $295); Homestead $149/$109. Linden made 2023-2025 fee changes, so the live pricing page must be checked before reuse.",
+          "source_url": "https://secondlife.com/land/pricing"
+        }
+      ]
+    },
+    {
+      "claim": "In October 2022 DappRadar counted about 38 daily active users (on-chain wallets) in Decentraland, which has 90,601 LAND parcels; MANA had peaked near $5.85 in November 2021.",
+      "source_url": "https://en.wikipedia.org/wiki/Decentraland",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees: CoinDesk (7 Oct 2022) citing DappRadar reported 38 'active users' (unique wallets interacting with contracts in 24h); Decentraland countered with ~8,000 DAU. 90,601 LAND parcels and MANA ATH ~$5.85 on 25 Nov 2021 are the canonical figures. Verify via CoinDesk/DappRadar/CoinMarketCap.",
+          "source_url": "https://en.wikipedia.org/wiki/Decentraland"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge consistent: CoinDesk/DappRadar (7 Oct 2022) reported 38 active wallets over 24h; Decentraland countered with ~8,000 DAU / ~56,000 MAU; 90,601 LAND parcels; MANA ATH ~$5.85-5.90 on 25 Nov 2021 depending on data provider. The 38 figure counts on-chain wallet interactions, not avatars present.",
+          "source_url": "https://en.wikipedia.org/wiki/Decentraland"
+        }
+      ]
+    },
+    {
+      "claim": "The SEC issued a no-action letter to IMVU on 17 November 2020 permitting VCOIN, a fixed-price ($0.004) transferable in-world token; the product launched January 2021 and was later wound down.",
+      "source_url": "https://www.sec.gov/divisions/corpfin/cf-noaction/2020/imvu-111720-2a1.pdf",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees on the 17 Nov 2020 CorpFin no-action letter, $0.004 fixed price, Uphold redemption, Jan 2021 launch. The 'later wound down' clause and its date are unconfirmed by the checker and flagged low by the researcher. Verify the letter's conditions (transfer caps, KYC) directly.",
+          "source_url": "https://www.sec.gov/divisions/corpfin/cf-noaction/2020/imvu-111720-2a1.pdf"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge consistent: SEC Corp Fin no-action letter dated 17 Nov 2020 to IMVU, Inc.; VCOIN fixed at $0.004 (250 = $1), ERC-20 via Uphold with caps; launched 13 Jan 2021 by Together Labs. The wind-down date is genuinely uncertain (2022-2023) and should stay low-confidence until pinned.",
+          "source_url": "https://www.sec.gov/divisions/corpfin/cf-noaction/2020/imvu-111720-2a1.pdf"
+        }
+      ]
+    },
+    {
+      "claim": "VRChat Plus costs $9.99/month or $99.99/year, and VRChat's Creator Economy (2023-2024) pays creators roughly half of consumer Credit spend with cash-outs via Tilia; VRChat cut ~30% of staff in June 2024.",
+      "source_url": "https://hello.vrchat.com/creator-economy",
+      "confidence": "low",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection agrees on VRChat Plus $9.99/$99.99 (since Nov 2020), Tilia as payout partner, and ~30% layoffs announced 10-11 Jun 2024. The 'roughly half of Credit spend' creator share is the weakest element and should be taken from VRChat's published Credit purchase/redemption rates, not inferred.",
+          "source_url": "https://hello.vrchat.com/creator-economy"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source unreachable. Prior knowledge: VRChat Plus $9.99/mo or $99.99/yr (since Nov 2020) and ~30% layoffs announced 11 June 2024 are consistent; payouts go through Tilia. The '~half of consumer Credit spend' share is an inference, not a figure VRChat states plainly, and should remain [low].",
+          "source_url": "https://hello.vrchat.com/creator-economy"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox's infrastructure plus trust & safety expense of roughly $1.0B in 2024 against ~79.5M average DAU and ~73.5B engagement hours implies about $12-13 per DAU per year and ~1.4 cents per engaged hour all-in.",
+      "source_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001315098",
+      "confidence": "low",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Recollection: FY2024 infrastructure and trust & safety expense ~$1.0B and 73.5B engagement hours are consistent. Probable correction: 79.5M is Q2 2024 DAU; FY2024 average DAU is ~82.9M, giving ~$12.1/DAU-year and ~1.36c/hour, so the stated ranges survive with a wrong input. Line item includes stock-based comp. Verify in the FY2024 10-K.",
+          "source_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001315098"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "SEC EDGAR unreachable. Prior knowledge: FY2024 'infrastructure and trust & safety' ~$1.0B (FY2023 ~$0.93B), average DAU 79.5M, ~73.5B hours engaged. Arithmetic checks: $12.6/DAU/yr and 1.36c/hour. Caveat: the line includes depreciation and stock comp and excludes safety work booked under R&D/G&A, so 'all-in' is loose.",
+          "source_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001315098"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Tooling failure: the shared WebSearch budget was exhausted before this checker ran and WebFetch failed DNS for every host including google.com, so no claim could be independently supported; all verdicts are 'unverifiable' and the notes carry only the checker's labelled recollections.",
+    "Roblox FY2024 average DAU is likely ~82.9M (not the 79.5M Q2 figure used in claims 0 and 9); ABPDAU is therefore ~$52-53 rather than ~$55.",
+    "Reality Labs cumulative losses only exceed $70B when 2019 or the 2025 quarters are included; 2020-2024 alone sums to roughly $64B. An investor-facing plan should quote fiscal-year totals with the exact window.",
+    "The Fortnite 40% engagement pool is shared with Epic's own first-party modes; with creator islands at roughly 35-40% of playtime, creators' realised share of net revenue is nearer 15-20%, which matters when nolife sets its own pool percentage.",
+    "Roblox's 30% face-value creator share is a ceiling: Robux volume bundles sell at ~$0.01/Robux, so for whales the creator's share of actual cash spent is higher; model creator economics on cash spent, not list price.",
+    "VCOIN's regulatory value for a successor lies in the no-action letter's conditions (per-user transfer caps, KYC at redemption, no promotion as an investment), not in its existence; read the conditions before designing any transferable currency.",
+    "All figures in the brief predate or straddle 2025-2026 changes (Roblox RDC 2025 economics and regional pricing, Epic in-island item sales from Dec 2025, Linden Lab 2024-2025 pricing and mobile launch); the brief must be re-verified with live web access before any number is used in the nolife plan.",
+    "No claim was checked against a live source: the per-turn WebSearch budget (200 calls shared across agents) was exhausted before this verifier ran, and the agent proxy gateway answers 403 (policy denial) to CONNECT for every external host, so WebFetch fails DNS on all of them. Every number in the brief remains a training-data recollection until egress is restored.",
+    "Reality Labs cumulative losses: ~$4.5B (2019), ~$6.6B (2020), then $10.2B/$13.7B/$16.1B/$17.7B; total ~$64B for 2020-2024 and ~$73B through H1 2025. The brief's '>$70B since 2020' overstates the through-2024 figure.",
+    "Roblox's '$923M to creators' (2024) is creator earnings at the DevEx rate, not audited cash paid; the 10-K 'developer exchange fees' line should be used in unit-economics tables.",
+    "Roblox's 2025 regional Robux pricing and pack-size discounts make 'creators receive ~30% of face value' pack-dependent; Roblox's own 'cents per dollar spent' disclosure (~24-29c) is the safer benchmark for a successor's creator-share target.",
+    "Meta's Horizon 47.5% take applied only to Quest-store purchases; web purchases skipped the 30% hardware fee. This directly supports the brief's recommendation to launch on web/PC with owned billing so the creator share can exceed 50%.",
+    "The DappRadar '38 DAU' metric counts on-chain wallet interactions, not avatars present; the lesson for a successor is that token-economy KPIs diverge from presence KPIs, not that Decentraland had 38 users.",
+    "Roblox's 'infrastructure and trust & safety' line includes data-center depreciation and stock-based compensation and excludes safety engineering booked under R&D/G&A, so the ~1.4c/hour 'all-in' benchmark is a lower bound for a new world's safety budget."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/business-models-refute.md",
+    "docs/research/fact-checks/business-models-precision.md"
+  ]
+}

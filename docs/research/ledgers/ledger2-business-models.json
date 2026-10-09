@@ -1,0 +1,105 @@
+{
+  "key": "business-models",
+  "title": "Business models and unit economics of virtual worlds",
+  "file": "docs/research/briefs/business-models.md",
+  "summary": "Live-searched (20/20 budget, extracts only; page fetching blocked) landscape of virtual-world business models for nolife. Roblox is the only UGC world whose engagement-share model self-funds: FY2024 revenue $3.60B / bookings $4.37B / 82.9M avg DAU / DevEx $923M / infra+T&S ~$0.9B (~$0.9 per DAU per month, ~1.2c per engaged hour); FY2025 bookings ~$6.8B, Q4 DAU 144M, Q4 DevEx $477M, with creators keeping ~25% of spend because 30% store fees come off first. Fortnite pays 40% of net revenue into an engagement pool, rewrote the formula on 1 Nov 2025 (purchasers-only engagement, 75% acquisition bonus, per-island retention) and let creators sell items from Dec 2025 at 100% of V-Bucks value through 2026 (~74% of cash), 50% after. Second Life is shifting weight off land: June 2026 cut Full Region tier to $199-209/month while raising Premium to $12.99/month ($119.88/yr) and LindeX fees; Linden says it has paid creators $1.1B cumulatively, $78M in 2023, on a ~$650M/yr economy. Mid-size UGC worlds fail on margin: Rec Room (150M lifetime players, $3.5B peak valuation, 30c of each UGC dollar after store fee and creator share) cut half its staff Aug 2025 and shuts 1 June 2026; VRChat cut 30% in June 2024 while paying creators ~50% of credit spend; The Sandbox cut >half its staff Aug 2025 with DAU in the hundreds and a $450k estate now worth ~$1,025; Meta's Reality Labs lost $17.7B (2024) and $19.2B (2025) and reversed a Horizon VR shutdown within 48 hours in March 2026. Enterprise worlds are tiny (ENGAGE XR 2025 revenue €1.9M; Virbela sold back to founders Nov 2024). The model that aligns growth with creator and community wealth is activity-priced infrastructure plus a published engagement pool (35-45% of net) with community-level retention weighting, owned web/PC billing to escape the 30% store tax, a closed currency with modest spreads, a $10-13/month subscription stabilizer, T&S budgeted at $1-3/DAU/month, and near-zero paid CAC.",
+  "design_implications": [
+    "Price activity (compute-minutes, storage, voice) near cost and keep idle persistence nearly free; make platform revenue depend on visits, not acreage, since land rent (SL tier, LAND NFTs) erodes whenever users plateau.",
+    "Run a published engagement pool of 35-45% of net revenue (Fortnite's number) that weights purchasing users, per-community retention and returning members, copying Epic's Nov 2025 anti-farming rewrite from day one.",
+    "Own billing on web/PC so creators can keep 50-70% of consumer spend (VRChat/Minecraft/Epic-window range) rather than the ~25% forced by mobile store fees; treat app stores only as top-up channels.",
+    "Reserve 10-20% of the pool for communities/venues measured by distinct returning members, because existing pools pay map-makers and not the people who make a place worth returning to.",
+    "Budget $1-3 per DAU per month for infrastructure plus trust & safety (Roblox's ~$0.9 is the automated floor) and model ~1.2-2 cents per engaged hour all-in.",
+    "Keep the currency closed and non-transferable with a published round-trip spread of at most ~10%; avoid VCOIN/MANA-style transferable tokens, which added compliance cost without users.",
+    "Add a $10-13/month subscription stabilizer (SL $12.99, VRChat Plus ~$9.99, WoW $14.99) bundling stipend, storage and avatar features to cover fixed costs without taxing creators.",
+    "Assume near-zero paid CAC: with ~1-2% of DAUs paying, mobile CPIs of $1-4 imply $75-300 per payer; build invitation, events and groups as the acquisition engine, as every successful world did.",
+    "Stay hardware-agnostic; Horizon's 2026 shutdown-and-reversal shows the risk of depending on a subsidized headset platform's strategy.",
+    "Model the full cash loop before launch: Rec Room had 150M lifetime players, a working creator payout and runway to 2029 and still failed on a 30-cents-per-dollar margin."
+  ],
+  "open_questions": [
+    "Official Linden Lab revenue mix after the June/July 2026 repricing (land vs premium vs LindeX) and the exact scope of the reported LindeX '10% to 11%' fee change.",
+    "Roblox FY2025 10-K full-year DevEx and infrastructure & trust-and-safety dollars (only Q2 and Q4 2025 figures surfaced).",
+    "Whether the DevEx base rate moved to $0.0038 in Sept 2023 or Sept 2025 (sources conflict), and the actual creator share of rewarded-video ad revenue.",
+    "Epic's audited cumulative Creator Economy 2.0 payouts for 2023-2025 (no official annual total found).",
+    "Current status of IMVU's VCOIN (no discontinuation report found; the 2023 wind-down is unverified prior knowledge).",
+    "Microsoft's official Minecraft Marketplace cumulative payout and partner revenue split (the >$500M / ~70% figures are secondary).",
+    "Horizon Worlds mobile MAU after the 2026 pivot (only lifetime downloads of 45M were found).",
+    "VRChat's and Rec Room's total creator payouts and Rec Room's final June 2026 payout amount.",
+    "Real moderation cost per DAU for a 100k-1M DAU world, which no company publishes.",
+    "Independent 2025-26 Second Life concurrency and region counts (unsearched)."
+  ],
+  "claims": [
+    {
+      "claim": "Roblox FY2024: revenue $3,602.0M (+29%), bookings $4,369.1M (+24%), net loss $935.4M, average DAU 82.9M, average daily paying users ~1.04M; DevEx (creator payouts) $922.8M.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000033/rblx-20241231.htm",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Roblox infrastructure and trust & safety cost $448.0M in H1 2024 and was 13% of revenue / 9% of bookings in Q4 2024, implying roughly $0.9B for the year, about $0.9 per DAU per month.",
+      "source_url": "https://www.barchart.com/story/news/29329133/roblox-rblx-q3-2024-earnings-call-transcript",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Roblox FY2025 (reported 5 Feb 2026): revenue ~$4.9B (+36%), bookings ~$6.8B (+55%), Q4 DAU 144M (+69%), Q4 DevEx $477M (+70%), top-1,000 creators averaged $1.3M; 2026 bookings guidance $8.28-8.55B.",
+      "source_url": "https://quartr.com/events/roblox-rblx-q4-2025_ozGB34Pf",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Fortnite Creator Economy 2.0 pays 40% of net Item Shop revenue into an engagement pool; from 1 Nov 2025 only purchasing players count, acquirers get 75% of new/lapsed players' contribution for six months, and from Dec 2025 creators keep 100% of V-Bucks value on in-island item sales through 2026 (~74% of cash), 50% after.",
+      "source_url": "https://www.fortnite.com/news/fortnite-developers-will-soon-be-able-to-sell-in-game-items",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Second Life fee changes: Full Region tier cut to $209 (bonus) / $199 (standard) per month from 15 June 2026; Premium raised to $12.99/month and $119.88/year, Premium Plus annual to $287.88 from 8 July 2026; LindeX minimum buy fee cut to $0.49.",
+      "source_url": "https://modemworld.me/2026/06/08/ll-announces-second-life-fee-changes-reductions-increases/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Linden Lab (Dec 2024) says it has spent >$1.3B building Second Life and paid ~$1.1B cumulatively to creators, with $78M paid in 2023 on a ~$650M/yr in-world economy, keeping a 10% cut.",
+      "source_url": "https://modemworld.me/2024/12/20/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Rec Room kept only ~30 cents of each UGC dollar (vs ~70 cents on first-party items) after 30% store fees, laid off about half its staff in Aug 2025, and announced a full shutdown for 1 June 2026 despite 150M lifetime players and $294M raised at a $3.5B peak valuation.",
+      "source_url": "https://blog.recroom.com/posts/2025/8/28/rec-room-finances-and-ugc-revenue",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "VRChat creators earn ~50% of store spend (credits sold at ~$0.0083, paid out at ~$0.005 each), with a 30,000-credit minimum and 1.5% Tilia/PayPal payout fee; VRChat laid off 30% of staff in June 2024.",
+      "source_url": "https://creators.vrchat.com/economy/faq/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Meta Reality Labs lost $17.7B in 2024 and $19.19B in 2025 on ~$2.2B revenue; in March 2026 Meta announced the end of Horizon Worlds VR support for 15 June 2026 and reversed it within about 48 hours, keeping VR in maintenance mode while pivoting to mobile.",
+      "source_url": "https://www.shacknews.com/article/147618/facebook-meta-reality-labs-fy25-losses",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "The Sandbox cut more than half of its ~250 staff on 28 Aug 2025 under Animoca, with 2025 DAU reported in the hundreds (many bots), SAND down ~97% from its $8.40 peak, and an estate bought for $450,000 in Dec 2021 now valued around $1,025.",
+      "source_url": "https://cointelegraph.com/news/the-sandbox-restructuring-ai-layoffs-cofounders-role-shift",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    }
+  ],
+  "additional_findings": [],
+  "verify_files": [],
+  "note": "Re-researched with live search; supersedes ledger-business-models.json"
+}

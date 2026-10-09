@@ -1,0 +1,221 @@
+{
+  "key": "community-purpose",
+  "title": "What gives virtual communities purpose: sociology, rituals, governance, roles",
+  "file": "docs/research/briefs/community-purpose.md",
+  "summary": "Second Life's \"what do I do here?\" problem is, at bottom, a density and role problem rather than a content problem. Fan-compiled grid data put the all-time concurrency peak at 88,220 on 29 March 2009 (partly bot-inflated), a pandemic high of 60,068 in April 2020, and flat 2025 peaks of roughly 47-49k, spread across ~1,820 km² and 26,785 regions (Nov 2025): about 3.7 hectares per logged-in avatar at the busiest hour. A 2009 funnel showed only ~3% of 16.8M registrations returning monthly, and operators' own retrospectives concede that unstaffed builds failed while staffed, scheduled venues thrived. The communities that lasted inside SL and its peers all share four features: a reason to meet at a time (Burn2 since 2003, SL20B's 60-region festival with 425+ performers, Habbo rare drops, Animal Crossing graduations and funerals), scarcity of place or seats (FFXIV's ~3% housing lottery odds, NoPixel's 32-seat whitelisted servers, Habbo rares never re-issued), named roles with duties (Virtual Ability's mentors, Helping Hands' volunteer sign teachers, SL venue hosts and DJs, EVE's elected CSM with a steady 30-60k votes and 12-17% turnout for 15 years), and consent/moderation infrastructure. Theory agrees: Steinkuehler & Williams (2006) show MMOs work as third places mainly for bridging ties; Bartle (1996) shows populations drift unless type balance is managed; Kraut & Resnick organise evidence around newcomers, commitment and regulation. The 2017 Stanford \"Eternal September\" study of 45M comments found growth does not dilute culture when moderation is active, so crowding is not the enemy; harassment is (ADL 2022: 86% of adult gamers harassed, 19% quit games over it in 2019). The documented community deaths were operator decisions: SL's gambling/banking bans, Habbo's 2012 global mute, Disney closing Club Penguin and then shutting its 11M-user fan revival, SL private-estate loss tied to cost rises. Design levers for nolife therefore are: size the world to the population, hosted first-hour cohorts, a civic calendar with real scarcity, roles as first-class objects with succession, constitutional self-governance that binds the operator, moderation as infrastructure, and explicit protection for care and identity communities. Note: WebFetch could not resolve any host in this sandbox and the search budget was exhausted after 24 searches; primary pages were read via search-engine excerpts.",
+  "design_implications": [
+    "Size the world to the population: open districts only when occupancy warrants and let empty land decay; Second Life averaged ~3.7 ha per avatar at peak hour, which is the arithmetic behind 'it feels empty'.",
+    "Make the first hour a first group: route every new account into a hosted, scheduled cohort with a mentor (Virtual Ability / Helping Hands model) instead of an empty Welcome Island, and track day-7 return as the primary KPI.",
+    "Ship a civic calendar on day one: weekly rhythms (market day, open stage, assembly) plus an annual scarce ritual (a Burn2-style week on a region that exists only then), with built-in capture/share tools because rituals spread through clips.",
+    "Treat roles as first-class objects: host, mentor, DJ, moderator, builder, performer, each with a schedule slot, visible badge, stipend and succession rules so groups survive their founders.",
+    "Design scarcity deliberately: limited prime plots allocated by lottery or community vote, time-limited never-reissued items, seat caps on curated RP servers, all published as policy.",
+    "Constitutional self-governance: an elected council with published turnout (EVE's 12-17% benchmark), district-level rule-setting, and a charter that constrains the operator from retroactive economy changes, because operator decisions are the leading documented cause of community death.",
+    "Moderation as infrastructure: consent mechanics for all avatar-to-avatar actions, moderator tooling with public deletion rates (the signal that predicted healthy growth on Reddit), and fast human response to newcomers in week one.",
+    "Support bridging and bonding separately: public third places for weak ties and private persistent group homes for strong ties (clans, support groups), with easy movement between them.",
+    "Fund staffed venues with scheduled programming via revenue share; do not give prime placement to unstaffed brand builds.",
+    "Protect care and identity communities explicitly: accessibility (text, voice, sign, screen reader), low-cost nonprofit tenancy, and a guarantee that disability, grief and faith spaces are never instanced away or repriced."
+  ],
+  "open_questions": [
+    "No independent attendance data exists for SL20B, Burn2 or SL live music, and Linden Lab does not publish DAU; what is the real weekly population of SL's event-going core?",
+    "Does the Reddit finding that newcomers acculturate under active moderation hold in embodied 3-D, voice-based spaces?",
+    "What is the causal (not correlational) effect of clan/group membership on retention? Bungie, Square Enix and Linden hold the data; none has published it.",
+    "What density threshold makes a space feel alive? The 0.1 ha/avatar target is a design assumption, not a measured constant.",
+    "Why have EVE CSM vote totals held at 30-60k for 15 years while CCP stopped publishing turnout percentages; is the electorate shrinking?",
+    "Discord churn figures (>50% week-one loss, 83% of servers under 100 members) are vendor claims; no peer-reviewed small-server lifecycle study was found.",
+    "How much of SL's niche-community durability depends on twenty years of accumulated user content that nolife will not have at launch?",
+    "The SL education exodus after the 2010 nonprofit discount removal and Habbo's post-2012 decline could not be quantified within the search budget; WebFetch was unavailable in this sandbox so primary pages were read only via search excerpts."
+  ],
+  "claims": [
+    {
+      "claim": "Second Life's all-time concurrency peak was 88,220 users on 29 March 2009; 2024's daily maximum was 53,016 (19 Feb 2024) and 2025 peaks ran roughly 47,000-49,000.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live verification possible (WebFetch DNS failure on every host; WebSearch per-turn budget already exhausted by other agents). The ~88,200 peak in late March 2009 is consistent with contemporaneous reporting (Engadget/Tateru Nino gave 88,199 for the same window). The 53,016 (19 Feb 2024) and 47-49k 2025 figures are Daniel Voyager's own daily sampling of the login-page number, not a Linden Lab publication, and could not be independently confirmed.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "No web access this run (WebFetch DNS failure on all hosts; WebSearch budget exhausted before first call). In-sandbox corroboration: sibling brief sl-history-stagnation.md independently found 88,220 on 29 Mar 2009 via a different Daniel Voyager post, and Wikipedia's rounded 88,200 Q1 2009. But the same sibling brief reports a 2025 high of 49,798 (24 Mar 2025) and October 2025 peaks of 42,000-45,000, so '2025 peaks ran roughly 47,000-49,000 and were flat' overstates late 2025. 53,016 on 19 Feb 2024 unchecked. Counter includes scripted agents, so 2009 and 2025 readings are not comparable.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/"
+        }
+      ]
+    },
+    {
+      "claim": "The Second Life main grid had 26,785 regions in early November 2025 (17,589 private, 9,196 Linden-owned), down from over 28,000 in mid-2024, with private estates losing a net 270 (~1.5%) during 2024.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Arithmetic is internally consistent (17,589 + 9,196 = 26,785; 270 is ~1.5% of ~17,860) and the direction (private estates shrinking after the 2024 region price rise, Linden-owned regions growing) matches known grid trends, but the counts are fan-compiled and could not be re-fetched.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Components sum correctly (17,589 + 9,196 = 26,785). But the brief's own numbers do not reconcile: private estates -270 and Linden-owned +211 in 2024 gives a net change of about -59, which cannot connect '>28,000 in mid-2024' to '26,785 in Nov 2025' unless ~1,100 regions vanished in 2025 (the brief's private-estate figures imply ~140) or the mid-2024 figure counted temporary event/Linden Homes regions on a different basis. The 'decline in region count, not acreage' conclusion depends on this comparison and should be re-derived from one consistent series. No sibling brief reports region counts.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/"
+        }
+      ]
+    },
+    {
+      "claim": "EVE Online CSM elections: CSM7 drew 59,109 votes (16.63% turnout, record); CSM20 in 2025 drew 49,870 votes from 55 candidates, the second-highest ever.",
+      "source_url": "https://www.eveonline.com/news/view/heres-your-csm-20",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "CSM7's 59,109 votes / ~16.6% turnout record matches established reporting. CSM20's 49,870 from 55 candidates could not be fetched but is consistent with the series (above CSM6's 49,096, below CSM7), which is what makes 'second-highest ever' true if accurate. Caveats the brief omits: votes are per Omega account (multi-account players vote repeatedly), CCP stopped publishing turnout percentages years ago, and the CSM is advisory and NDA-bound, not a governing body.",
+          "source_url": "https://www.eveonline.com/news/view/csm-7-the-results"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch CCP's post. Prior knowledge: CSM7 (2012) 59,109 votes / 16.63% as the record matches recall, as does CSM6 49,096 / 14.25%. CSM20 49,870 from 55 candidates unchecked; if correct it is second-highest within the brief's own series (next: CSM6 49,096), so the superlative is internally consistent. Turnout percentages have not been published for later councils and eligibility rules changed, so raw totals across 2012 and 2025 are not participation rates.",
+          "source_url": "https://www.eveonline.com/news/view/heres-your-csm-20"
+        }
+      ]
+    },
+    {
+      "claim": "Lin et al. (ICWSM 2017) analysed 45 million comments in 10 subreddits after they were made defaults and found communities kept their linguistic fingerprints; subreddits with higher moderation activity had significantly higher scores and lower complaint levels.",
+      "source_url": "https://hci.stanford.edu/publications/2017/eternalseptember/eternalseptember.pdf",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Bibliographic details (Lin, Salehi, Yao, Chen, Bernstein; ICWSM 2017; ~45M comments from subreddits added to Reddit's default set in May 2014) and the main finding (language and behaviour stayed stable after growth) match the paper. The secondary moderation finding (more comment removals correlated with higher scores and fewer 'gone downhill' complaints) matches recall of the discussion but could not be re-read; it is correlational and from passive, text-only growth.",
+          "source_url": "https://hci.stanford.edu/publications/2017/eternalseptember/eternalseptember.pdf"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "PDF not reachable. Prior knowledge: 'Better When It Was Smaller? Community Content and Behavior After Massive Growth' (Lin, Salehi, Yao, Chen, Bernstein, ICWSM 2017), 45M comments, 10 subreddits defaulted in May 2014, linguistic fingerprints retained, activity concentrated on fewer posts, complaints rose: all match. The specific result that high-moderation subreddits had 'significantly higher average scores and lower complaint levels' is stated more firmly than I can confirm; verify exact wording before using it as a design justification.",
+          "source_url": "https://hci.stanford.edu/publications/2017/eternalseptember/eternalseptember.pdf"
+        }
+      ]
+    },
+    {
+      "claim": "Virtual Ability was founded in 2007, received 501(c)(3) status in April 2008, opened Virtual Ability Island in August 2008, won the first Linden Prize in 2009, and reported 850+ members in 2014 and 1,300+ in 2025.",
+      "source_url": "https://virtualability.org/history/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Year-level milestones hold: founded 2007 (Alice Krueger / Gentle Heron), 501(c)(3) in 2008, Virtual Ability Island opened 2008, won the inaugural US$10,000 Linden Prize in 2009. The specific months (April/August 2008) and the self-reported membership counts (850+ in 2014, 1,300+ in 2025) could not be independently verified.",
+          "source_url": "https://virtualability.org/history/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Site not reachable. Sibling brief sl-ux-onboarding-governance.md independently reports Virtual Ability founded 2007 (Alice Krueger / Gentle Heron) and winner of the first Linden Prize in 2009. Precision point from prior knowledge: the 2009 Linden Prize was shared with Studio Wikitecture, so 'co-won' is more accurate. 501(c)(3) April 2008, Island opening August 2008, and the 850+/1,300+ membership figures are self-reported on virtualability.org and unchecked.",
+          "source_url": "https://virtualability.org/history/"
+        }
+      ]
+    },
+    {
+      "claim": "ADL's 2022 survey found 86% of US adult online multiplayer gamers experienced harassment (severe harassment 77%, up from 71%); its 2019 survey found 19% stopped playing certain games entirely because of harassment.",
+      "source_url": "https://www.adl.org/news/press-releases/two-thirds-of-us-online-gamers-have-experienced-severe-harassment-new-adl-study",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Numbers match ADL's reports: Hate Is No Game 2022 gives 86% any harassment, 77% severe (up from 71% in 2021), ~67M adults; Free to Play? 2019 gives 74% any / 65% severe, 19% stopped playing certain games, 23% avoided games. Attribution error: the cited URL ('two-thirds...severe harassment') is the 2019 press release (65% ≈ two-thirds); the 2022 figures should be cited to the 2022 Hate Is No Game report.",
+          "source_url": "https://www.adl.org/news/press-releases/two-thirds-of-us-online-gamers-have-experienced-severe-harassment-new-adl-study"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Attribution error: the cited URL (slug 'two-thirds-of-us-online-gamers-have-experienced-severe-harassment') is the press release for ADL's 2019 'Free to Play?' report (65% severe harassment); a 2019 release cannot contain 2022 survey results. The 2022 figures (86% any harassment; 77% severe, up from 71% in 2021; 66% teens, 70% pre-teens) belong to ADL's 'Hate Is No Game: Hate and Harassment in Online Games 2022' report and should be cited to it. The numbers themselves match prior knowledge of both reports (2019: 19% stopped playing certain games, 23% avoided games with hostile reputations) but were not checked live.",
+          "source_url": "https://www.adl.org/resources/report/hate-no-game-hate-and-harassment-online-games-2022"
+        }
+      ]
+    },
+    {
+      "claim": "Club Penguin had 12 million users when Disney bought it in 2007 (deal valued up to $700M), ~200 million registered by 2013, shut down 30 March 2017; fan server Club Penguin Rewritten reached 11M+ users before police shut it on 13 April 2022.",
+      "source_url": "https://techcrunch.com/2017/01/31/club-penguin-is-shutting-down/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Disney bought Club Penguin in Aug 2007 for $350M plus up to $350M earn-out (up to $700M) with ~12M registered users; Disney cited 200M+ registered accounts by 2013; shutdown announced 30 Jan 2017, executed 30 Mar 2017. Club Penguin Rewritten was taken down 13 Apr 2022 by City of London Police (PIPCU) at Disney's request, three arrested, ~11M registered users reported. All consistent with established reporting.",
+          "source_url": "https://techcrunch.com/2017/01/31/club-penguin-is-shutting-down/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "TechCrunch not reachable. Prior knowledge: Disney bought New Horizon Interactive in Aug 2007 for $350M plus up to $350M earn-out (hence 'up to $700M') with ~12M activated users / 700K subscribers; 200M+ registered by 2013; shutdown announced 30 Jan 2017, executed end of March 2017 (29 vs 30 March varies by time zone); Club Penguin Rewritten taken down 13 Apr 2022 after City of London Police arrests, with press citing 'over 11 million' self-reported users. All consistent. Note the TechCrunch article can only support the 2017 shutdown and acquisition background; the CPR facts rest on the Vice/Wikipedia sources the brief lists elsewhere.",
+          "source_url": "https://techcrunch.com/2017/01/31/club-penguin-is-shutting-down/"
+        }
+      ]
+    },
+    {
+      "claim": "BURN2 has burned the Man in Second Life since 2003, is the only virtual event among 100+ sanctioned Burning Man regionals, and holds a year-round region called Deep Hole with five main events a year.",
+      "source_url": "https://burningman.org/?p=7024",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "The Man has been burned in Second Life since 2003, but 2003-2009 the event was Burning Life, run by Linden Lab itself; BURN2 is the community-run successor that became a sanctioned Burning Man regional in 2010. 'BURN2 since 2003' conflates the two. Burning Man has described BURN2 as its only virtual regional and BURN2 keeps a year-round region (Deep Hole); the 'five main events a year' count is self-description and unverified (the number varies by year).",
+          "source_url": "https://burningman.org/?p=7024"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Naming/date conflation (prior knowledge, high confidence): the Second Life burn began in 2003 as 'Burning Life', created and run by Linden Lab; it was handed to the community and became BURN2 in 2010, which is also when it gained official Burning Man Regional status. So 'BURN2 has burned the Man since 2003' should read 'the SL burn has run since 2003 (as Burning Life until 2009; as community-run BURN2 and an official Regional since 2010)'. Sibling brief sl-ux-onboarding-governance.md corroborates the 2003 start ('Burning Life / Burn2 since 2003'). 'Only virtual regional among 100+', 'Deep Hole' and 'five main events a year' are plausible but unchecked; burningman.org/?p=7024 could not be resolved.",
+          "source_url": "https://burningman.org/?p=7024"
+        }
+      ]
+    },
+    {
+      "claim": "SL20B (22 June-11 July 2023) used 60 regions, 24 for Shop & Hop and 36 for a community-built festival, with over 425 live performers on four stages.",
+      "source_url": "https://ryanschultz.com/2023/06/19/your-guide-to-sl20b-second-life-celebrates-its-20th-birthday-with-sixty-sims-june-22nd-july-11th-2023/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "SL20B did open 22 June 2023 across roughly sixty regions per Ryan Schultz's guide and Linden Lab's press release, but the 24/36 Shop & Hop vs festival split, the 425+ performer figure and 'four stages' could not be re-fetched or confirmed from prior knowledge; treat as blog-sourced. No attendance figure was published.",
+          "source_url": "https://ryanschultz.com/2023/06/19/your-guide-to-sl20b-second-life-celebrates-its-20th-birthday-with-sixty-sims-june-22nd-july-11th-2023/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Page not reachable. 24 + 36 = 60 is consistent with the URL slug 'sixty-sims-june-22nd-july-11th-2023', the only part of the source visible here. Sibling brief confirms SL20B ran June 2023 but gives no counts. '425+ live performers on four stages' comes from Linden Lab's own press release (also cited in the brief) and is promotional, not audited; no attendance figure exists.",
+          "source_url": "https://ryanschultz.com/2023/06/19/your-guide-to-sl20b-second-life-celebrates-its-20th-birthday-with-sixty-sims-june-22nd-july-11th-2023/"
+        }
+      ]
+    },
+    {
+      "claim": "Castronova's 2001 study, from a 3,600-user survey and eBay sales, put EverQuest's Norrath at a $3.42 hourly wage and GNP per capita between Russia and Bulgaria, with the platinum piece trading at $0.0107.",
+      "source_url": "https://www.cesifo.org/DocDL/cesifo_wp618.pdf",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "CESifo WP 618 (Dec 2001): survey n = 3,619 (brief rounds to 3,600), hourly wage ≈ $3.42, per-capita GNP ≈ $2,266 ranking 77th between Russia and Bulgaria, platinum piece ≈ $0.0107. Correction to the brief's body text: the $2,266 / '77th richest' figures come from this same 2001 paper, not a separate 2005 Guinness measurement; Guinness merely repeated Castronova. The brief's claim that 'the two are not the same measurement' is wrong.",
+          "source_url": "https://www.cesifo.org/DocDL/cesifo_wp618.pdf"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "PDF not reachable. Prior knowledge: CESifo WP 618 (Dec 2001), 'Virtual Worlds: A First-Hand Account of Market and Society on the Cyberian Frontier', survey of 3,619 EverQuest players ('3,600' is a fair rounding), hourly wage $3.42, platinum piece $0.0107, GNP per capita $2,266, '77th richest, between Russia and Bulgaria'. The key claim matches. However the brief body (section 1) wrongly says the $2,266 / '77th largest economy' figure 'is dated 2005 by Guinness, so the two are not the same measurement': $2,266 and the 77th ranking are in the 2001 paper itself and are the same measurement as the $3.42 wage. Delete that sentence.",
+          "source_url": "https://www.cesifo.org/DocDL/cesifo_wp618.pdf"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Verification caveat: no live evidence was obtained. WebFetch failed with DNS errors on all 11 primary hosts and the shared WebSearch budget was exhausted before this checker ran; verdicts rest on prior knowledge of the cited sources, with 'unverifiable' applied wherever a precise number or date could not be independently recalled.",
+    "Linden Lab already built and lost a 'successor to Second Life': Sansar (2017, VR-first, no in-world building, separate economy) failed to attract SL's creator base and was sold to Wookey in 2020; Linden Lab itself was sold to an investor group in 2020, and Philip Rosedale's High Fidelity abandoned its social-VR world in 2019-20. A nolife plan must explain why it will not repeat Sansar: community and content do not transfer, and a VR requirement shrinks the audience.",
+    "Disney's official Club Penguin successor, Club Penguin Island (Mar 2017), closed 20 Dec 2018 after under two years, while the unlicensed Club Penguin Rewritten reached ~11M users by preserving the original world for free. Continuity of place, content and ritual beat a redesigned product, and IP ownership let the operator kill the community twice.",
+    "Second Life's convertible economy depends on a regulated money transmitter: Linden Lab created Tilia (a registered money services business) in 2019 to process L$ cash-outs. A successor with a convertible currency inherits that compliance burden from day one; Castronova's 2001 numbers came from grey-market eBay trading precisely because EverQuest had no sanctioned exchange.",
+    "EVE's CSM, the brief's governance benchmark, is advisory and NDA-bound, has been overruled by CCP, uses single transferable vote on a per-account (not per-person) franchise so multi-boxers vote repeatedly, and CCP no longer publishes turnout percentages. A 'constitutional' council for nolife needs one-person-one-vote identity and a defined scope of binding authority, which no existing virtual world has shipped.",
+    "The Reddit acculturation result (Lin et al. 2017) comes from passive, text-only growth via defaulting, not from migration of a hostile population into a voice/spatial environment. The brief's pattern 'growth does not destroy culture' should not be generalised to embodied 3-D worlds without 3-D evidence; the ADL figures show voice and spatial harassment is the live failure mode there.",
+    "Source hygiene: three of the ten key claims rest on a single fan blog (Daniel Voyager), one cites the 2019 ADL release for 2022 numbers, one conflates Burning Life (2003-09, Linden-run) with BURN2 (regional since 2010), and the brief's Castronova/Guinness distinction is wrong. None overturn its conclusions, but they should be fixed before the figures are reused in a plan.",
+    "Nothing in this run was checked against a live primary source: WebFetch failed with DNS errors on all ten cited hosts and the shared WebSearch budget for the turn was already exhausted before this checker's first query. Verdicts rest on in-sandbox corroboration from sibling briefs, internal arithmetic, and labelled prior knowledge. Re-run the fetches when web access is restored before any figure is quoted in the final plan.",
+    "The brief's region-count story is internally inconsistent: private estates -270 and Linden-owned +211 in 2024 gives a net 2024 change of about -59 regions, which cannot connect '>28,000 regions mid-2024' to '26,785 in November 2025'. The mid-2024 figure most likely included temporary event/Linden Homes regions or used a different counting basis. The derived 'hectares per avatar' density figure (3.7 ha) is built on this and on peak concurrency that includes bots, so it should be presented as an order-of-magnitude illustration, not a measurement.",
+    "The 2025 concurrency picture is worse than the brief states: a sibling brief from the same source family reports October 2025 peaks of 42,000-45,000, down from a March 2025 high of 49,798 that coincided with the mobile-app launch. 'Flat at 47-49K' hides a mid-year decline. For the successor's planning baseline, use the 42-45K autumn band and treat the spring bump as launch-driven.",
+    "The ADL 2022 figures are cited to the 2019 press release. This matters beyond citation hygiene: the 2019 and 2022 surveys used different age bands and question wording (2022 added 10-12 and 13-17 cohorts), so the year-over-year 'severe harassment 71% -> 77%' comparison is between the 2021 and 2022 adult waves, not 2019 and 2022. The design brief's harassment baseline should cite 'Hate Is No Game 2022' directly and state the cohort.",
+    "The BURN2 timeline carries a design lesson the brief misses by conflating the eras: Burning Life was operator-run by Linden Lab from 2003 to 2009, then handed to a volunteer organisation that became BURN2 in 2010 and an official Burning Man Regional. It is the clearest case in the brief of a ritual surviving a transfer from platform to community, which is exactly the governance transition the successor world needs to design for (operator seeds the ritual, community owns it).",
+    "The brief misdates Castronova's $2,266 GNP-per-capita / '77th richest nation' figure to a 2005 Guinness entry; it is in the 2001 CESifo paper and is the same measurement as the $3.42 wage. The later, separate work is Castronova's EverQuest II paper (2009, with Williams et al.) on 314M transactions; the brief's inflation point should be attributed there, not to the 2001 paper.",
+    "The 2009 Linden Prize was shared between Virtual Ability, Inc. and Studio Wikitecture; the Linden Prize itself ran only in 2009 and 2010 (US$10,000). An operator-funded recognition programme that lasted two years is itself a data point on platform-sponsored purpose: it did not persist, while the volunteer-run communities it recognised did.",
+    "Every headline number in claims 0, 1 and 8 originates from fan logs (Daniel Voyager, Ryan Schultz, the community Grid Survey) or Linden PR; Linden Lab publishes no audited concurrency, DAU, region or event-attendance figures. The successor plan should commit to publishing these metrics itself, since their absence is part of why Second Life's health could never be assessed from outside."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/community-purpose-refute.md",
+    "docs/research/fact-checks/community-purpose-precision.md"
+  ]
+}

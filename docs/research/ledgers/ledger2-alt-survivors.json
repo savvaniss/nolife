@@ -1,0 +1,192 @@
+{
+  "key": "alt-survivors",
+  "title": "The smaller surviving social worlds of 2026 and new entrants",
+  "file": "docs/research/briefs/alt-survivors.md",
+  "summary": "Below the covered giants, the 2026 field splits into two groups. Open-creation VR worlds that resemble Second Life survive only at tiny scale: Resonite (~170-200 Steam concurrent, Patreon-funded, in-world creation) and ChilloutVR (~34 concurrent) are live, NeosVR shut its cloud services in August 2025, Sinespace is reported \"pretty much shut down\" as of 2026 with a volunteer remnant, Sansar has no coverage since a 2021 outage, and Overte/Vircadia persist as open-source projects without usage data. Mass-market survivors are mobile/desktop life-sims or cozy games without user scripting: Avakin Life (1.6m MAU, 500m downloads, Steam launch May 2026, GBP 22m revenue at a GBP 11m loss in 2023), Palia (10m lifetime players, Royal Highlands expansion May 2026), Sky (300m downloads). 2026's notable events are exits rather than entrants: Spatial sunset its Free/Pro creator tiers and deleted hosted worlds on 27 July 2026 citing hosting costs, Mona pivoted to a 3D-art marketplace, Dreams remains a frozen archive, and Core's status is unconfirmed after its spin-off Out of Time closed. New 2026 entrants are Hytale (early access 13 Jan 2026, 1m+ players, buy-to-play block sandbox) and Pax Dei 1.0 (Oct 2025, several hundred concurrent, 25% staff cut); no platform launched in 2026 explicitly marketed as the \"next Second Life\" was found. Only Resonite and (unverified) OpenSimulator grids cover all four Second Life pillars (persistent homes, in-world creation, adult users, economy), and both are orders of magnitude smaller than Second Life.",
+  "design_implications": [
+    "Charge for persistence from day one (land/storage rent): every platform that hosted open UGC worlds for free either capped (Dreams 5GB), charged, or shut down (Spatial July 2026, Sansar 2021).",
+    "Put creation inside the world rather than in Unity/PlayCanvas: Resonite and Dreams grew maker cultures from in-world tools; ChilloutVR, Sinespace, Spatial and Viverse made an external engine the real editor and never built creator economies.",
+    "Lead with desktop and mobile, make VR optional: every survivor above a few hundred concurrent users (Avakin, Palia, Sky, Hytale) is phone- or desktop-led; VR-first worlds plateau at 30-200 concurrent.",
+    "Make the furnished home and the wardrobe the core retention loop, exposing scripting as a power-user layer: Avakin, Palia and Sky retain adults on housing, decoration and cosmetics without user scripting.",
+    "Publish a governance charter (e.g. no crypto speculation) and escrow or open-source the server: the Neos split over crypto destroyed NeosVR within two years, and adult creators now price in platform risk.",
+    "Offer self-hostable regions (Hypergrid-style) as both a feature and an exit guarantee: Sinespace, Dreams and OpenSim show communities keep worlds alive when the server can be run by volunteers.",
+    "Build a glTF/VRM importer and a migration offer targeting the Spatial (deleted 27 July 2026) and Sansar diaspora, as HTC Viverse is already doing.",
+    "Model unit economics on Avakin's disclosed figures (1.6m MAU, GBP 22m revenue, GBP -11m EBITDA in 2023) and Spatial's stated hosting-cost failure; price tiers to cover per-concurrent-user cost that scales with UGC complexity.",
+    "Treat Resonite as the direct design precedent for in-world collaborative building and Palia/Avakin as precedents for onboarding adults into a home-first loop."
+  ],
+  "open_questions": [
+    "Is Sansar online in October 2026 and does Wookey still operate Tilia payouts? No post-2021 coverage surfaced.",
+    "Is Core (coregames.com) still operating after Out of Time's 2026 closure, and has Manticore cut staff?",
+    "What are 2026 active-user figures for OpenSimulator grids (Hypergrid Business stats) and for Resonite's non-Steam launcher, which Steam trackers miss?",
+    "Did HTC Viverse take over the PlayCanvas engine, and has it disclosed any creator-payout or usage numbers for Viverse Worlds?",
+    "Has any 2026 startup actually marketed itself as 'the next Second Life' (candidates: Linden Lab's own roadmap, Lamina1, Resonite-adjacent forks)?",
+    "What is Palia's real post-expansion retention, given unsourced claims of a 20-30% DAU decline by August 2026?",
+    "Are Dreams' sharing servers still online in 2026, and has Sony set a sunset date?",
+    "What is Nowhere's (urnowhere.com) current status and business, since no 2026 coverage was found?"
+  ],
+  "claims": [
+    {
+      "claim": "Resonite (Yellow Dog Man Studios, launched Steam Early Access 6 Oct 2023) sits at roughly 170-200 concurrent Steam players in 2026 (Steambase 194 late July 2026; monthly averages 170-195 Feb-Jun 2026; launch peak ~1,183-1,263).",
+      "source_url": "https://steambase.io/games/resonite",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 0,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://steambase.io/games/resonite",
+          "note": "Steambase 194 (Jul 2026), tracker.gg 199 / 24h peak 276, monthly avg 168-195 (May 2026 171, Jun 2026 172), all-time peak 1,183 (Steambase, 6 Oct 2023) or 1,263 (tracker.gg); ~1,575 reviews Very Positive. Snapshots ~2 months stale."
+        }
+      ]
+    },
+    {
+      "claim": "NeosVR's online cloud services were shut down on 20 August 2025 and the game was delisted from Steam, following the April 2023 resignation of lead developer Frooxius over a dispute with Solirax's CEO about cryptocurrency features.",
+      "source_url": "https://en.wikipedia.org/wiki/NeosVR",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 1,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://en.wikipedia.org/wiki/NeosVR",
+          "note": "Cloud services ended 20 Aug 2025 (Steam post 'Neos VR - Cloud Services Farewell'); store page now says no longer sold; local/LAN/VLAN play remains. 2023 team exit over Solirax disagreements confirmed; the 24 Apr 2023 date and crypto cause not quoted in extract (consistent with the Oct 2021 Valve crypto delisting)."
+        }
+      ]
+    },
+    {
+      "claim": "ChilloutVR averages about 29-35 concurrent Steam players across H1 2026 (34 at last Steambase snapshot, Aug 2026), with a previous peak of 189 on 8 June 2025.",
+      "source_url": "https://steambase.io/apps/chilloutvr",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 2,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://steambase.io/apps/chilloutvr",
+          "note": "34 online at 19 Aug 2026 snapshot, 82% below peak of 189 on 8 Jun 2025; 2026 monthly peaks Jan 102, Feb 64, Mar 111, Apr 54, May 52, Jun 45. Monthly averages not quoted in extract but consistent with 29-35."
+        }
+      ]
+    },
+    {
+      "claim": "Lockwood announced in March 2026 that Avakin Life passed 500 million lifetime downloads with 1.6 million monthly active players and ~220,000 DAU in 2025, and it launched fully on Steam on 27 May 2026; 2023 revenue was GBP 22.35m with EBITDA of GBP -11.17m.",
+      "source_url": "https://www.pcgamesinsider.biz/news/75555/avakin-life-surpasses-500-million-downloads-cementing-12-year-legacy-as-a-global-social-powerhouse/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 3,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://www.pcgamesinsider.biz/news/75557/avakin-life-launches-on-steam-on-may-27th-2026/",
+          "note": "500m lifetime (mobile-only per Notebookcheck) downloads, 1.6m MAU, 220k avg DAU in 2025, 200m registered mobile users, Steam full launch 27 May 2026 with cross-progression all confirmed. GBP 22.35m revenue / -11.17m EBITDA 2023 (Preqin) not covered by search budget: unverified. Steam reviews Mixed 63% of 968."
+        }
+      ]
+    },
+    {
+      "claim": "Spatial announced on 28 May 2026 that it would sunset its Free and Pro creator tiers and discontinue 3D World hosting on 27 July 2026, deleting creator files afterwards, with CEO Jinha Lee citing the rising cost of hosting open multiplayer 3D worlds; enterprise customers and its Wooster Games studio (Animal Company) continue.",
+      "source_url": "https://www.uploadvr.com/spatial-is-discontinuing-its-creator-platform-in-july/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 4,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://www.uploadvr.com/spatial-is-discontinuing-its-creator-platform-in-july/",
+          "note": "Announced 28 May 2026; Free/Pro tiers and 3D World hosting for those tiers end 27 Jul 2026; files permanently deleted after; Jinha Lee cites unsustainable hosting costs after exploring pricing/partnership alternatives; enterprise unaffected; focus shifts to Wooster Games (Animal Company). Road to VR corroborates. Web subs refunded within 14 days."
+        }
+      ]
+    },
+    {
+      "claim": "Palia (Singularity 6, owned by Daybreak since July 2024) released the Royal Highlands expansion on 12 May 2026 and announced 10 million lifetime players at the same time; summer 2026 updates (Amberlight Affair 6 July, Beauty and the Beach August) continued on an irregular cadence.",
+      "source_url": "https://gamesbeat.com/?p=321353",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 5,
+          "verdict": "corrected",
+          "searched": true,
+          "source_url": "https://www.enadglobal7.com/?p=3222",
+          "note": "Royal Highlands released 12 May 2026 (also on PS5/Xbox; horses, new Home Line) confirmed. But the 10 million player milestone was announced 22 Apr 2026 by EG7 (Daybreak's parent) with a celebration event running to 11 May, three weeks before the expansion, not at the same time. 'Amberlight Affair' and 'Beauty and the Beach' did not surface in results; they rest on the brief's own MassivelyOP/ButWhyTho citations."
+        }
+      ]
+    },
+    {
+      "claim": "Hytale launched in early access on 13 January 2026 after Hypixel Studios bought it back from Riot, passed one million players shortly after launch, previewed its Chapter 1 expansion in July 2026, and is buy-to-play ($19.99/$34.99/$69.99 tiers).",
+      "source_url": "https://en.wikipedia.org/wiki/Hytale",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 6,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://www.notebookcheck.net/Hytale-s-Early-Access-surges-past-1-million-players-as-19-99-sandbox-RPG-returns-from-the-brink.1206095.0.html",
+          "note": "EA 13 Jan 2026, >1m players, tiers Standard $19.99 / Supporter $34.99 / Cursebreaker-Founder $69.99 confirmed (Inverse). EA sold only via hytale.com, not Steam. Devs' '2.8m concurrent users at launch' claim is dubious as true CCU. Riot buy-back and July 2026 Chapter 1 preview not in extracts (consistent with prior knowledge)."
+        }
+      ]
+    },
+    {
+      "claim": "Pax Dei 1.0 launched on 16 October 2025 (Steam/Epic/Microsoft Store, PC Game Pass day one) after Mainframe cut its dev team from 60 to 43; mid-2026 Steam concurrency was roughly 400-740 with a two-week peak of 11,531.",
+      "source_url": "https://playpaxdei.com/news/1-0/pax-dei-1-0-releases-october-16-a-new-chapter-begins",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 7,
+          "verdict": "corrected",
+          "searched": true,
+          "source_url": "https://massivelyop.com/?p=566277",
+          "note": "1.0 on 16 Oct 2025 with Steam/Epic, PC Game Pass and GeForce Now, and 60->43 layoffs (May 2025, ~25-30%) confirmed. 1.0 launch peak was 'more than 4,300' CCU (MassivelyOP), so an '11,531 two-week peak' in mid-2026 is not credible; 11.5k matches the June 2024 early-access all-time peak (prior knowledge) and is probably mislabelled. No dated 2026 CCU figure surfaced; 400-740 unverified. New: land plots require an optional subscription; UE 5.6 migration Apr 2026; 'birb' update Jul 2026."
+        }
+      ]
+    },
+    {
+      "claim": "Sinespace has 'pretty much shut down' as of 2026 with only a volunteer-run operation continuing, according to Ryan Schultz, who was an embedded reporter for the platform 2019-2024.",
+      "source_url": "https://ryanschultz.com/first-time-visitor-welcome/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 8,
+          "verdict": "unverifiable",
+          "searched": true,
+          "source_url": "https://parse.gl/brands/sine-space",
+          "note": "No shutdown report found; the quoted ryanschultz.com welcome-page line was not surfaced; the only 2026-dated signal (Parse.gl, 4 Jul 2026) describes Sinespace in present tense. Schultz's embedded-reporter role confirmed but not the 2019-2024 span; his 2020 post said Sinespace 'won't go poof' if the company folded. Single uncorroborated source."
+        }
+      ]
+    },
+    {
+      "claim": "No platform launched in 2026 and explicitly marketed as the 'next Second Life' or 'Second Life successor' surfaced; the only search hits for that phrasing were 2014-2017 coverage of Linden Lab's Sansar, which was sold to Wookey in March 2020 and has no coverage since a late-2021 unexplained outage.",
+      "source_url": "https://uploadvr.com/sansar-offline-without-explanation/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 9,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://uploadvr.com/linden-lab-sells-sansar-focus-second-life/",
+          "note": "Negative finding corroborated: search for 2026 Sansar/Wookey status and 'next Second Life' launches returned only March 2020 sale coverage (Wookey full ownership, Tilia contracted for back office, majority desktop users). Late-2021 outage source not re-surfaced in this pass. Absence of evidence only; Sansar's Oct 2026 state remains unknown."
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Palia's Royal Highlands expansion (12 May 2026) also launched on PS5 and Xbox; the 10m-player milestone was announced by EG7 (Enad Global 7), Daybreak's listed parent, on 22 Apr 2026.",
+    "Pax Dei monetisation is buy-to-play plus an optional subscription required to own land plots (dev 2025 retrospective): a direct 'rent for your home' precedent for the nolife design implications. Engine moved to UE 5.6 in Apr 2026; 'birb' update went live Jul 2026.",
+    "Hytale early access is sold only through hytale.com, so no Steam concurrency data exists for it; the brief's Steam-floor caveat does not apply.",
+    "Avakin Life's 500m figure is mobile-only downloads per Notebookcheck; Steam reception is Mixed (63% of 968 reviews) with controls and monetisation the main complaints.",
+    "NeosVR's Steam store page carries the 'no longer sold' notice; local/LAN/VLAN play still works, so it is a frozen offline client rather than fully dead.",
+    "Spatial refunded web subscriptions within 14 days of 27 Jul 2026; mobile/VR subs had to be cancelled via app stores.",
+    "Method: page fetching blocked; all verdicts rest on search-result extracts. Not covered by the 10-search budget: Lockwood 2023 financials (Preqin), Palia summer 2026 updates, Hytale Chapter 1 preview, Pax Dei mid-2026 CCU, Sansar late-2021 outage, Resonite non-Steam launcher usage."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/alt-survivors-search.md"
+  ],
+  "note": "Researched with live search; verified with live search"
+}

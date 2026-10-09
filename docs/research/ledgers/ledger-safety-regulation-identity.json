@@ -1,0 +1,224 @@
+{
+  "key": "safety-regulation-identity",
+  "title": "Safety, moderation, identity and regulation for virtual worlds in 2026",
+  "file": "docs/research/briefs/safety-regulation-identity.md",
+  "summary": "The 2025–2026 regulatory environment has converged on a single operating model for any user-to-user virtual world: a pseudonymous public identity bound to a privately verified or estimated age band, with minors defaulted into locked-down settings and adult content hard-gated behind \"highly effective\" checks. Roblox is the bellwether: after Louisiana, Kentucky and Texas AG suits (Aug–Nov 2025) it made facial age estimation (Persona, six age bands, adjacent-band chat only) mandatory for chat globally from January 2026, and by September 2026 had paid roughly $54m in state settlements (WV, AL, NV $35.8m; MS; SD ~$10m; KS $9.8m) that contractually bind it to age verification and adult-to-under-16 contact limits, with five more suits pending. The UK OSA age-check duty applied 25 July 2025 and Ofcom has fined six adult operators (£500k–£1.35m each) always paired with a second fine for failing to evidence compliance; the EU's DSA Article 28 guidelines (14 July 2025) treat self-declaration as unreliable and come with a prototype wallet-based age app; Australia's under-16 ban (10 Dec 2025) covers ten social platforms but explicitly excludes Roblox, Discord and Steam as gaming-purpose services, while warning the list is not static. US federal bills (KIDS Act passed House 267–117 on 29 June 2026; KOSA cleared Senate Commerce 5 Aug 2026) are still not law. Age verification created its own liability: Discord's outsourced appeals vendor leaked ~70,000 ID images (Sept–Oct 2025). VR harassment has a ten-year evidence trail (2016 groping, Meta's always-on 4-ft Personal Boundary Feb 2022, UK police's non-prosecutable 2024 \"virtual rape\" probe, Sept 2025 Senate whistleblower testimony), and Meta is removing Horizon Worlds from VR on 15 June 2026. Moderation at scale is AI-first: Roblox's Sentinel caught 35% of grooming cases proactively and drove ~1,200 NCMEC reports in H1 2025 against 24,522 reports in 2024, while combined safety+infra spend rose 26% to $1.15bn. Economy rules are settled by precedent: Second Life banned chance-based wagering on 25 July 2007; Steam banned blockchain/NFT games 15 Oct 2021; SEC's 2023 NFT actions ($500k, $1m) still stand despite 2025 softening; Belgium (2018, Jan 2025) treats paid tradeable loot boxes as gambling while the Dutch Council of State (9 Mar 2022) exempted skill-game loot boxes. EU AI Act Article 50 labelling applies from 2 Aug 2026; NO FAKES Act 2026 is pending; EAA applies to storefronts/apps from 28 June 2025. Method caveat: WebFetch was blocked by the egress proxy, so primary pages were read through search excerpts.",
+  "design_implications": [
+    "Ship age-banding at account creation from day one: pseudonymous public identity plus a private age band from on-device facial estimation or a wallet/credential proof (EU age app); never store ID images centrally; design appeals without document upload where possible (Discord's 70k-ID leak came from the appeals vendor).",
+    "Default-restrict minors per DSA Article 28 guidelines and the Roblox settlement template: adjacent-age-band-only chat, private profiles, no stranger voice/DMs, geolocation off, no engagement notifications, parent-managed accounts for under-16s with world/contact/spend approval.",
+    "Hard-gate adult regions behind Ofcom-grade 'highly effective' age checks tied to the credential, inheriting Second Life's General/Moderate/Adult region ratings but replacing the opt-in checkbox with verified eligibility; geo-fence adult content and economy features by jurisdiction.",
+    "Build embodied-safety primitives into the engine: always-on personal boundary (user-adjustable radius), one-gesture mute/block/vanish, instance owner kick/lock, and a short rolling session buffer attached to abuse reports so VR assaults are evidentiable (UK police found a 2024 case non-prosecutable).",
+    "Use behaviour-earned trust ranks (VRChat model) to gate uploads, scripting, voice and proximity rights; show a nuisance flag; do not award rank for idle time, low-effort uploads or mass-friending.",
+    "Make proactive AI detection the primary moderation layer with published metrics (NCMEC reports, proactive-catch rate) and treat audit logs, retention policies and regulator information-request SLAs as product features, since Ofcom fines un-evidenced compliance separately.",
+    "Economy rules: no chance mechanics that pay out transferable or cash-out-able value (Second Life's 2007 rule); odds disclosure and under-18 consent for any random reward; no blockchain tokens or NFTs, which forfeit Steam distribution and invite Howey analysis; design item transferability deliberately because Belgium and Washington treat tradeable items as gambling stakes.",
+    "Biometric minimisation: process eye, face and hand tracking on-device, transmit only abstracted animation data, obtain explicit consent, publish retention/deletion policy, never sell or ad-target on gaze (Colorado HB 24-1130, Illinois BIPA exposure).",
+    "AI-content governance: machine-readable provenance on every AI-generated asset plus a perceptible in-world 'AI' label (EU AI Act Art. 50 from 2 Aug 2026); likeness consent registry and DMCA-style takedown/counter-notice for digital replicas so the platform is NO FAKES/TAKE IT DOWN ready.",
+    "Decide nolife's declared primary purpose (creation/play vs social networking) with Australia's 'age-restricted social media platform' test in mind, and make the storefront, account and support flows EAA-compliant from launch (in force 28 June 2025)."
+  ],
+  "open_questions": [
+    "Will Australia's eSafety designate Roblox or social VR worlds as age-restricted platforms, given the FAQ says the list is not static?",
+    "Which of the KIDS Act (H.R. 7757) or KOSA (S. 1748) becomes US law in 2026–27, and does state-law preemption survive?",
+    "Does facial age estimation meet Ofcom's 'highly effective' bar at 16/18 thresholds, and what buffer band and error rates are accepted?",
+    "When will the EU Digital Identity Wallet age credential be live and accepted, making on-platform estimation unnecessary in the EU?",
+    "Will any court hold that gaze/eye-tracking data is a biometric identifier under Illinois BIPA?",
+    "Does the NO FAKES Act of 2026 pass, and how will its safe harbour treat user-made avatars resembling real people?",
+    "Did Linden Lab change Second Life's UK adult-content verification after the 25 July 2025 OSA deadline? (Not found.)",
+    "What are the full-year 2025 Roblox NCMEC figures and the outcomes of the pending Texas, Florida, Tennessee, Iowa and Nebraska suits?",
+    "Full-text verification of several primary pages (Roblox newsroom, eSafety FAQ, EC press release, Ofcom report) was not possible because the egress proxy blocked fetches; those facts rest on search-engine excerpts of the pages."
+  ],
+  "claims": [
+    {
+      "claim": "Roblox made facial age estimation (via Persona) required to access chat globally from January 2026, sorting users into six bands (under 9, 9–12, 13–15, 16–17, 18–20, 21+) with chat limited by default to adjacent bands; enforcement began December 2025 in Australia, New Zealand and the Netherlands.",
+      "source_url": "https://about.roblox.com/newsroom/2026/01/roblox-age-checks-required-to-chat",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Consistent with Roblox's 18 Nov 2025 announcement and Jan 2026 rollout: Persona facial age estimation (ID/parental consent fallback), bands <9/9-12/13-15/16-17/18-20/21+, default chat limited to similar/adjacent bands, enforced early Dec 2025 in Australia, New Zealand and the Netherlands, then globally early Jan 2026. Caveat: no live source could be fetched this session (search budget exhausted, egress proxy 403); verdict rests on checker's prior knowledge. Nuance: requirement covered chat only; estimation is probabilistic with ID-based correction.",
+          "source_url": "https://about.roblox.com/newsroom/2026/01/roblox-age-checks-required-to-chat"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Matches Roblox newsroom posts of 18 Nov 2025 (announcement) and 7 Jan 2026 (global rollout): Persona facial age estimation required for chat; six bands (under 9, 9-12, 13-15, 16-17, 18-20, 21+); default chat with same/adjacent groups; under-9 chat off without parental consent; first enforced Dec 2025 in Australia, New Zealand and the Netherlands. Primary page not fetchable this run (DNS failure); verdict from checker knowledge.",
+          "source_url": "https://about.roblox.com/newsroom/2026/01/roblox-age-checks-required-to-chat"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox settled with West Virginia ($11.1m), Alabama ($12.2m) and Nevada ($12.5m) for $35.8m total on 21 April 2026 over child-safety claims; Kansas ($9.8m, Sept 2026), South Dakota (~$10m, July 2026) and Mississippi (June 2026) followed, while Texas, Florida, Tennessee, Iowa and Nebraska suits remained pending.",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-04-21/roblox-settles-with-states-for-35-8-million-over-child-safety",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No web access this session and most items (Jun-Sep 2026) are post-cutoff. Independently known: AG suits by Louisiana (Aug 2025), Kentucky (Oct 2025), Texas (Nov 2025), Florida (Dec 2025), Iowa and Nebraska (early 2026), plus a federal MDL in N.D. Cal. (Dec 2025). The WV/AL/NV $35.8m settlement and later KS/SD/MS figures are single-source (Bloomberg/state press) and must be re-checked before use; the brief's '$54m+' total is its own arithmetic.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-04-21/roblox-settles-with-states-for-35-8-million-over-child-safety"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Settlement dates (Apr-Sep 2026) are at or after the checker's knowledge horizon and the Bloomberg page could not be fetched. Figures are internally consistent (11.1+12.2+12.5 = 35.8; with Kansas 9.8 and South Dakota ~10 the brief's '$54m+' holds). Pre-2026 litigation history (Louisiana Aug 2025, Kentucky Oct 2025, Texas Nov 2025) is correct. Treat per-state amounts as single-source.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-04-21/roblox-settles-with-states-for-35-8-million-over-child-safety"
+        }
+      ]
+    },
+    {
+      "claim": "Under the UK Online Safety Act, age-check duties applied from 25 July 2025; Ofcom fined AVS Group £1m plus £50k (Dec 2025), Kick Online Entertainment £800k plus £30k and 8579 LLC £1.35m (Feb 2026), each paired with a separate penalty for failing to answer information requests; maximum fines are £18m or 10% of global turnover.",
+      "source_url": "https://inforrm.org/2026/03/11/ofcom-steps-up-online-safety-act-enforcement-with-two-further-age-assurance-fines-for-pornographic-platforms-alexandros-antoniou/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Core facts hold: age-check duty from 25 Jul 2025 and £18m / 10% qualifying worldwide revenue cap are correct; AVS Group £1m + £50k (Dec 2025) matches memory of Ofcom's first age-assurance fine. Kick Online Entertainment £800k+£30k and 8579 LLC £1.35m (Feb 2026) are plausible but could not be checked. Missed context: Ofcom's earliest OSA fines were information-request penalties against 4chan (Oct 2025) and Itai Tech (Nov 2025), so the paired-fine pattern predates age-check enforcement.",
+          "source_url": "https://inforrm.org/2026/03/11/ofcom-steps-up-online-safety-act-enforcement-with-two-further-age-assurance-fines-for-pornographic-platforms-alexandros-antoniou/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Partly confirmed from knowledge: age-assurance duties from 25 Jul 2025; max penalty £18m or 10% of qualifying worldwide revenue; AVS Group Ltd £1m plus £50k information-request penalty (Dec 2025). The Feb 2026 Kick Online Entertainment (£800k+£30k) and 8579 LLC (£1.35m) figures could not be checked. Precision flaw: claim says 'each paired' with an information-request penalty but gives no paired amount for 8579 LLC. Source is a law blog, not Ofcom.",
+          "source_url": "https://inforrm.org/2026/03/11/ofcom-steps-up-online-safety-act-enforcement-with-two-further-age-assurance-fines-for-pornographic-platforms-alexandros-antoniou/"
+        }
+      ]
+    },
+    {
+      "claim": "As of 10 December 2025 Australia's under-16 ban applies to Facebook, Instagram, Kick, Reddit, Snapchat, Threads, TikTok, Twitch, X and YouTube, and eSafety lists Roblox, Discord, Steam/Steam Chat, LEGO Play, Messenger and WhatsApp as not meeting the 'age-restricted social media platform' definition because gaming/messaging is their primary purpose.",
+      "source_url": "https://www.esafety.gov.au/about-us/industry-regulation/social-media-age-restrictions/faqs",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Matches eSafety's list of ten age-restricted platforms (obligations from 10 Dec 2025) and its not-restricted assessments (Discord, GitHub, Google Classroom, LEGO Play, Messenger, Pinterest, Roblox, Steam/Steam Chat, WhatsApp, YouTube Kids) under the statutory carve-out for services whose sole/primary purpose is messaging, gaming, education or health. Nuance: eSafety reassesses continuously and had floated adding Roblox; platform penalties up to A$49.5m.",
+          "source_url": "https://www.esafety.gov.au/about-us/industry-regulation/social-media-age-restrictions/faqs"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Matches eSafety's 5 Nov 2025 statement and FAQ: ten age-restricted platforms from 10 Dec 2025 (Facebook, Instagram, Kick, Reddit, Snapchat, Threads, TikTok, Twitch, X, YouTube); Roblox, Discord, Steam/Steam Chat, LEGO Play, Messenger, WhatsApp (plus GitHub, Google Classroom, YouTube Kids, later Pinterest) listed as not meeting the definition because gaming/messaging/education is the sole or primary purpose. eSafety says the list is not static.",
+          "source_url": "https://www.esafety.gov.au/about-us/industry-regulation/social-media-age-restrictions/faqs"
+        }
+      ]
+    },
+    {
+      "claim": "The European Commission published DSA Article 28 guidelines on protection of minors and a prototype privacy-preserving age-verification app on 14 July 2025, applying to all platforms accessible to minors (not just VLOPs) and treating self-declared age as unreliable.",
+      "source_url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1820",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Date (14 Jul 2025, IP/25/1820), content and 'not only VLOPs' framing are right, and self-declaration is deemed not appropriate. Correction: the guidelines do not apply to ALL platforms accessible to minors — micro and small enterprises are exempt (Art 19 DSA) unless designated VLOPs — and they are non-binding (Art 28(4)). The age-verification app is a 'blueprint' piloted in Denmark, France, Greece, Italy and Spain; guidelines favour estimation generally and verification for 18+ content.",
+          "source_url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1820"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Commission press release of 14 Jul 2025 published the Art 28(1) DSA guidelines on protection of minors and the age-verification app prototype (piloted with Denmark, France, Greece, Italy, Spain). Guidelines apply to all online platforms accessible to minors, not only VLOPs, and treat self-declaration as inadequate. Caveat omitted by the claim: micro and small enterprises are exempt.",
+          "source_url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1820"
+        }
+      ]
+    },
+    {
+      "claim": "Discord confirmed that a breach of a third-party support vendor (attacker access 22–24 September 2025, disclosed 3 October 2025) exposed government-ID images of approximately 70,000 users who had submitted age-related appeals; attackers' claim of 2.1 million IDs is disputed by Discord.",
+      "source_url": "https://cyberinsider.com/discord-confirms-70000-government-ids-exposed-in-third-party-breach/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Discord disclosed on 3 Oct 2025 (update 8 Oct) that a third-party support vendor (5CA, Zendesk-based ticketing) was compromised, ~70,000 users may have had government-ID photos from age appeals exposed; attackers claimed 1.5 TB / 2.1m IDs, which Discord called inflated extortion. Caveat: Discord said it detected and revoked access on 20 Sep 2025; the 22-24 Sep / 58-hour window is the attackers' account and should be marked contested, not company-confirmed. 5CA denied its systems were breached.",
+          "source_url": "https://cyberinsider.com/discord-confirms-70000-government-ids-exposed-in-third-party-breach/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Discord disclosed on 3 Oct 2025 and on 8 Oct 2025 said approximately 70,000 users may have had government-ID photos exposed via a third-party support vendor (named as 5CA, which disputed being the entry point); attackers claimed ~2.1m photos / 1.5 TB / 5.5m users, which Discord called inaccurate. Exact access window (22-24 Sep, 58 hours) could not be re-checked; some reports placed access around 20-24 Sep. Cited source is a security news site, not Discord's own post.",
+          "source_url": "https://cyberinsider.com/discord-confirms-70000-government-ids-exposed-in-third-party-breach/"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox's open-sourced Sentinel system contributed about 1,200 NCMEC reports in H1 2025 and 35% of detected child-endangerment cases were caught proactively; Roblox filed 24,522 NCMEC reports in 2024 (0.12% of 20.3m total).",
+      "source_url": "https://about.roblox.com/newsroom/2025/08/open-sourcing-roblox-sentinel-preemptive-risk-detection",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Roblox's Aug 2025 Sentinel post reports ~1,200 NCMEC reports in H1 2025 and ~35% of cases detected proactively; 24,522 NCMEC reports for 2024 is from Roblox's 15 Aug 2025 letter to the Louisiana AG. Minor denominator wobble: NCMEC's 2024 CyberTipline total is usually reported as ~20.5m, not 20.3m (0.12% share unchanged). All figures are company-reported and unaudited; Sentinel ran on text chat only.",
+          "source_url": "https://about.roblox.com/newsroom/2025/08/open-sourcing-roblox-sentinel-preemptive-risk-detection"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Matches Roblox's 7 Aug 2025 Sentinel post (about 1,200 NCMEC reports in H1 2025; 35% of detected child-endangerment cases caught proactively) and its 15 Aug 2025 response letter (24,522 NCMEC reports in 2024). Denominator note: NCMEC's published 2024 CyberTipline total is about 20.5m reports, not 20.3m; either way the share is 0.12%.",
+          "source_url": "https://about.roblox.com/newsroom/2025/08/open-sourcing-roblox-sentinel-preemptive-risk-detection"
+        }
+      ]
+    },
+    {
+      "claim": "Meta introduced an always-on 'Personal Boundary' of roughly four feet (two-foot radius per avatar) in Horizon Worlds and Venues on 4 February 2022 after groping reports; in March 2026 Meta announced Horizon Worlds would be removed from VR on 15 June 2026 and survive only as a mobile app.",
+      "source_url": "https://www.cnbc.com/2026/03/18/meta-horizon-worlds-metaverse-vr.html",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Personal Boundary announced 4 Feb 2022 with ~4 ft separation (2 ft per avatar). Nuance: it was 'always-on' only at launch — Meta made it user-adjustable (off / 2 ft / 4 ft) in March 2022, so the mandatory framing is dated. The March 2026 announcement removing Horizon Worlds from Quest on 15 Jun 2026 (mobile-only survival) is consistent with Meta's early-2026 Reality Labs retrenchment but could not be re-fetched this session; lower confidence on that half.",
+          "source_url": "https://www.cnbc.com/2026/03/18/meta-horizon-worlds-metaverse-vr.html"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "First half confirmed: Meta shipped the default-on Personal Boundary (~4 ft between avatars, 2 ft radius each, no haptics) in Horizon Worlds and Venues on 4 Feb 2022. The March 2026 announcement that Horizon Worlds leaves VR on 15 Jun 2026 and survives only as a mobile app is at the edge of the checker's horizon and the CNBC page could not be fetched; it is consistent with Meta's late-2025 metaverse budget cuts and Jan 2026 Reality Labs layoffs but is single-source here.",
+          "source_url": "https://www.cnbc.com/2026/03/18/meta-horizon-worlds-metaverse-vr.html"
+        }
+      ]
+    },
+    {
+      "claim": "Valve banned applications built on blockchain technology that issue or exchange cryptocurrencies or NFTs from Steam on 15 October 2021 as an extension of its rule against items with real-world value; the SEC's Impact Theory (28 Aug 2023, $500k) and Stoner Cats (13 Sept 2023, $1m) NFT settlements remain in force despite the SEC's 2025 position that digital collectibles are generally not securities.",
+      "source_url": "https://www.akingump.com/en/insights/alerts/the-secs-second-nft-enforcement-action-sec-v-stoner-cats-2-llc",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Steam's blockchain/NFT prohibition surfaced 14-15 Oct 2021 and Stoner Cats' $1m penalty (13 Sep 2023) is right. Correction: Impact Theory (28 Aug 2023) was not a $500k settlement — $500k was the civil penalty within a ~$6.1m total (disgorgement + prejudgment interest + penalty), plus destruction of unsold tokens and removal of royalty code. The 2025 SEC retreat (Crypto Task Force; OpenSea and Yuga Labs probes closed early 2025; Peirce/Atkins 'digital collectibles are not securities' position) is real and neither 2023 order has been vacated, so 'remain in force' holds.",
+          "source_url": "https://www.akingump.com/en/insights/alerts/the-secs-second-nft-enforcement-action-sec-v-stoner-cats-2-llc"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Valve's Steam rule against blockchain/NFT apps was reported 15 Oct 2021 (after Age of Rust's removal), framed as an extension of the no-real-world-value rule. SEC: Impact Theory 28 Aug 2023 ($500k civil penalty, but total order over $6.1m with disgorgement and interest); Stoner Cats 2 LLC 13 Sep 2023 ($1m civil penalty); Peirce and Uyeda dissented in both. The 2025 SEC shift (Project Crypto; closed OpenSea/Yuga Labs probes) does not vacate the consent orders. The Akin Gump source covers only the SEC actions, not Valve.",
+          "source_url": "https://www.akingump.com/en/insights/alerts/the-secs-second-nft-enforcement-action-sec-v-stoner-cats-2-llc"
+        }
+      ]
+    },
+    {
+      "claim": "The EU AI Act Article 50 transparency duties (machine-readable marking by providers; perceptible deepfake labels by deployers) apply from 2 August 2026, with final Commission guidelines published 20 July 2026 and about 190 signatories to the voluntary Code of Practice by end of July 2026.",
+      "source_url": "https://www.paulweiss.com/insights/client-memos/eu-finalises-transparency-rules-for-ai-generated-content",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "2 Aug 2026 is the statutory application date for AI Act Art 50 (confirmed). The 20 Jul 2026 final guidelines date and ~190 signatories are post-cutoff and could not be checked. Omitted nuance: the Commission's Digital Omnibus proposal (19 Nov 2025) would delay the Art 50(2) marking duty for generative systems placed on the market before 2 Aug 2026 until 2 Feb 2027; adoption status must be verified before relying on the 2 Aug 2026 date for existing systems. Code of Practice drafts: Dec 2025 (first), Mar 2026 (second).",
+          "source_url": "https://www.paulweiss.com/insights/client-memos/eu-finalises-transparency-rules-for-ai-generated-content"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "The 2 Aug 2026 application date for Art 50 is correct (AI Act Art 113), as is the provider-marking vs deployer-labelling split. The 20 Jul 2026 final-guidelines date and ~190 Code of Practice signatories are after the checker's horizon and the Paul Weiss memo could not be fetched. Omission: the Commission's Digital Omnibus on AI (19 Nov 2025) proposed deferring the Art 50(2) marking duty for generative systems placed on the market before 2 Aug 2026 to 2 Feb 2027; its adoption status should be checked.",
+          "source_url": "https://www.paulweiss.com/insights/client-memos/eu-finalises-transparency-rules-for-ai-generated-content"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Method limitation: no independent web evidence was obtainable this session — the shared WebSearch budget (200/turn) was already exhausted and every WebFetch/HTTPS egress attempt returned 403/ENOTFOUND via the proxy. Verdicts rest on the checker's prior knowledge (reliable to ~mid-2026); all post-June-2026 claims are unverifiable and should be re-checked in a session with working search.",
+    "App-store-level age verification is arriving independent of platform choices: Utah's App Store Accountability Act (effective May 2025), Texas SB 2420 (scheduled 1 Jan 2026, preliminarily enjoined Dec 2025), and Apple's Declared Age Range API already hand apps an age band; a successor world distributed via mobile stores must be able to consume a store-supplied age signal.",
+    "The DSA minors guidelines exempt micro and small enterprises (unless VLOP) and are non-binding; a small launch team is not immediately bound, but the guidelines become the Digital Services Coordinator's yardstick as the service grows.",
+    "Private litigation is the larger Roblox exposure: hundreds of grooming/CSAM suits were centralised into a federal MDL (N.D. Cal., Dec 2025), several naming Discord as co-defendant because the harm pathway was world-to-Discord DM migration; off-platform contact prompts should be treated as a detection signal.",
+    "Discord's breach vector was the outsourced support/appeals ticketing system (5CA on Zendesk), which also exposed names, emails, partial payment data and support transcripts — the support stack, not the age-estimation model, is the crown-jewel surface.",
+    "Meta's Personal Boundary became user-adjustable (off/2ft/4ft) within weeks of launch in March 2022; the transferable design lesson is default-on and user-controllable, not mandatory.",
+    "Ofcom's first Online Safety Act penalties were for ignoring information requests (4chan Oct 2025; Itai Tech Nov 2025) before any age-check fine, so a regulator-response function with audit trails is a day-one requirement.",
+    "The EU Digital Omnibus proposal (Nov 2025) would push AI Act Art 50(2) marking for pre-existing generative systems to Feb 2027, so the AI-provenance deadline is politically fluid and should be tracked.",
+    "Australia's regime carries penalties up to A$49.5m per breach and eSafety has stated the platform list is reassessed continuously; gaming platforms with substantial social features can be re-designated, so 'framing as a game' is mitigation, not a safe harbour.",
+    "Verification limits this run: WebFetch failed DNS for every cited host, the shared WebSearch budget was already exhausted before the first query, and a curl probe via the proxy was denied; no workaround was attempted. Verdicts rest on checker knowledge through mid-2026 and internal consistency, not on fresh fetches. Claims 1, 7 (second half) and 9 (second half) should be re-checked when web access is available.",
+    "EU DSA Art 28 minors guidelines exempt micro and small enterprises (DSA Art 19), so an early-stage successor world may fall outside them until it scales; design for compliance from day one anyway.",
+    "US COPPA Rule amendments (final Jan 2025, effective 23 Jun 2025, compliance deadline 22 Apr 2026) tighten consent for third-party disclosure and impose data-retention limits; any under-13 age band triggers them.",
+    "US app-store age-verification laws (Texas SB 2420 effective 1 Jan 2026 but preliminarily enjoined Dec 2025; Utah effective May 2026; Louisiana Jul 2026) push age signals to the OS/app-store layer; a successor should be built to consume app-store/OS age signals and EU wallet credentials rather than running its own ID-upload flow.",
+    "NCMEC's 2024 CyberTipline total (~20.5m) fell from 36.2m in 2023 because of report bundling, so year-on-year platform report ratios are not comparable; use incident counts, not report counts, for safety KPIs.",
+    "Discord's 2025 ID exposure came through the human appeals channel at a vendor (5CA), not the automated estimation path; appeals should avoid raw document upload and vendor-side retention.",
+    "Impact Theory's total SEC order exceeded $6.1m (disgorgement plus $500k penalty), so the deterrent against marketing digital items for price appreciation is larger than the brief's figure implies.",
+    "The Digital Omnibus on AI proposal may defer the AI Act Art 50(2) machine-readable marking duty for pre-existing generative systems to 2 Feb 2027; confirm its status before scheduling compliance work for AI-generated avatars, assets or NPC speech."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/safety-regulation-identity-refute.md",
+    "docs/research/fact-checks/safety-regulation-identity-precision.md"
+  ]
+}

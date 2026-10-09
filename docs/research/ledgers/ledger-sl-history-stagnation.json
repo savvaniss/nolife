@@ -1,0 +1,221 @@
+{
+  "key": "sl-history-stagnation",
+  "title": "Second Life: history and technical stagnation",
+  "file": "docs/research/briefs/sl-history-stagnation.md",
+  "summary": "Second Life (Linden Lab, 2003-) did not evolve because its core technical unit and its business were fused and nobody ever had the stability or spare capacity to replace it. The world is still built from 256 m x 256 m regions, each a single simulator process on one CPU core, capped at 100 avatars (20 for Homestead, 10 for Openspace) and a 45 fps / ~22 ms frame in which scripts are the first thing starved. A 2008 Linden thread already called changing region size too \"far-reaching\"; the 2020 AWS migration (last regions moved ~19 Nov 2020) re-hosted the identical unit. Every content upgrade was additive and backward-compatible, so the renderer must support 2003 prims, 2011 mesh (Viewer 3.0.0, 23 Aug 2011), legacy materials and 2023 PBR (project viewer 2 Dec 2022, grid-wide ~27 Nov 2023) simultaneously; EEP took three years (2017 to 20 Apr 2020). The first-party client lost to the volunteer-built Firestorm, so UX changes ship on someone else's schedule. Strategically, 2008-2014 saw six CEO transitions and a 30% layoff (June 2010); 2014-2020 saw Project Sansar, a VR-first sibling that absorbed \"considerable resources\" and was sold to Wookey on 24 Mar 2020; Oculus support was abandoned 8 Jul 2016; mobile was attempted in 2013 and only reached open beta June 2024 (free to all Nov 2024, still labelled beta Oct 2026, 2.5 stars, 1M+ installs). Ownership changed on 9 Jul 2020 to a group led by Randy Waterfield and Brad Oberwager (closing required Tilia money-transmitter approval). Users: peak concurrency 88,200 in Q1 2009 (bot-inflated) versus a 2025 high of 49,798; ~1M MAU in 2013 against 36M registrations; ~500K MAU Oct 2024 rebounding to 600K Oct 2025 and 620K Dec 2025, driven roughly half by mobile and half by Project Zero streaming, which the Lab said produced a 10x increase in trials. The platform persists on its economy and social capital: ~$650M/yr GDP, $1.1B paid to creators since 2003, $78M in 2023, ~10% platform take, 21,152 earning creators of whom 1,580 made over $10K. The lesson is that access and creator economics, not graphics, were the binding constraints; graphics upgrades mostly served incumbents. Caveat: WebFetch failed in this sandbox (DNS), so facts come from search extracts of the cited pages; Linden publishes no official metrics series and company figures (750K MAU 2023 vs 500K 2024) are inconsistent.",
+  "design_implications": [
+    "Make the world unit elastic: no fixed 256 m single-process regions; use dynamic spatial partitioning/server meshing so large events (1,000+ avatars) scale instead of being architecturally impossible, and set avatar caps by compute budget rather than land product tier.",
+    "Own and continuously ship the first-party client (auto-update, modular) while publishing a stable documented protocol; Firestorm's dominance shows that a neglected official viewer cedes UX control to volunteers and doubles every feature rollout.",
+    "Launch on current-era rendering (PBR, glTF 2.0, HDR, GPU-driven pipelines) with a versioned asset format and an explicit deprecation policy, so the platform can migrate content later instead of carrying every generation of assets forever.",
+    "Ship desktop, mobile and server-side streamed access together at launch; Second Life's 2025 data shows roughly half of new users now arrive through low-barrier clients and ~50% of its users lack high-end hardware.",
+    "Keep VR optional and additive rather than the product premise; the VR-first Sansar bet consumed six years of engineering and was sold off with no migration path for residents.",
+    "Build creator economics as the retention engine: low platform take (~10%), real cash-out, creator-owned IP, and public economic reporting, plus importers (mesh/glTF) and a scripting bridge so Second Life creators can bring their businesses across.",
+    "Use a modern sandboxed scripting runtime (Luau or WASM) with per-script budgets that degrade gracefully and resident-visible profiling, replacing the frame-wide 'scripts starve first' model.",
+    "Publish MAU, DAU, peak concurrency and cash-out on a fixed cadence; Linden Lab's lack of an official metrics series let a decade of stagnation go unmeasured and produced contradictory figures.",
+    "Protect governance stability: do not incubate a second product inside the first, and fund the core world's roadmap from the core economy to avoid the 2008-2014 churn (six CEO changes, 30% layoff) and the 2014-2020 diversion."
+  ],
+  "open_questions": [
+    "What did Project Sansar actually cost in dollars and engineering headcount-years, and what share of Linden Lab's capacity did it absorb from 2014 to 2020?",
+    "Why do the company's 2023 (~750K) and 2024 (~500K) MAU figures diverge so sharply; did the MAU definition change or was the anniversary figure inflated?",
+    "What is Firestorm's true share of active sessions (the 'majority' claim is community-sourced and unaudited)?",
+    "Why was Project Zero streaming ended, what was the cost per streamed hour versus willingness to pay, and what is 30/90-day retention for streamed and mobile sign-ups versus desktop?",
+    "How have region counts and land revenue (the primary revenue line) moved over 2010-2026, including after the AWS migration and during the 2024-25 MAU swing?",
+    "Has Linden Lab ever prototyped a region-size change or sharded simulator since the 2008 sldev discussion, and what blocked it?",
+    "What are current DAU and median session length, which Oberwager has declined to disclose?",
+    "Will the Lua scripting alpha (March 2025) replace LSL or coexist with it, and what is its performance model inside the 22 ms frame?",
+    "The 2023 BusinessWire press release, the official PBR launch post and the Wagner Au 2025 state-of-SL piece could not be read directly in this run (WebFetch DNS failure); their exact figures should be verified against the primary pages."
+  ],
+  "claims": [
+    {
+      "claim": "Second Life's all-time peak concurrency was 88,200 in Q1 2009 (fan log: 88,220 on 29 March 2009); the highest 2025 peak was 49,798 on 24 March 2025, with October 2025 peaks averaging 42,000-45,000.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No web access in this run (search budget exhausted, DNS failures on WebFetch). Prior knowledge: the 88,200 Q1-2009 peak is a long-standing Wikipedia/fan-log figure; the 2025 numbers rest on a single fan log scraping the login-screen counter, which includes bots (formal bot registration only began in the 2020s), so 2009 vs 2025 readings are not strictly comparable. Nothing contradicts the claim.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "No page could be fetched (DNS failure on every host, WebSearch budget exhausted before my first query, curl denied). 88,200 peak in Q1 2009 matches the Wikipedia figure and my knowledge; the day-level 88,220 (29 Mar 2009), 49,798 (24 Mar 2025) and 42-45K Oct 2025 readings are single fan-log values I could not check. Source mismatch: the cited Oct 2025 Voyager post is cited for the 2009 record, which the brief itself sources to Wikipedia. Also note 2009 vs 2025 concurrency is confounded by bots (LL mandated scripted-agent flagging in 2024).",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/20/second-life-maximum-user-concurrency-through-2025-so-far/"
+        }
+      ]
+    },
+    {
+      "claim": "Monthly active users were about 500,000 in October 2024 (down from a long-running ~600,000), 600,000 in October 2025 and 620,000 in December 2025, per executive chairman Brad Oberwager via Wagner James Au; new users arrive roughly half via the mobile app and half via Project Zero streaming.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/10/26/second-life-has-600000-monthly-active-users/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. All MAU figures are executive statements relayed by one journalist (Au) and one blogger; Linden Lab publishes no MAU series. The long-running '~600K' baseline originated in Au's own 2019 estimate, not a company number. The 'half mobile / half Project Zero' split should be treated as a paraphrase, not a disclosed statistic. Researcher's own flag of the 2023 750K vs 2024 500K conflict stands.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/26/second-life-has-600000-monthly-active-users/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "~500K MAU in Oct 2024 attributed to Oberwager via Wagner James Au (down from a long-cited ~600K) matches my knowledge. The 600K (Oct 2025), 620K (Dec 2025) and the half-mobile/half-Project-Zero new-user split are late-2025 single-source executive statements I could not confirm. All are company-reported, relayed by a blogger, with no published definition of MAU.",
+          "source_url": "https://danielvoyager.wordpress.com/2025/10/26/second-life-has-600000-monthly-active-users/"
+        }
+      ]
+    },
+    {
+      "claim": "A region is a fixed 256 m x 256 m area run by one simulator process (one full region per server CPU core); Full regions allow 100 avatars and 22,500 Land Impact, Homesteads 20/5,000, Openspaces 10/1,000.",
+      "source_url": "https://wiki.secondlife.com/wiki/Land",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "256 m regions, one simulator process per region and the 100/20/10 avatar caps are stable facts. But the Land Impact figures mix eras: 22,500 LI for a Full region is the post-2023 (~12.5% capacity increase) value, while under that same increase Homesteads went from 5,000 to 5,625 LI; 5,000 is the 2018-2023 value. Openspace LI (1,000 after the 2018 bonus) may also have risen. Low confidence (prior knowledge, no fetch); re-check wiki Land page. 'One region per CPU core' is the historical wiki statement; on AWS it maps to vCPUs of varying instance types, so phrase as 'one process per region'.",
+          "source_url": "https://wiki.secondlife.com/wiki/Land"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "256 m x 256 m per single simulator process, 100/20/10 avatar caps, Homestead 5,000 LI and Openspace 1,000 LI are correct for the post-2019 capacity increase. The Full-region 22,500 LI figure needs checking: the 2019 increase set private Full regions at 20,000 LI (from 15,000); 22,500 is what a Mainland region yields at 351 LI per 1,024 m2 (64 x 351 = 22,464). The brief should specify whether 22,500 is Mainland or private estate. One-region-per-core wording on the wiki Grid page could not be read.",
+          "source_url": "https://wiki.secondlife.com/wiki/Land"
+        }
+      ]
+    },
+    {
+      "claim": "The simulator targets 45 physics frames per second (~22 ms per frame; llGetRegionFPS never exceeds 45.0) and script time is the lowest-priority component cut first when avatar/physics load rises.",
+      "source_url": "https://wiki.secondlife.com/wiki/LlGetRegionFPS",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Prior knowledge: consistent. 45 Hz is the Havok physics step; llGetRegionFPS is documented as capped at 45.0; scripts get whatever frame time remains after physics/agents/network, so they starve first. Omitted nuance: LSL has run on the Mono VM since 2008, so the runtime (not the language or scheduler) was modernized once.",
+          "source_url": "https://wiki.secondlife.com/wiki/LlGetRegionFPS"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Confirmed from background knowledge (page not fetched): llGetRegionFPS caps at 45.0, the simulator frame budget is 1/45 s (~22.2 ms), and script execution runs in whatever frame time remains after physics/agent/network work, so it is starved first under load. Wording in the brief is a fair summary.",
+          "source_url": "https://wiki.secondlife.com/wiki/LlGetRegionFPS"
+        }
+      ]
+    },
+    {
+      "claim": "Mesh import shipped in Second Life Viewer 3.0.0 on 23 August 2011, eight years after launch, gated behind payment information on file and an IP-rights quiz.",
+      "source_url": "https://wiki.secondlife.com/wiki/Release_Notes/Second_Life_Release/3.0.0",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch release notes. Prior knowledge: 23 Aug 2011 grid-wide mesh launch with Viewer 3.0 and the payment-info plus IP-quiz gate at launch are correct; eight years after 2003 launch is arithmetically right. The gate may have been relaxed later, so do not state it in present tense without checking.",
+          "source_url": "https://wiki.secondlife.com/wiki/Release_Notes/Second_Life_Release/3.0.0"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Confirmed from background knowledge (page not fetched): Linden Lab's 'Mesh is here' announcement and Viewer 3.0 shipped 23 August 2011; SL opened publicly June 2003 (eight years); mesh upload required payment info on file plus the Mesh IP tutorial/quiz and a complexity-based L$ upload fee.",
+          "source_url": "https://wiki.secondlife.com/wiki/Release_Notes/Second_Life_Release/3.0.0"
+        }
+      ]
+    },
+    {
+      "claim": "EEP was announced in 2017, entered a project viewer in October 2018, and was only officially released on 20 April 2020 (viewer 6.4.0.540188); PBR materials went from a beta-grid project viewer on 2 December 2022 to grid-wide deployment the week of 27 November 2023.",
+      "source_url": "https://modemworld.me/2020/04/20/second-life-eep-the-environment-enhancement-project/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Prior knowledge: EEP official release in April 2020 with viewer 6.4.0, first public discussion late 2017, project viewer autumn 2018 are all consistent. PBR project viewer on the Aditi beta grid early Dec 2022; simulator support on the main grid in Nov 2023 with the 7.0.0 viewer promoted to default release around end of Nov 2023. Day-level dates plausible within a week but unconfirmed.",
+          "source_url": "https://modemworld.me/2020/04/20/second-life-eep-the-environment-enhancement-project/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Broad timeline consistent with my knowledge: EEP discussed from 2017, project viewer late 2018, official release April 2020 with viewer 6.4.0; PBR project viewer limited to Aditi in December 2022, release viewer 7.0.0.x and grid-wide simulator support late November 2023 followed by LL's 'PBR Materials Official Launch' post. Could not confirm the exact day-level dates (20 Apr 2020, 2 Dec 2022, week of 27 Nov 2023), build 540188, or that the first EEP project viewer was October rather than November 2018. The PBR facts are not covered by the single EEP URL cited; attach the modemworld 2022/12/03 and LL launch-post citations from the brief.",
+          "source_url": "https://modemworld.me/2020/04/20/second-life-eep-the-environment-enhancement-project/"
+        }
+      ]
+    },
+    {
+      "claim": "Linden Lab sold Project Sansar (teased 2014) to Wookey Project Corp, confirmed 24 March 2020; CEO Ebbe Altberg said the company could no longer sponsor it financially and TechCrunch called it a disaster that had absorbed considerable resources since 2014.",
+      "source_url": "https://roadtovr.com/sansar-spin-off-linden-lab-refocus-second-life/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Prior knowledge: Linden Lab press release confirming the Sansar sale to Wookey on 24 Mar 2020 is correct; LL announced a next-gen platform in mid-2014 and revealed the Sansar name in 2015, so 'teased 2014' is fair. The Altberg and TechCrunch quotations are plausible but their exact wording is unconfirmed; do not reproduce as verbatim quotes without a fetch.",
+          "source_url": "https://roadtovr.com/sansar-spin-off-linden-lab-refocus-second-life/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Confirmed from background knowledge (page not fetched): next-gen platform teased June 2014 (named Project Sansar 2015); sale to Wookey Project Corp confirmed 24 March 2020 with Linden Lab keeping Second Life and Tilia; TechCrunch (Lucas Matney, March 2020) called the spin-off a disaster for a company that had focused considerable resources on it since 2014; Altberg's remarks about no longer being able to fund it match contemporaneous reporting. The TechCrunch quote should cite TechCrunch directly rather than Road to VR.",
+          "source_url": "https://roadtovr.com/sansar-spin-off-linden-lab-refocus-second-life/"
+        }
+      ]
+    },
+    {
+      "claim": "Linden Lab suspended its Oculus Rift project viewer (4.1.0.317313) on 8 July 2016 for not meeting quality standards and has shipped no official VR support since.",
+      "source_url": "https://modemworld.me/2016/07/08/second-life-oculus-rift-support-suspended/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Prior knowledge: Linden Lab withdrew the Rift CV1 project viewer in early July 2016 citing quality, and no official VR viewer has shipped since (only third-party mods). Exact build number and day-level date unconfirmed.",
+          "source_url": "https://modemworld.me/2016/07/08/second-life-oculus-rift-support-suspended/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Confirmed from background knowledge (page not fetched): the Oculus Rift CV1 project viewer was withdrawn in early July 2016 because it did not meet LL's quality standards, with the Lab unable to say when or if another would follow; no official VR viewer has shipped since. The specific build string 4.1.0.317313 is plausible for July 2016 but was not independently confirmed.",
+          "source_url": "https://modemworld.me/2016/07/08/second-life-oculus-rift-support-suspended/"
+        }
+      ]
+    },
+    {
+      "claim": "On 9 July 2020 Linden Research announced acquisition by an investment group led by Randy Waterfield and Brad Oberwager (with Raj Date), conditional on U.S. financial-regulator approval due to Tilia's money-transmitter licence; all main-grid regions were on AWS by about 19 November 2020.",
+      "source_url": "https://modemworld.me/2020/07/09/linden-lab-announces-it-is-to-be-acquired/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Prior knowledge: 9 Jul 2020 announcement naming Waterfield and Oberwager and the Tilia money-transmitter regulatory condition are correct; AWS uplift of all main-grid regions completing mid/late Nov 2020 is consistent with LL statements. Less certain that Raj Date was named in the original announcement (he appears in later reporting on the investor group).",
+          "source_url": "https://modemworld.me/2020/07/09/linden-lab-announces-it-is-to-be-acquired/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Confirmed from background knowledge (page not fetched): 9 July 2020 announcement of acquisition by a group led by J. Randall (Randy) Waterfield and Brad Oberwager with Raj Date as third investor, contingent on regulatory approval tied to Tilia's money-transmitter licences; AWS cloud uplift of all main-grid regions completed around 19-20 November 2020 with back-end services following into early 2021. Note the cited July 2020 post does not cover AWS; cite the November 2020 modemworld post for that date.",
+          "source_url": "https://modemworld.me/2020/07/09/linden-lab-announces-it-is-to-be-acquired/"
+        }
+      ]
+    },
+    {
+      "claim": "Per Oberwager (Dec 2024), Linden Lab has spent ~$1.3B building Second Life, paid ~$1.1B to creators since 2003, runs a ~$650M/yr economy, takes ~10% of transactions, and paid creators $78M in 2023 (vs $73M in 2020 and $65M in 2019).",
+      "source_url": "https://gamesbeat.com/linden-lab-has-spent-1-3b-building-second-life-and-paid-1-1b-to-creators/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch GamesBeat. Prior knowledge: the '$1.3B to build / $1.1B to creators' headline matches the Dec 2024 Takahashi interview; the $60M (2015) / $65M (2019) / $73M (2020) series matches earlier LL statements. The 2023 $78M figure is plausible but ~$80M has also been quoted for recent years; confirm. All figures are company-reported and unaudited; '~10% take' aggregates several fee lines (Marketplace commission, L$ exchange, cash-out fees), not one published rate.",
+          "source_url": "https://gamesbeat.com/linden-lab-has-spent-1-3b-building-second-life-and-paid-1-1b-to-creators/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "The December 2024 GamesBeat (Dean Takahashi) headline figures of ~$1.3B spent and ~$1.1B paid to creators, attributed to Oberwager, match my knowledge; $73M cashed out in 2020 and ~$65M in 2019 are consistent with earlier LL statements. The ~$650M/yr economy, ~10% take and $78M for 2023 could not be confirmed from the article text. All are company-reported; note that gross transaction volume and creator cash-out are different measures and should not be mixed when computing the Lab's take.",
+          "source_url": "https://gamesbeat.com/linden-lab-has-spent-1-3b-building-second-life-and-paid-1-1b-to-creators/"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "METHOD WARNING: no independent online verification occurred in this run. WebSearch returned 'budget used up' (200-call per-turn limit shared across agents) on every query and WebFetch failed with DNS ENOTFOUND on every host (same failure the researcher hit). All verdicts rest on the brief's internal consistency and the checker's prior knowledge; a follow-up pass with working web access should fetch the primary pages listed in the report.",
+    "OpenSimulator (2007-present) is an open-source reimplementation of the Second Life server protocol with Hypergrid teleports between independently hosted grids. It shows the protocol is reproducible and that cross-grid identity/asset portability was prototyped 15 years ago, but fragmentation without a shared economy produced many small, empty grids. A successor should borrow Hypergrid-style portability while keeping one economy. (prior knowledge)",
+    "Linden Lab's Luau-based 'SLua' scripting, in alpha/beta on the test grid since spring 2025, is additive: LSL is not being deprecated, repeating the backward-compatibility ratchet the brief identifies. LSL has also executed on the Mono VM since 2008, showing that a VM swap alone does not fix the frame-budget 'scripts lose first' scheduler. (prior knowledge)",
+    "Avatar render-cost limits ('jelly dolls', 2016) were bolted on because a UGC world has no asset budget. A successor should bake per-avatar and per-parcel GPU/CPU budgets into the content format and upload pipeline from day one. (prior knowledge)",
+    "Linden Lab introduced formal Scripted Agent (bot) registration and later let parcel owners block bots; bots are a non-trivial share of login-screen concurrency, so published metrics for a successor should separate humans from agents, and SL's 2009-vs-2025 concurrency comparison should be treated as indicative only. (prior knowledge)",
+    "Land (region rental) was Linden Lab's primary revenue line long before the creator-economy framing; the 2008 Openspace repricing crisis and the 2010 layoffs were both land-revenue events. A successor needs a revenue model that does not depend on selling fixed-size server slices, which is also what locks in the 256 m region unit. (prior knowledge)",
+    "The brief's claim-2 Land Impact numbers appear to mix pre- and post-2023 capacity tiers (Full 22,500 is post-increase; Homestead 5,000 is pre-increase, likely now 5,625). Any successor-design comparison of 'content budget per region' should cite one consistent era.",
+    "Verification environment limitation: no cited page could be read in this run (WebFetch DNS failure on every host, WebSearch per-turn budget already exhausted by other agents, curl blocked). All verdicts rest on background knowledge; items marked unverifiable should be re-fetched in a run with working network access.",
+    "The Second Life viewer has been open source since January 2007 (GPL, later LGPL), which is why Firestorm and 15+ third-party viewers exist, and OpenSimulator (2007 onward) re-implemented the server side of the same protocol with Hypergrid teleports between independent grids. A successor wanting community clients without ceding the UI should study this precedent: open protocol plus a well-funded first-party client.",
+    "Philip Rosedale returned to Linden Lab as strategic advisor in January 2022, with High Fidelity investing cash, patents and staff after its own virtual-world product (2016-2019) failed to find users. Two Rosedale-led successors (High Fidelity, and indirectly Sansar) failed on user acquisition, not on graphics or VR fidelity.",
+    "The dominant performance problem residents experience is client-side rendering of unoptimized user-made avatars (mesh bodies, attachments), not region simulation; LL's main mitigation was Avatar Rendering Complexity / 'jelly dolls' (2016), a post-hoc client cutoff. A successor needs enforced per-asset budgets (triangles, textures, draw calls) at upload time.",
+    "Content layering is deeper than the brief states: prims, sculpts (2007), mesh (2011), normal/specular materials (2013), Bento skeleton extension (2016), Bakes on Mesh (2019), PBR (2023), all on the 2003 avatar skeleton. The third-party mesh-body ecosystem with proprietary rigging is the main lock-in and the main migration obstacle; a successor's import path must handle avatar bodies and rigging, not just static mesh.",
+    "LSL scripts are limited to 64 KB each (Mono) with no per-owner or per-parcel scheduling fairness beyond frame-wide starvation, which drives creators to ship many small scripts per object and makes 'script lag' scale with object count. A successor should budget script time by owner/parcel, not by frame leftover.",
+    "Project Zero streaming was sold as prepaid time blocks (e.g. L$250 for 5 hours) and sold out, implying per-hour GPU streaming cost exceeded what a free tier could absorb; a successor planning server-side rendering as a first-class access tier needs a unit-economics model for GPU hours per user hour before committing to it as the low-end funnel.",
+    "Linden Lab moved in 2024 to require bots to be flagged as scripted agents and to restrict bots collecting data on parcels, so historical concurrency series (2009 peak vs 2025) are bots-confounded; a successor should publish human-only concurrency and MAU from day one."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/sl-history-stagnation-refute.md",
+    "docs/research/fact-checks/sl-history-stagnation-precision.md"
+  ]
+}

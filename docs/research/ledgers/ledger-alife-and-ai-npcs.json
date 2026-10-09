@@ -1,0 +1,220 @@
+{
+  "key": "alife-and-ai-npcs",
+  "title": "Artificial life (a-life) in games and the AI-agent era: why life simulation did not give virtual worlds purpose, and what has changed",
+  "file": "docs/research/briefs/alife-and-ai-npcs.md",
+  "summary": "First-wave artificial life (Creatures 1996, Black & White 2001, Spore 2008) made a single creature interesting but never made a place worth returning to: Creatures' legacy was a player-science community outside the game, Black & White's learning creature failed on legibility, and Spore's creature stage was judged shallow with no cause-and-effect (Slate, Gamereactor), described as \"WoW offline without the social element\". Offline life-sim worked where online failed: The Sims Online (Dec 2002, ~$20M budget, 1M forecast) had 97,000 subscribers at six months and shut down 1 Aug 2008 because putting humans in the Sim slots removed the control-plus-autonomy loop; Animal Crossing New Horizons, with dumb scheduled NPCs and a real clock, sold 31.18M by end-2020. Dwarf Fortress (1M Steam copies in ~26 months) and RimWorld show emergence sells when events are cheap, legible and paced by a director. Second Life's a-life was an economy, not life: breedables (Ozimals, KittyCatS) ran on DRM food servers, DMCA litigation (Amaretto v. Ozimals, 2010-2013) and trait inflation; every Ozimals bunny hibernated when a volunteer server was shut in May 2017. The real \"dead world\" problem is density: ~30-50k concurrent users across ~27,769 regions. Low-density social worlds die of fixed costs (Ever, Jane closed Dec 2020 over $500-600/month; Will Wright's Proxi laid off staff Oct 2024). What changed 2023-2026: Stanford's 25-agent Smallville (2023) and 1,052-person interview-seeded agents replicating survey answers at 85% of self-consistency (Nov 2024); Altera's 1,000-agent Project Sid (vendor claims only); commercial stacks (Ubisoft NEO NPC, NVIDIA ACE on-device 4B models in Mecha BREAK) but Inworld pivoted to voice infrastructure in 2025 and no shipped AI-NPC game has public sales. Engagement with AI characters is huge but solitary and legally exposed (Character.AI ~20M MAU/~75 min/day estimates, under-18 open chat banned 25 Nov 2025, Setzer settlement Jan 2026; Replika EUR 5M fine). Generative worlds (Roblox Cube, Genie 3 at 720p/24fps for minutes) are asset/video tools, not persistent multi-user state. Norms hardened: Steam disclosure (~20% of 2025 releases), SAG-AFTRA's NLRB charge over Fortnite's AI Vader (19 May 2025), 62.7% of 1.75M gamers very negative on gen-AI, bots at 51% of web traffic. Caveat: WebFetch failed on all domains and the search budget ran out, so facts come from search extracts, not full primary reads.",
+  "design_implications": [
+    "Disclose every agent visibly and give each a purpose (shopkeeper, guide, chronicler); never pass agents as humans, to avoid the 62.7%-negative backlash and dead-internet charge.",
+    "Use agents to solve density, not replace people: design fewer, denser places with a liveliness floor that agents fill and yield when humans arrive, instead of Second Life's ~1-2 humans per region.",
+    "Offer opt-in digital twins of absent residents seeded from interviews (the 85% self-consistency result) to tend shops and greet visitors offline, with full logs and consent controls.",
+    "Add a RimWorld-style storyteller/director per neighbourhood that paces events, festivals and crises so emergence is legible and retellable rather than noise.",
+    "Build the base loop on a real clock, seasons and NPC routines (Animal Crossing), with agent schedules so places are alive at predictable times.",
+    "Make memory the retention hook: agents remember residents across sessions and the world keeps a public chronicle (Proxi's bet, Smallville's mechanism).",
+    "Run scarcity/genetics economies (breedables) only with platform-hosted, escrowed life-support servers and designed sinks, so vendor death, DRM or DMCA fights cannot kill assets and trait inflation is controlled.",
+    "Tier cognition and budget per NPC-hour explicitly: scripted routines by default, on-device ~4B models for ambient talk, frontier calls only for memorable interactions; publish the cost model.",
+    "Age-gate and build duty of care from day one: no romantic or open-ended companion loops for minors, crisis routing, GDPR-grade data handling (Character.AI ban, Replika fine).",
+    "Use licensed or synthetic voices with provenance and union-safe terms; treat Cube/Genie-class generation as tooling feeding a persistent authoritative simulation, not as the world itself."
+  ],
+  "open_questions": [
+    "What is the realistic cost per agent-hour at 2026 prices for a mixed scripted/on-device/frontier stack, and at what human density does it pay back? No vendor publishes this; the $0.004-0.01 per dialogue-turn figure is an unverified third-party estimate.",
+    "Have Project Sid's 1,000-agent results been independently replicated? Only Altera's own claims were found.",
+    "What are the Generative Agents (2023) ablation results and documented failure modes? The arXiv page could not be fetched in this run.",
+    "What share of Second Life's reported concurrency is bots/scripted agents? Only forum claims exist.",
+    "Has the SAG-AFTRA NLRB charge over Fortnite's AI Darth Vader been resolved, and what precedent does it set for synthetic NPC voices?",
+    "Will Genie-class world models reach persistent, multi-user, authoritative state, or remain single-viewer video with ~1-minute memory?",
+    "Why did KittyCatS survive where Ozimals died: pricing, perma-pet conversion, vendor longevity, or community size?",
+    "What exactly made Animal Crossing's routine loop retentive (Eguchi's design rationale), and does it survive at MMO scale?",
+    "Independent engagement data for Character.AI/Replika: all time-per-day figures trace to one analyst (Sacra) or aggregator blogs."
+  ],
+  "claims": [
+    {
+      "claim": "The Sims Online launched 17 Dec 2002 with internal forecasts of up to 1M subscribers; Wired reported 97,000 active subscribers six months later, and EA shut EA-Land down on 1 Aug 2008.",
+      "source_url": "https://en.wikipedia.org/wiki/The_Sims_Online",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Launch 17 Dec 2002 and EA-Land shutdown 1 Aug 2008 (announced 29 Apr 2008) are correct; EA's ~1M subscriber hope was widely reported. The '97,000 active subscribers at six months' figure is consistent with Wired's 2003 reporting as summarised on Wikipedia but could not be re-read live (WebFetch DNS failure, WebSearch budget exhausted); the later 55k/35k peak figures in the brief body are fan-forum estimates and should not be promoted to claims.",
+          "source_url": "https://en.wikipedia.org/wiki/The_Sims_Online"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched: WebFetch failed DNS (ENOTFOUND) and the shared WebSearch budget was exhausted before any search ran. Checker recollection (not evidence): launch 17 Dec 2002, Wired's 97,000 actives / 125,000 copies, and EA-Land closure 1 Aug 2008 match memory; the 'internal forecasts of up to 1M subscribers' wording is the weakest element (memory has EA targets quoted as 40K at launch / 200K first year, with 1M as an aspirational press figure). Re-check the exact Wikipedia wording.",
+          "source_url": "https://en.wikipedia.org/wiki/The_Sims_Online"
+        }
+      ]
+    },
+    {
+      "claim": "Animal Crossing: New Horizons sold ~31.18M copies by 31 Dec 2020, outselling the Nintendo Switch console (27.3M) in calendar 2020 despite launching in March.",
+      "source_url": "https://www.videogameschronicle.com/news/animal-crossing-new-horizons-even-outsold-nintendo-switch-in-2020",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Nintendo's Q3 FY3/2021 results (1 Feb 2021) put ACNH at 31.18M as of 31 Dec 2020, all in calendar 2020 since launch was 20 Mar 2020. Switch hardware by Nintendo quarter (3.29M + 5.68M + 6.86M + 11.57M) sums to ~27.4M for CY2020; the 27.3M figure is within rounding. Claim holds.",
+          "source_url": "https://www.nintendo.co.jp/ir/en/finance/software/index.html"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched (DNS failure; search budget exhausted). Recollection: 31.18M by 31 Dec 2020 is Nintendo's own Q3 FY2021 figure. Switch comparator uncertain: summing Nintendo's calendar-2020 quarterly shipments gives ~27.4M (consistent with 27.3M), but VGC may have used the Apr-Dec fiscal nine-month figure (~24.1M). Headline 'game outsold console in 2020' holds either way; confirm which number VGC used before quoting 27.3M.",
+          "source_url": "https://www.videogameschronicle.com/news/animal-crossing-new-horizons-even-outsold-nintendo-switch-in-2020"
+        }
+      ]
+    },
+    {
+      "claim": "In May 2017 a legal threat closed the volunteer-run Ozimals food server, leaving all Second Life Ozimals bunnies in permanent hibernation because they could only eat DRM-validated food.",
+      "source_url": "https://boingboing.net/2017/05/20/breedables-vs-drm.html",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Ozimals announced closure in May 2017 after a legal demand asserting ownership of its code; with the validation server off, bunnies that could only eat server-validated food entered hibernation permanently. Caveat: the brief body's narrative ('Ozimals shut down in 2016; a volunteer kept the server alive') could not be re-verified; checker's recollection is that the Ozimals operation itself, run at essentially no profit by then, received the threat and closed in May 2017. The DRM single-point-of-failure lesson stands either way.",
+          "source_url": "https://boingboing.net/2017/05/20/breedables-vs-drm.html"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: Boing Boing (20 May 2017) and New World Notes reported Ozimals shutting its servers after an IP legal threat it could not afford to fight; unfed bunnies hibernate rather than die. Two details to re-check: 'volunteer-run' and the brief's 'Ozimals shut down in 2016' (memory is that the May 2017 shutdown notice came from Ozimals itself), and 'permanent' is an inference since hibernation is reversible if a server returned.",
+          "source_url": "https://boingboing.net/2017/05/20/breedables-vs-drm.html"
+        }
+      ]
+    },
+    {
+      "claim": "Second Life is estimated at ~500,000 MAU (Oct 2024, citing New World Notes), with 12-month average peak concurrency ~49,649 across ~27,769 main-grid regions (early 2025).",
+      "source_url": "https://danielvoyager.wordpress.com/2024/10/30/second-life-has-500000-monthly-active-users/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "The ~500k MAU figure traces to New World Notes relaying a Linden Lab statement (Oct 2024), and the concurrency/region figures are Daniel Voyager's compilations of Linden's public concurrency feed and grid surveys; none could be re-read and Linden publishes no MAU in any filing. Plausible but blogger-sourced. Context the brief misses: Linden Lab cited ~900k MAU around 2020, so 500k would be a ~45% decline; and the concurrency feed counts bots, so humans-per-region is lower than the brief's arithmetic.",
+          "source_url": "https://danielvoyager.wordpress.com/2024/10/30/second-life-has-500000-monthly-active-users/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: Daniel Voyager's 30 Oct 2024 post exists and relays Wagner James Au (New World Notes) reporting ~500K MAU from Linden Lab. The 49,649 average-peak concurrency and 27,769 main-grid regions are plausible against Voyager/GridSurvey trackers but could not be checked and likely come from a different Voyager post than the one cited.",
+          "source_url": "https://danielvoyager.wordpress.com/2024/10/30/second-life-has-500000-monthly-active-users/"
+        }
+      ]
+    },
+    {
+      "claim": "Stanford's 'Generative Agent Simulations of 1,000 People' (arXiv 2411.10109, 15 Nov 2024) built agents from ~2-hour interviews with 1,052 real people; agents replicated their General Social Survey answers 85% as accurately as the people replicated themselves two weeks later.",
+      "source_url": "https://arxiv.org/abs/2411.10109v1",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Park et al., arXiv:2411.10109 (submitted 15 Nov 2024): 1,052 participants, ~2-hour AI-conducted interviews; agents replicate GSS responses 85% as accurately as participants replicate themselves two weeks later (normalized accuracy 0.85), with reduced accuracy gaps across racial and ideological groups. Caveat for design: this is survey-level fidelity on GSS/Big Five/economic games, not evidence of credible open-ended social behaviour over weeks.",
+          "source_url": "https://arxiv.org/abs/2411.10109"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: every specific matches the abstract as remembered (Park et al.; submitted 15 Nov 2024; 1,052 participants; two-hour AI-led interviews; GSS replication 85% as accurate as participants' own two-week test-retest; reduced accuracy gaps across racial and ideological groups). Highest-confidence claim in the set.",
+          "source_url": "https://arxiv.org/abs/2411.10109v1"
+        }
+      ]
+    },
+    {
+      "claim": "Altera's Project Sid ran up to 1,000 LLM agents in Minecraft (PIANO architecture) and claimed, in its own video, that agents collected 32% of all Minecraft items, voted on a constitution and adjusted tax rates; these are unverified company claims.",
+      "source_url": "https://www.technologyreview.com/2024/11/27/1107377",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Figures (1,000+ agents, PIANO architecture, ~32% of Minecraft items at ~5x single-agent baselines, constitutional amendments, tax votes, Pastafarian religion) and the 27 Nov 2024 MIT Technology Review date are right, and the results remain self-reported and unreplicated. But they are not 'claimed in its own video' only: Altera published 'Project Sid: Many-agent simulations toward AI civilization', arXiv:2411.00114 (31 Oct 2024), with methods and figures. Cite the paper and call it self-reported/non-peer-reviewed rather than video-only.",
+          "source_url": "https://arxiv.org/abs/2411.00114"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: matches Altera's preprint 'Project Sid: Many-agent simulations toward AI civilization' (arXiv 2411.00114, 31 Oct 2024) and MIT Technology Review (27 Nov 2024). PIANO = Parallel Information Aggregation via Neural Orchestration; 32% of items (~5x a single agent), constitution vote and tax adjustments are in the preprint as well as the video, so 'in its own video' undersells the primary source. 'Unverified company claims' is fair: preprint is not peer-reviewed, no independent replication.",
+          "source_url": "https://www.technologyreview.com/2024/11/27/1107377"
+        }
+      ]
+    },
+    {
+      "claim": "Inworld AI, valued at $500M in 2023, pivoted between March and September 2025 from AI game characters to voice/inference infrastructure, retired Character Studio, and cut TTS pricing to $5 per million characters.",
+      "source_url": "https://arcanumrpgs.com/blog/inworld-ai/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Inworld's Aug 2023 round at a reported $500M valuation, the 2025 shift to voice/inference infrastructure, Inworld TTS at $5 per million characters (marketed ~20x cheaper than incumbents) and the Inworld Runtime launch on 13 Aug 2025 are correct. The specific 'Character Studio retired between March and September 2025' window rests only on a third-party RPG blog and could not be re-verified against an Inworld announcement; keep at medium confidence.",
+          "source_url": "https://www.globenewswire.com/news-release/2025/08/13/3132320/0/en/Inworld-Runtime-The-first-AI-runtime-for-consumer-applications.html"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: $500M valuation (Aug 2023) matches; Inworld TTS-1 launched ~July 2025 at about $5 per 1M characters and Inworld Runtime on 13 Aug 2025; Character Engine/Studio deprecation in 2025 is consistent with memory but the exact retirement date and the 'March to September' window are the blog author's framing. The cited source is a third-party RPG blog, not Inworld; swap in Inworld's own announcements. Highest priority for re-check.",
+          "source_url": "https://arcanumrpgs.com/blog/inworld-ai/"
+        }
+      ]
+    },
+    {
+      "claim": "Character.AI announced in Oct 2025 a 2-hour daily cap for under-18s and a full ban on open-ended chats for minors from 25 Nov 2025; Google and Character.AI reached a settlement in principle with the Setzer family in Jan 2026.",
+      "source_url": "https://abc7news.com/post/characterai-is-banning-minors-interacting-chatbots/18090030/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "On 29 Oct 2025 Character.AI announced removal of open-ended chat for under-18s by 25 Nov 2025 with an interim two-hour daily limit decreasing to the cutoff, plus age assurance. On 7 Jan 2026 Google and Character.AI reached settlements in principle with the Setzer/Garcia family and with families in related Colorado, New York and Texas cases; terms undisclosed.",
+          "source_url": "https://blog.character.ai/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: matches. Announcement 29 Oct 2025; interim 2-hour/day limit for under-18s ramping down to zero by 25 Nov 2025 with age assurance; AP reported on 7 Jan 2026 that Google and Character.AI agreed in principle to settle the Setzer (Garcia) case and related Colorado, New York and Texas suits, terms undisclosed. Nuance: the 2-hour cap was an explicit transition measure, not a steady-state policy.",
+          "source_url": "https://abc7news.com/post/characterai-is-banning-minors-interacting-chatbots/18090030/"
+        }
+      ]
+    },
+    {
+      "claim": "SAG-AFTRA filed an NLRB unfair labor practice charge on 19 May 2025 against Llama Productions (Epic) over Fortnite's AI-recreated James Earl Jones Darth Vader voice, alleging unilateral change without bargaining.",
+      "source_url": "https://www.thewrap.com/sag-aftra-darth-vader-fortnite-ai-voice/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "SAG-AFTRA filed an NLRB unfair labor practice charge on 19 May 2025 against Llama Productions LLC (Epic) over Fortnite's AI Darth Vader (James Earl Jones recreated with estate consent via Google Gemini 2.0 Flash and ElevenLabs Flash v2.5), alleging unilateral change to terms of employment without notice or bargaining. Correction to the brief body, not this claim: the video game strike began 26 Jul 2024 (not 16 Jul), ended with a tentative deal 9 Jun 2025, ratified 9 Jul 2025.",
+          "source_url": "https://www.sagaftra.org/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: matches. Fortnite's AI Vader (Gemini + ElevenLabs, with the James Earl Jones estate's permission) launched 16 May 2025; SAG-AFTRA filed the NLRB charge on 19 May 2025 against Llama Productions LLC alleging replacement of bargaining-unit work with AI without notice or bargaining. Note the brief's strike start date (16 July 2024) should be 26 July 2024, and the strike itself ended in mid-2025.",
+          "source_url": "https://www.thewrap.com/sag-aftra-darth-vader-fortnite-ai-voice/"
+        }
+      ]
+    },
+    {
+      "claim": "By 13 July 2025, 7,818 of ~114,126 Steam games (~7%) carried a generative-AI disclosure, and ~20% of 2025 releases disclosed AI use, up ~700-800% year on year; Quantic Foundry (Dec 2025, >1.75M gamers) found 62.7% feel very negatively about generative AI in games.",
+      "source_url": "https://www.videogameschronicle.com/news/steam-games-disclosing-generative-ai-use-are-up-800-this-year/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Steam half holds: Ichiro Lambe (Totally Human Media), July 2025, counted 7,818 of ~114,000 Steam titles (~7%) with a gen-AI disclosure, ~7-8x the prior year, with nearly 20% of 2025 releases disclosing; Valve's requirement dates from 10 Jan 2024. The Quantic Foundry 62.7% 'very negatively' figure (Dec 2025) could not be verified, and '>1.75M gamers' is the size of Quantic Foundry's cumulative Gamer Motivation Profile dataset, not the sample for a gen-AI question; do not present it as that survey's N.",
+          "source_url": "https://www.videogameschronicle.com/news/steam-games-disclosing-generative-ai-use-are-up-800-this-year/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Source not fetched. Recollection: Steam figures match Ichiro Lambe's (Totally Human Media) July 2025 analysis as reported by VGC (7,818 of ~114,126, ~7%, nearly 20% of 2025 releases, roughly 8x YoY). The claim bundles two sources: the Quantic Foundry 62.7% figure comes from a separate 18 Dec 2025 Quantic Foundry post, not the VGC article; the exact 62.7% and the '>1.75M gamers' sample description could not be confirmed.",
+          "source_url": "https://www.videogameschronicle.com/news/steam-games-disclosing-generative-ai-use-are-up-800-this-year/"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Method limitation: no live evidence was gathered. WebFetch failed with DNS errors on all 11 primary-source URLs and the shared WebSearch budget (200/turn) was exhausted before this checker's first query; verdicts are from the checker's knowledge (cutoff June 2026) and each names the primary source to re-check.",
+    "Project Sid has a written paper: 'Project Sid: Many-agent simulations toward AI civilization', arXiv:2411.00114 (31 Oct 2024), describing PIANO; it reports that agent specialisation and social coherence degrade when the social-awareness/coherence modules are ablated, a useful hint for agent legibility design. Still self-reported, not replicated.",
+    "AI disclosure is becoming statutory, not just reputational: EU AI Act Article 50 transparency duties (tell users they are interacting with AI; mark synthetic content) apply from 2 Aug 2026; California SB 243 (signed 13 Oct 2025, effective 1 Jan 2026) regulates companion chatbots with disclosure, suicide/self-harm protocols and periodic reminders for minors; the US FTC opened a 6(b) inquiry into companion chatbots (Alphabet, Character.AI, Meta, OpenAI, Snap, xAI and others) in Sept 2025. A successor world needs disclosure, age assurance and crisis routing at the platform layer.",
+    "The SAG-AFTRA video game strike ran 26 Jul 2024 to a 9 Jun 2025 tentative deal, ratified 9 Jul 2025 (the brief says it began 16 Jul 2024). The resulting Interactive Media Agreement contains AI consent and compensation terms for digital replicas, giving 'union-safe voices' a concrete contract standard; creator-sold synthetic voices need a provenance and consent registry compatible with it.",
+    "Second Life's decline is steeper than the brief's snapshot implies: Linden Lab cited ~900k MAU around 2020, so ~500k in 2024 is roughly a 45% fall with region count roughly flat; and Linden's concurrency feed counts scripted bots, so the humans-per-region arithmetic in the brief is an upper bound.",
+    "End-of-life preservation matters to virtual-world communities: The Sims Online was revived by fans as FreeSO (2016 onward) via reverse engineering after EA's 2008 shutdown; Second Life residents have no equivalent exit. Committing up front to a source/data release or self-hosting path at end of life also answers the Ozimals single-vendor life-support failure.",
+    "The Stanford 85% result measures survey-level fidelity (GSS, Big Five, economic games), not behavioural fidelity over time; 'opt-in digital twins of absent residents' should be treated as a hypothesis to test, not a validated capability.",
+    "Generative Agents (Park et al., UIST 2023) ablations, which the brief could not read: removing observation, reflection or planning each reduced believability ratings, with reflection and planning the largest drops, supporting the brief's 'memory as the retention hook' recommendation.",
+    "Verification tooling was fully unavailable this run: WebFetch returned getaddrinfo ENOTFOUND for every host and the turn's shared WebSearch budget (200 calls) was exhausted before any of the ten searches executed, so no claim was checked against a fetched source. All verdicts are 'unverifiable'; the notes carry checker recollection only. A follow-up pass with working tools should prioritise claims 6, 0, 2, 3 and 9.",
+    "The SAG-AFTRA video game strike (begun 26 July 2024, not 16 July as the brief states) ended in 2025: a tentative Interactive Media Agreement was reached in June 2025 and ratified in July 2025 with AI consent and compensation terms for digital replicas. The brief says 'no resolution found'; the strike is resolved even if the Vader NLRB charge may not be. Directly relevant to any successor world using synthetic voices for agents. (Recollection; verify.)",
+    "Project Sid's primary source is Altera's own preprint, arXiv 2411.00114, which should replace the MIT Technology Review secondary citation.",
+    "California SB 243 (companion-chatbot safeguards: AI disclosure, self-harm protocols, minors protections) was signed Oct 2025 and took effect 1 Jan 2026; the FTC opened a 6(b) inquiry into AI companion chatbots and minors in Sept 2025 naming Character.AI, Meta, OpenAI, Snap, xAI and Alphabet. Both shape the 'age-gating from day one' design rule for a successor world. (Recollection; verify.)",
+    "Valve's Steam disclosure policy dates from 10 Jan 2024 and distinguishes pre-generated from live-generated AI content, requiring guardrails for the latter; a successor world running live LLM agents would fall in the live-generated category if distributed on Steam. (Recollection; verify.)"
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/alife-and-ai-npcs-refute.md",
+    "docs/research/fact-checks/alife-and-ai-npcs-precision.md"
+  ]
+}

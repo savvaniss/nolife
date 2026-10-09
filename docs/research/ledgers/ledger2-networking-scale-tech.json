@@ -1,0 +1,103 @@
+{
+  "key": "networking-scale-tech",
+  "title": "Networking, persistence and scale for a shared persistent world in 2026",
+  "file": "docs/research/briefs/networking-scale-tech.md",
+  "summary": "Live-searched landscape brief (20/20 searches, extracts only; no page fetches) on networking, persistence and scale for a persistent user-created world in 2026. Verified: Star Citizen's static meshing gives ~500-player shards and, as of CIG's 27 Aug 2026 letter, dynamic meshing exists only as \"quasi-dynamic\" instancing in 4.10; EVE's real single-system record is 6,739 pilots (M2-XFE) under time dilation; Improbable's 10k figure is a 2022 capability claim with observed peaks of ~4,100-4,500 at scripted events and no 2024-25 10k event found; Dual Universe's single shard shut down 27 Aug 2025; Roblox's public ceiling is 200/server with 700 as a now-closed beta, with DataStore budgets of 60+10xplayers req/min; Fortnite stays at <=100 per instance (Big Battle is 40v40/50v50); Unreal Iris is still opt-in/experimental. Infrastructure prices have converged at ~US$0.055-0.07 per vCPU-hour (GameLift c6i.large US$0.109/h; Edgegap US$0.00115/vCPU-min + US$0.10/GB), i.e. ~US$0.002-0.005 per avatar-hour, but vendor risk is now the dominant risk: Hathora was acquired by Fireworks AI and wound down game hosting by Apr/May 2026, Dolby.io Communications is quietly legacy, and Linden Lab closed Firestorm Zero by mid-2025 after its streaming provider forced a migration. Voice and netcode are cheap and commoditised (Photon 100 CCU free, Fusion 2 >200/room; ODIN EUR0.29/PCU-month; Discord Social SDK free, GA Aug 2025). Recommended: two-layer presence/simulation model with elastic cells of 100-150 simulated avatars, 500-1,000 per contiguous place, 2,000-5,000 only in a degraded event mode, multi-vendor hosting and voice abstractions, document+event-log persistence with write budgets, and moderation budgeted before capacity.",
+  "design_implications": [
+    "Adopt a two-layer world model: a low-rate presence layer (position, pose, voice, chat at 5-10 Hz, interest-managed) that can show 1,000-5,000 avatars per place, and a spatially sharded simulation layer with cells of 50-150 physically interacting avatars.",
+    "Set published 2026 concurrency SLOs per place: 100-150 fully simulated avatars per cell with voice; 500-1,000 per contiguous multi-cell place (the Star Citizen 4.x shard envelope); 2,000-5,000 only in a declared event mode with impostors, pre-mixed audio and reduced interaction (the ScavLab envelope); never promise 10,000.",
+    "Use elastic cells backed by an authoritative replication/entity store so a cell crash is a reconnect, not a lost place; sell land by area and content budget, never by 'one server'.",
+    "Design for vendor churn: containerised cell servers deployable on Edgegap, GameLift Servers, Nitrado GameFabric or bare metal from one manifest; voice behind an abstraction that can swap ODIN, Discord Social SDK or a self-hosted SFU; no sole-source streaming client (Hathora, Dolby.io and Firestorm Zero all disappeared within 12-18 months).",
+    "Budget infrastructure at roughly US$0.002-0.005 per avatar-hour (US$0.055-0.07/vCPU-hour, US$0.10/GB) and voice at about EUR0.29 per peak user per month; expect trust-and-safety and asset moderation, not servers, to be the largest operating line.",
+    "Persist world state as documents plus an append-only event log with Roblox-style per-cell and per-creator write budgets, snapshots and rollback for land owners; keep live world state out of simulation memory.",
+    "Sandbox scripts (Luau or WASM) with per-script CPU/memory/network budgets and throttle the worst offender rather than starving all scripts as Second Life does.",
+    "Treat interest management, avatar LOD/impostors beyond ~30 m and a 50-200 kbps per-client bandwidth cap as the primary scale levers; if on Unreal, use Iris only as an experimental opt-in.",
+    "Make instance boundaries soft (friends-follow, join-where-my-people-are, cross-instance chat, auto-merge thin instances) rather than chasing bigger instances.",
+    "Use pixel streaming only as a time-capped onboarding funnel with a provider contract that survives platform migrations."
+  ],
+  "open_questions": [
+    "Which Star Citizen 4.x patch is live in October 2026, whether 4.10 instancing has expanded beyond quasi-dynamic meshing, and the current official per-shard player count.",
+    "Whether Roblox's 700-player server tier will re-open publicly and what Luau CPU budget per player it implies.",
+    "Whether any independently measured MSquared/Morpheus event in 2024-2026 reached 10k concurrent, with update rate, avatar fidelity and per-attendee cost.",
+    "The official Dolby.io Communications API end-of-service date and which spatial-voice vendor (ODIN, Vivox, Discord) absorbed its customers.",
+    "Nitrado GameFabric's post-Hathora rate card and whether Edgegap's US$0.00115/vCPU-min holds into 2027.",
+    "Whether Unreal Iris leaves Experimental in UE 5.8+ and what per-server player gain Epic attributes to it.",
+    "Linden Lab's actual AWS spend versus the pre-2020 colocation bill, and whether Project Zero (as distinct from Firestorm Zero) is still operating.",
+    "Whether a WebGPU client can render a 100-avatar presence layer at 60 fps on 2026 mid-range phones."
+  ],
+  "claims": [
+    {
+      "claim": "As of CIG's 27 August 2026 Letter from the Chairman, Star Citizen's dynamic server meshing has shipped only as 'Quasi Dynamic Server Meshing' (instancing in Alpha 4.10); persistent-universe territories are not yet subdivided by load. Alpha 4.0 static meshing raised shard capacity to roughly 500 players.",
+      "source_url": "https://starcitizen.tools/Comm-Link:Letter_from_the_Chairman_-_2026-08-27",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "EVE Online's verified single-system peak is 6,739 pilots in M2-XFE (breaking FWST-8's 6,557), with 13,770 across three systems; the '8,825 players' figure in the prior draft does not appear in CCP's reports.",
+      "source_url": "https://www.eveonline.com/news/view/the-second-timer-in-m2-xfe",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Improbable's 'over 10,000 participants in one space' is a 2022 capability claim; observed peaks are 4,144 real players (ScavLab, May 2021) and 4,500 (Yuga Labs demo). Two searches found no 2024-2025 MSquared event with 10k+ concurrent users.",
+      "source_url": "https://www.mcvuk.com/business-news/tennis-for-two-thousand-the-story-behind-improbables-mass-event-in-scavlab/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Hathora, a leading game-server hosting vendor, was acquired by Fireworks AI (announced March 2026) and wound down game hosting by end of April/May 2026, offboarding customers to Nitrado GameFabric; Stormgate lost online play as a result.",
+      "source_url": "https://gamesbeat.com/?p=318174",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Edgegap charges US$0.00115 per dedicated vCPU-minute (~US$0.069/vCPU-hour, raised from US$0.001 on 1 Jan 2025) plus US$0.10/GB egress; Amazon GameLift Servers lists c6i.large at US$0.109/hour Linux on-demand in US East (Ohio).",
+      "source_url": "https://edgegap.com/pricing",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Dual Universe's single-shard MMO was delisted from Steam on 25 July 2025 and its servers shut down on 27 August 2025, surviving only as the player-hosted 'myDU'.",
+      "source_url": "https://en.wikipedia.org/wiki/Dual_Universe",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Roblox's public maximum server size is 200 players (since 24 July 2024, per a secondary source); a 700-player tier existed as a beta that developers report can no longer be joined publicly. Official DataStore budgets are 60 + 10 x players requests/minute per server with a 30-request per-key queue.",
+      "source_url": "https://devforum.roblox.com/t/is-it-still-possible-to-opt-into-700-player-servers/4210626",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Photon's free tier is now 100 CCU for commercial Fusion/Quantum apps, Fusion 2 supports over 200 players in a room; ODIN spatial voice costs EUR0.29 per peak concurrent user per month (free to 25 CCU); Discord's Social SDK with in-game voice went GA to all developers free in August 2025.",
+      "source_url": "https://blog.photonengine.com/new-200-ccu-plus-package-100-paid-100-free/",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Linden Lab's Firestorm Zero streamed viewer (launched 14 March 2025) was shut down by June 2025 because of the cost of maintaining two streaming products and a provider-mandated platform migration of Project Zero.",
+      "source_url": "https://modemworld.me/2025/06/27/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Unreal's Iris replication remains opt-in alongside legacy replication and is reported still marked Experimental in UE 5.7 documentation; Fortnite's standard instance remains 100 players and Big Battle is a 40v40/50v50 LTM, not a larger single place.",
+      "source_url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-iris-in-unreal-engine",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    }
+  ],
+  "additional_findings": [],
+  "verify_files": [],
+  "note": "Re-researched with live search; supersedes ledger-networking-scale-tech.json"
+}

@@ -1,0 +1,26 @@
+{
+  "brief": "research/alt-survivors.md",
+  "verified_on": "2026-10-09",
+  "searches_used": 10,
+  "method": "WebSearch extracts only; page fetching blocked in sandbox",
+  "verdicts": [
+    {"claim_index": 0, "verdict": "confirmed", "searched": true, "source_url": "https://steambase.io/games/resonite", "note": "Steambase 194 (Jul 2026), tracker.gg 199 / 24h peak 276, monthly avg 168-195, all-time peak 1,183 (Steambase, 6 Oct 2023) or 1,263 (tracker.gg); ~1,575 reviews. Snapshots ~2 months stale."},
+    {"claim_index": 1, "verdict": "confirmed", "searched": true, "source_url": "https://en.wikipedia.org/wiki/NeosVR", "note": "Cloud services ended 20 Aug 2025 (Steam post 'Cloud Services Farewell'); store page says no longer sold; local/LAN play remains. 2023 team exit over Solirax disagreements confirmed; the 24 Apr 2023 date and crypto cause not quoted in extract."},
+    {"claim_index": 2, "verdict": "confirmed", "searched": true, "source_url": "https://steambase.io/apps/chilloutvr", "note": "34 online at 19 Aug 2026 snapshot, 82% below peak 189 on 8 Jun 2025; 2026 monthly peaks Jan 102, Feb 64, Mar 111, Apr 54, May 52, Jun 45. Monthly averages not quoted but consistent."},
+    {"claim_index": 3, "verdict": "confirmed", "searched": true, "source_url": "https://www.pcgamesinsider.biz/news/75557/avakin-life-launches-on-steam-on-may-27th-2026/", "note": "500m lifetime (mobile) downloads, 1.6m MAU, 220k avg DAU in 2025, 200m registered mobile users, Steam full launch 27 May 2026 confirmed. GBP 22.35m revenue / -11.17m EBITDA 2023 not covered by search budget (unverified). Steam reviews Mixed 63% of 968."},
+    {"claim_index": 4, "verdict": "confirmed", "searched": true, "source_url": "https://www.uploadvr.com/spatial-is-discontinuing-its-creator-platform-in-july/", "note": "Announced 28 May 2026; Free/Pro tiers and 3D World hosting for those tiers end 27 Jul 2026; files deleted after; Jinha Lee cites unsustainable hosting costs; enterprise continues; focus on Wooster Games (Animal Company). Road to VR corroborates."},
+    {"claim_index": 5, "verdict": "corrected", "searched": true, "source_url": "https://www.enadglobal7.com/?p=3222", "note": "Royal Highlands released 12 May 2026 (also on PS5/Xbox) confirmed, but the 10 million player milestone was announced 22 Apr 2026 by EG7 with a celebration event to 11 May, not at the same time as the expansion. Amberlight Affair / Beauty and the Beach did not surface in results (rest on brief's own citations)."},
+    {"claim_index": 6, "verdict": "confirmed", "searched": true, "source_url": "https://www.notebookcheck.net/Hytale-s-Early-Access-surges-past-1-million-players-as-19-99-sandbox-RPG-returns-from-the-brink.1206095.0.html", "note": "EA 13 Jan 2026, >1m players, tiers $19.99/$34.99/$69.99 confirmed; EA sold only via hytale.com. Devs' '2.8m concurrent users' claim is dubious. Riot buy-back and July 2026 Chapter 1 preview not in extracts."},
+    {"claim_index": 7, "verdict": "corrected", "searched": true, "source_url": "https://massivelyop.com/?p=566277", "note": "1.0 on 16 Oct 2025 with Steam/Epic/PC Game Pass/GeForce Now and 60->43 layoffs (May 2025) confirmed. 1.0 launch peak was >4,300 CCU, so '11,531 two-week peak' in mid-2026 is not credible; it matches the June 2024 EA all-time peak (prior knowledge). No dated 2026 CCU found; 400-740 unverified. Land plots need an optional subscription."},
+    {"claim_index": 8, "verdict": "unverifiable", "searched": true, "source_url": "https://parse.gl/brands/sine-space", "note": "No shutdown report found; the quoted ryanschultz.com line was not surfaced; the only 2026-dated signal (Parse.gl, 4 Jul 2026) describes Sinespace in present tense. Schultz's embedded-reporter role confirmed, 2019-2024 span not. Single-source claim."},
+    {"claim_index": 9, "verdict": "confirmed", "searched": true, "source_url": "https://uploadvr.com/linden-lab-sells-sansar-focus-second-life/", "note": "Negative finding corroborated: search returned only March 2020 Wookey sale coverage (Tilia contracted for back office; mostly desktop users) and no 2026 'next Second Life' platform. Late-2021 outage source not re-surfaced. Sansar's current state unknown."}
+  ],
+  "additional_findings": [
+    "Palia's Royal Highlands (12 May 2026) also launched on PS5 and Xbox; the 10m milestone came from EG7, Daybreak's parent, on 22 Apr 2026.",
+    "Pax Dei is buy-to-play plus an optional subscription required to own land plots (dev 2025 retrospective); engine moved to UE 5.6 in Apr 2026; 'birb' update Jul 2026.",
+    "Hytale early access is sold only via hytale.com, so no Steam concurrency exists for it.",
+    "Avakin Life's 500m figure is mobile-only downloads (Notebookcheck); Steam reviews Mixed 63% of 968.",
+    "NeosVR client still works for local/LAN/VLAN play; Steam store page carries 'no longer sold' notice.",
+    "Not covered by budget: Lockwood 2023 financials, Palia summer 2026 updates, Hytale Chapter 1, Pax Dei mid-2026 CCU, Sansar 2021 outage."
+  ]
+}

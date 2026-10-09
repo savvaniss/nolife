@@ -1,0 +1,222 @@
+{
+  "key": "networking-scale-tech",
+  "title": "Networking, persistence and scale for a shared persistent world in 2026",
+  "file": "docs/research/briefs/networking-scale-tech.md",
+  "summary": "Method caveat: this run had no web access (the shared WebSearch budget was already exhausted and the sandbox gateway returned 403 on every WebFetch/curl CONNECT), so the brief combines facts verified by sibling agents earlier in this workflow [V] with the analyst's own knowledge through mid-2026 [M], each tagged in the file. The [M] claims need a confirmation pass before use in anything external.\n\nCore finding: no shipped system delivers thousands of fully simulated, voice-enabled avatars in one spot. Second Life's ceiling is structural: a 256 m region is one process on one core, capped at 100 avatars by product tier, running a 45 fps physics frame in which scripts are starved first; the 2020 AWS uplift re-hosted that same unit, and its only visible financial trace is a US$20/month full-region price cut in March 2023 plus the GameLift-streamed Project Zero viewer (March 2025). EVE's single shard buys thousands-per-system battles (6,557 concurrent at M2-XFE, Dec 2020) with time dilation down to 10% real time, unusable for social worlds. Star Citizen shipped static server meshing in Alpha 4.0 (19 Dec 2024) after five years and ~US$800M of funding, with dynamic meshing still unshipped by mid-2026. Improbable spent SoftBank's US$502M (2017) on SpatialOS, lost its flagship Worlds Adrift (2019) and survived by pivoting to MSquared stadium-style events, whose 10k+ concurrent claims are company figures for simplified one-off events. The platforms that actually scaled (Roblox, Fortnite, VRChat) did so with many small instances (50-100, 40-80 per instance) plus a soft social layer; their record numbers (14.3M Fortnite, 20M+ Roblox, 158k VRChat) are platform-wide, not per place. Server cost is a rounding error (~US$0.002-0.005 per avatar-hour compute+bandwidth) next to Roblox's US$1.15B infra plus trust-and-safety line; pixel streaming at ~US$1-6 per user-hour is a funnel, not a delivery platform.\n\nRecommended architecture: a two-layer world (low-rate presence layer holding 1,000-5,000 avatars per place; spatially sharded simulation cells of 50-150 interacting avatars), elastic cells with a persistent replication store for crash containment, document-plus-event-log persistence with per-script budgets, Luau/WASM sandboxed scripting, bought commodity layers (Nakama/EOS, SFU voice, Hathora/Edgegap/GameLift fleets), and published per-place SLOs: 100-150 fully simulated with voice, 500-1,000 per seamless place, 5,000-10,000 only in a degraded event mode.",
+  "design_implications": [
+    "Adopt a two-layer world model: a low-rate, interest-managed presence layer (position, pose, voice, emotes; 5-10 Hz) that can hold 1,000-5,000 avatars per place, and a high-rate simulation layer sharded into cells of 50-150 physically interacting avatars.",
+    "Make the spatial cell elastic and load-assigned (Star Citizen static-mesh style first), backed by a persistent replication/entity store so a cell-server crash is a short reconnect rather than a lost place; never sell land as 'one server'.",
+    "Publish per-place concurrency SLOs for 2026: 100-150 fully simulated avatars with voice per cell, 500-1,000 per seamless multi-cell place, and 5,000-10,000 only in a declared event mode that degrades to presence-only, crowd impostors and pre-mixed audio.",
+    "Treat interest management and crowd rendering as the primary scale levers: prioritised relevancy replication (Iris-style), avatar LOD/impostors beyond ~30 m, and hard per-client bandwidth caps (~50 kbps typical, 200 kbps max).",
+    "Persist world state as documents per cell/player plus an append-only event log for economy and building, with per-script and per-creator write budgets and land-owner snapshots/rollback; do not keep live world state only in simulation memory.",
+    "Use a sandboxed scripting runtime (Luau or WASM) with per-script CPU/memory/network budgets enforced per cell and throttling of the worst offender, replacing Second Life's 'scripts starve first' frame rule.",
+    "Buy commodity layers (Nakama/EOS for accounts and social graph, SFU-based spatial voice with server-side pre-mix above ~50 speakers, Hathora/Edgegap/GameLift-style fleets) and spend custom engineering only on the cell/replication layer and the UGC asset pipeline.",
+    "Make instances soft rather than large: friends-follow, join-where-my-people-are, instance browsing, cross-instance chat/voice and shared persistence; auto-merge low-population instances so an empty place is treated as a bug.",
+    "Budget moderation before capacity: automated review of every uploaded 3D asset (geometry, texture, audio, script static analysis) with content budgets per asset class, expecting trust-and-safety plus infrastructure to be the largest operating line.",
+    "Use pixel/GPU streaming only as a time-capped onboarding funnel for first sessions and low-end devices, with native and WebGPU clients as the real product, since streaming costs 200-500x more per user-hour."
+  ],
+  "open_questions": [
+    "Exact per-shard player counts in Star Citizen 4.x releases through 2026 and whether dynamic server meshing has shipped (CIG roadmap is the only primary source; community figures conflict).",
+    "Has Roblox's ~700-player server moved from engineering test to a shipping configuration, and what Luau CPU budget per player does it imply?",
+    "What are the independent measurements behind MSquared's 10k+ concurrent events: update rate, avatar fidelity, interaction set and cost per attendee?",
+    "Current 2026 rate cards for Hathora, Edgegap and AWS GameLift, and the real egress share of cost at 20-50 kbps per client.",
+    "The Dolby.io Communications API shutdown date and which spatial-voice vendor absorbed its customers.",
+    "Whether Epic's Iris replication is production-default in UE 5.8 and what player-per-server gain Fortnite attributes to it; whether a Fortnite 'Big Battle' large-player mode exists.",
+    "Linden Lab's actual AWS spend versus the pre-2020 colocation bill, and whether Project Zero streaming was ended for cost reasons.",
+    "Can a WebGPU browser client sustain a 100-avatar presence layer at 60 fps on 2026 mid-range phones?",
+    "All [M]-tagged facts in the file (EVE, Star Citizen, Improbable/MSquared, Hadean, Dual Universe, Roblox server sizes and DataStore limits, middleware and voice vendors, hosting prices) remain unverified in this run because web access was blocked."
+  ],
+  "claims": [
+    {
+      "claim": "A Second Life full region is a fixed 256 m x 256 m area run by one simulator process (one per CPU core) and is capped at 100 avatars / 22,500 Land Impact by product tier; Homestead 20 and Openspace 10.",
+      "source_url": "https://wiki.secondlife.com/wiki/Land",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "Region geometry (256 m, one simulator process per region) and the 100/20/10 avatar caps are stable, well-documented facts. The Land Impact figure is mixed: after the 2019 capacity increase a private Full region is 20,000 LI (30,000 with the paid upgrade that the brief itself prices at US$239); 22,500 LI is the Mainland rate (351 LI per 1,024 m2 ≈ 22,464). Homestead 5,000 and Openspace 1,000 are correct post-2019 values. The sibling precision checker reached the same conclusion. No live fetch possible (gateway 403/DNS failure); low confidence on the 20,000 vs 22,500 point until the wiki Land page is re-read.",
+          "source_url": "https://wiki.secondlife.com/wiki/Land"
+        },
+        {
+          "verdict": "corrected",
+          "note": "256 m is confirmed from the viewer source (indra/llcommon/indra_constants.h: `static constexpr F32 REGION_WIDTH_METERS = 256.f;`) and the 100/20/10 avatar caps match background knowledge. Land Impact mixes eras: 22,500 is the post-June-2023 full-region figure, but under that same 12.5% increase Homesteads went 5,000 -> 5,625, so 5,000 is the 2019-2023 value; Openspace 1,000 unchanged. 'One full region per CPU core' is historical wiki wording; phrase it as one simulator process per region. The wiki Land page itself could not be fetched (DNS blocked).",
+          "source_url": "https://github.com/secondlife/viewer/blob/main/indra/llcommon/indra_constants.h"
+        }
+      ]
+    },
+    {
+      "claim": "The Second Life simulator targets 45 physics frames per second (~22 ms per frame), llGetRegionFPS is capped at 45.0, and script execution has the lowest priority in the frame, so scripts are throttled first under avatar/physics load.",
+      "source_url": "https://wiki.secondlife.com/wiki/Statistics",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Matches prior knowledge and two sibling checkers: 45 Hz simulator/Havok frame (22.2 ms), llGetRegionFPS maximum 45.0, time dilation = physics rate vs real time, script time is the residual after physics/agents/network so scripts starve first. Confirmed on knowledge only; the wiki could not be fetched in this run. Nuance omitted: scripts run on Mono since 2008 with a 64 KB per-script cap.",
+          "source_url": "https://wiki.secondlife.com/wiki/LlGetRegionFPS"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Linden Lab's own docs repo (secondlife/create, llgetregionfps.mdx) states 'Region FPS is currently capped at 45.0 frames per second, so this function never returns greater than 45.0'; llgetregiontimedilation.mdx documents time dilation slowing/halting script execution. The 'scripts starved first' ordering matches the Statistics-bar wiki as recalled, but that page was not fetched.",
+          "source_url": "https://github.com/secondlife/create/blob/main/src/content/docs/script/lsl-reference/functions/llgetregionfps.mdx"
+        }
+      ]
+    },
+    {
+      "claim": "Second Life's AWS 'uplift' completed its region move around 19 November 2020 (staged ~100/~300/~1,000 regions during October 2020) and did not change the per-region architecture, avatar caps or frame budget.",
+      "source_url": "https://modemworld.me/2020/11/19/ll-confirms-second-life-regions-now-all-on-aws/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "All main-grid regions on AWS around 19-20 Nov 2020, back-end services moved into early 2021, avatar caps and 45 Hz budget unchanged: consistent with prior knowledge and the sl-history checker. The October staging sizes (~100/~300/~1,000) rest on Inara Pey's SUG summaries and could not be checked; present as 'progressively larger batches through autumn 2020'. No live fetch.",
+          "source_url": "https://modemworld.me/2020/11/19/ll-confirms-second-life-regions-now-all-on-aws/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Background knowledge only (modemworld.me unreachable): Linden Lab confirmed all main-grid regions on AWS around 19-20 Nov 2020 after staged October moves (~100/~300/~1,000), with back-end services finishing into early 2021. Per-region process, 100-avatar cap and 45 Hz frame budget are unchanged, as current LL docs still state the 45 FPS cap.",
+          "source_url": "https://modemworld.me/2020/11/19/ll-confirms-second-life-regions-now-all-on-aws/"
+        }
+      ]
+    },
+    {
+      "claim": "On 6 March 2023 Linden Lab's 'Infrastructure Investment Update' cut the full-region fee by US$20/month to US$209 (US$239 for a 30K-LI region) and changed L$ buy/sell fees in the same notice.",
+      "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "Full private region US$229 -> US$209, 30K-LI variant US$259 -> US$239, setup unchanged at US$349, Homestead unchanged at US$109, effective 6 March 2023, with LindeX fees raised in the same notice. Two sibling checkers agree on every figure; matches prior knowledge. Claim says fees were 'changed'; the direction was 'raised'. No live fetch.",
+          "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Background knowledge only (community.secondlife.com unreachable): 6 Mar 2023 notice cut full-region tier US$229 -> US$209 and the 30K-LI variant US$259 -> US$239, setup unchanged at US$349, and changed LindeX buy/sell fees in the same post. Consistent with the sibling economy checker.",
+          "source_url": "https://community.secondlife.com/news/featured-news/infrastructure-investment-update-buysell-fee-change-and-land-pricing-effective-mar-6-2023-r1376/"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox's combined 'infrastructure and trust & safety' cost was US$1,153.5 million in 2025 versus US$915.4 million in 2024 (+26%), with most of the increase being data-centre cost.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "The FY2025 10-K could not be fetched. The 2025 figure (US$1,153.5M) is plausible, but the 2024 comparison (US$915.4M) conflicts with Roblox's 2024 quarterly releases (~US$233M/249M/257M/266M, i.e. ~US$1.0B for FY2024) and with the sibling business-models brief and both of its checkers (~US$1.0B). If FY2024 was ~US$1.0B the growth is ~15%, not 26%. A reclassified line in the FY2025 filing could reconcile this, so do not quote '+26%' or 'US$915.4M for 2024' until the income-statement table is read; quote 'roughly US$1.0-1.15B a year'.",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "A third-party dossier quoting the RBLX FY2025 Form 10-K (filed 2026-02-11) line by line lists 'Infrastructure and trust & safety 1,153,454 / 915,418 / 878,361' (thousands; 2025/2024/2023). 1,153.5/915.4 = +26.0%. The 'mostly data-centre cost' attribution could not be checked against the MD&A text; sec.gov was unreachable.",
+          "source_url": "https://github.com/marginofdanger/marginofdanger.github.io/blob/main/deep-dives/dossiers/RBLX_codex/evidence.html"
+        }
+      ]
+    },
+    {
+      "claim": "VRChat's platform-wide concurrency record is 158,192 (February 2026, a Japanese-language concert), reached through many 40-80 person instances rather than large single rooms.",
+      "source_url": "https://roadtovr.com/vrchat-key-stats-japan-growth-concurrents/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Road to VR could not be fetched. The 158,192 figure also appears in the sibling successors-wave2 brief, described there as a corrected number (implying an earlier misreport); both of that brief's checkers left it unverifiable. VRChat publishes no official metrics, so records are staff posts or third-party API trackers; the trajectory (136,567 on 1 Jan 2025, 148,886 on 1 Jan 2026) is consistent. The instance-cap part (creator capacity up to 40, hard cap 80) matches VRChat creator docs as of 2025 and is the design-relevant fact.",
+          "source_url": "https://roadtovr.com/vrchat-key-stats-japan-growth-concurrents/"
+        },
+        {
+          "verdict": "corrected",
+          "note": "The 158,192 record was set on 8 March 2026 (final weekend of Sanrio Virtual Festival 2026, Kaguya virtual concert), per VRChat community lead Tupper's 8 Mar 2026 post as cited by the community VRChat wiki; the February record (15 Feb 2026) was 156,716, after 148,886 on 1 Jan 2026. The cited Road to VR 'key stats' URL is a May-2026 roundup (RSS capture 2026-05-07), not the record announcement. The '40 default / 80 hard cap' instance figures were not verified; the SDK exposes Recommended and Maximum Capacity fields.",
+          "source_url": "https://github.com/Hackebein/wiki.vrchat.com/blob/main/wiki/Community/Sanrio_Virtual_Festival/.wikitext"
+        }
+      ]
+    },
+    {
+      "claim": "Unreal Pixel Streaming costs roughly US$0.71-1.12/hour per g4dn.xlarge on-demand (Nov 2024 list) with one session per instance, with managed hosts charging ~US$6/hour; i.e. ~US$1-6 per user-hour versus cents for a native client.",
+      "source_url": "https://thegabmeister.com/p/unreal-pixel-stream-aws/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "One session per GPU instance by default and the Eagle 3D US$0.10/min (~US$6/hr) overage rate are as the sibling graphics brief states. But AWS us-east-1 on-demand g4dn.xlarge is about US$0.526/hr Linux and ~US$0.71/hr Windows; US$1.12 does not correspond to g4dn.xlarge in us-east-1 (probably another region or size). Lower bound should be ~US$0.53/hr, so '~US$0.5-6 per user-hour', and US$6 is an overage rate, not a base managed price. The 200-500x-versus-native conclusion survives, though 2-3 sessions per instance at 720p narrows it. Low confidence; blog not fetched.",
+          "source_url": "https://aws.amazon.com/ec2/pricing/on-demand/"
+        },
+        {
+          "verdict": "corrected",
+          "note": "AWS on-demand list for g4dn.xlarge (Linux) is US$0.526/h in us-east-1/us-east-2 (karpenter and grailbio price tables; 'US$0.71/h in Tokyo'). US$0.71 corresponds to Tokyo Linux or us-east-1 Windows; US$1.12 is not a g4dn.xlarge price in major US regions (it matches g4dn.2xlarge Windows). Restate as US$0.53-0.71/h on-demand depending on region/OS (~70% less on Spot). One session per instance and the dollars-vs-cents conclusion stand; the gabmeister page and the ~US$6/h managed figure could not be fetched.",
+          "source_url": "https://github.com/aws/karpenter-provider-aws/blob/main/pkg/providers/pricing/zz_generated.pricing_aws.go"
+        }
+      ]
+    },
+    {
+      "claim": "Star Citizen Alpha 4.0 reached the Live branch on 19 December 2024 with static server meshing (multiple game servers per shard joined by a replication layer); dynamic server meshing had not shipped as of mid-2026.",
+      "source_url": "https://robertsspaceindustries.com/comm-link/transmission/20371-Alpha-40-Is-Here",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "corrected",
+          "note": "The build CIG pushed to the LIVE channel on 19 Dec 2024 was labelled 'Alpha 4.0 Preview' (it had been on PTU/EPTU earlier that month); 4.0.1 in early 2025 was the first build CIG treated as the finished 4.0. The brief body inverts this ('after a 4.0 Preview earlier that month'). Static server meshing (Stanton and Pyro on separate game servers inside one shard via the Replication Layer) is correctly described, and dynamic server meshing had not shipped by mid-2026 per prior knowledge. Separate caution: the brief body cites 'CIG's 2025 CitizenCon communications'; this checker recalls CitizenCon 2025 was cancelled, so cite monthly reports/roadmap instead (low confidence). No live fetch.",
+          "source_url": "https://robertsspaceindustries.com/comm-link/transmission/20371-Alpha-40-Is-Here"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Community server-meshing tracker and an independent design study both record Alpha 4.0 Preview going to the LIVE channel on 19 Dec 2024 with static server meshing (Stanton + Pyro, shard cap 100 -> 500 per CIG patch notes '5:5:500 player shards'). Nuances: it shipped labelled '4.0 Preview' beside 3.24.3; comm-link ID 20371 is cited elsewhere as 'Letter From The Chairman' (Dec 2024), so the brief's slug should be re-checked; and timeliness: Alpha 4.9.0 went live 15 Jul 2026 and Alpha 4.10.0 is now LIVE (build 4.10.193) with 'quasi-dynamic server meshing'/instancing, while full dynamic meshing is still listed as work in progress. 'Not shipped as of mid-2026' is true but will read as stale soon. RSI site unreachable.",
+          "source_url": "https://github.com/un0btanium/sc-server-meshing/blob/main/public/techs/unofficial-road-to-dynamic-server-meshing.md"
+        }
+      ]
+    },
+    {
+      "claim": "EVE Online's time dilation (introduced November 2011) slows an overloaded solar-system node to as low as 10% of real time; the Battle of M2-XFE (30-31 December 2020) set a Guinness record of 6,557 concurrent participants, with many players unable to load into the system.",
+      "source_url": "https://en.wikipedia.org/wiki/Battle_of_M2-XFE",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "TiDi shipped with the Crucible expansion on 29 Nov 2011 with a 10% floor. M2-XFE (30-31 Dec 2020) holds the Guinness record for most concurrent participants in a PvP battle at 6,557 (CCP's count); the separate 'most players in a PvP battle' record is FWST-8 (5 Oct 2020) at 8,825 total. On day two the node could not load the attacking fleet and CCP reimbursed losses. Matches prior knowledge; the brief's section 2 mixes the two records in one sentence. No live fetch.",
+          "source_url": "https://en.wikipedia.org/wiki/Battle_of_M2-XFE"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Secondary corroboration only (Wikipedia/eveonline.com unreachable): Crucible released 29 Nov 2011 (wiki mirror); CCP Veritas' TiDi dev blog (22 Apr 2011) describes the 10% floor; multiple independent notes repeat 6,557 players in M2-XFE on 30-31 Dec 2020 and the 10% floor. Guinness titles were 'most concurrent participants in a multiplayer PvP battle' (6,557) and 'most expensive videogame battle' (US$378,012). One secondary doc claims CCP later cited 6,739 in-system; unconfirmed, keep 6,557.",
+          "source_url": "https://github.com/endel/prediction-multiplayer-research/blob/main/MMO/eve-online.md"
+        }
+      ]
+    },
+    {
+      "claim": "Improbable raised US$502 million from SoftBank in May 2017 for SpatialOS; Unity blocked Improbable under its ToS on 10 January 2019; Worlds Adrift shut down in July 2019; MSquared raised US$150 million in April 2022 and its 10,000+ concurrent-avatar figures come from one-off scripted events, not sustained persistent-world load.",
+      "source_url": "https://en.wikipedia.org/wiki/Improbable_(company)",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "confirmed",
+          "note": "US$502M SoftBank-led round announced 12 May 2017; Improbable's 'Unity blocked SpatialOS' post on 10 Jan 2019 with Unity revising its ToS within the week and a US$25M Improbable/Epic fund; Worlds Adrift closure announced May 2019, servers off 26 July 2019; MSquared US$150M in April 2022 (a16z, SoftBank Vision Fund 2, Mirana). All match prior knowledge. The statement that the 10,000+ figures come from one-off scripted events and not sustained load is a reasonable inference (no independent instrumentation has been published) but is editorial, not a measured fact, and should be labelled as such. No live fetch.",
+          "source_url": "https://en.wikipedia.org/wiki/Improbable_(company)"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "US$502M led by SoftBank, May 2017 (TechCrunch/Bloomberg coverage preserved in an HN scrape); Unity ToS dispute dated 10 Jan 2019 (Ars Technica 'Improbable snubs Unity, partners with Epic for $25M open engine fund'); Worlds Adrift closure announced 29 May 2019, servers off 26 Jul 2019 (background knowledge plus Game Developer reference); MSquared launched 2022 with US$150M from a16z/SoftBank (Wikipedia summary mirror). The 10k-at-scripted-events characterisation is fair. Body-text correction for section 4: Otherside First Trip was 16 Jul 2022 (~4,500) and Second Trip 25 Mar 2023 (~7,200), not March/July 2022.",
+          "source_url": "https://github.com/dodger487/scrape_hn/blob/master/stories/14322944.txt"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Method limitation for the whole workflow: no web evidence was obtainable in this run (WebSearch budget exhausted before the first query; the agent proxy answered 403 to CONNECT / DNS failed for every host). Every verdict rests on prior knowledge plus sibling research/verify files, which also report failed fetches. A pass with working network should re-fetch the SL Land wiki page, the Roblox FY2025 10-K income statement, the Road to VR Feb 2026 piece and CIG's 4.0 Comm-Link before any number goes into a plan.",
+    "Roblox's 2024 infrastructure + trust & safety line was most likely ~US$1.0B (quarterly ~233/249/257/266M), not US$915.4M; at ~82.9M average DAU and ~73.5B engaged hours that is ~US$12 per DAU-year and ~1.4 cents per engaged hour, the realistic all-in cost ceiling for a successor. The line includes stock-based comp and data-centre depreciation, so cash cost per hour is lower.",
+    "Second Life already decouples content budget from avatar cap to a degree: Land Impact is a per-1,024 m2 rate on Mainland (351 LI) and a per-region allotment on private estates (20,000, or 30,000 for a surcharge). A successor pricing by area and content budget alone is an extension of existing practice, not a novelty, which makes the migration story easier to tell to SL land owners.",
+    "Second Life scripts have run on the Mono VM since 2008 with a hard 64 KB memory cap per script and no per-owner/per-parcel fairness; 'scripts lose first' is a frame-scheduler rule. A VM swap (as with Linden Lab's 2025 Luau-based 'SLua') does not fix the frame-budget model; the successor needs per-owner budgets, as the brief's implication 6 says.",
+    "EVE's two Guinness records measure different things: 8,825 total participants in one system at FWST-8 (5 Oct 2020) versus 6,557 concurrent at M2-XFE (30-31 Dec 2020). Use 'concurrent' only for M2-XFE, and note that EVE's all-time platform peak is 65,303 on 5 May 2013, i.e. even EVE's whole single shard runs at roughly the concurrency of one large Roblox experience.",
+    "Pixel-streaming economics are OS- and region-sensitive: Linux g4dn.xlarge at ~US$0.53/hr with 2-3 sessions per instance at 720p brings per-user-hour cost to ~US$0.20-0.30, narrowing the gap to a native client from 200-500x to ~50-100x. The 'funnel only' conclusion stands but the US$1/hour floor should not be quoted.",
+    "Star Citizen's 19 Dec 2024 Live build was an explicitly labelled 'Preview'; dynamic server meshing remained unshipped by mid-2026 and CIG likely held no CitizenCon in 2025 (low confidence), so the only primary sources for 2025-26 meshing status are CIG's monthly reports and roadmap, not a keynote.",
+    "VRChat publishes no official concurrency metrics; its 'records' are staff social posts and third-party API trackers, and the Feb 2026 figure was itself a corrected number. The documented, design-relevant fact is the instance cap (creator capacity up to 40, hard cap 80): platform-wide records of 150k+ are achieved through thousands of small instances plus a social layer, exactly the pattern the brief recommends.",
+    "Method limitation: the WebSearch budget was exhausted before this check started and WebFetch could resolve only github.com, so none of the ten cited URLs were opened; verdicts rest on primary sources hosted on GitHub (SL viewer source, Linden Lab's secondlife/create docs repo, AWS price tables), GitHub mirrors quoting primary documents, and background knowledge, each labelled in the report.",
+    "The 256 m region width is a compile-time constant in the Second Life client (REGION_WIDTH_METERS = 256.f in indra_constants.h) used by SLURL parsing, world-map mip levels and terrain/wind code; changing it means changing the client protocol, which is why it never changed. A successor should never expose its spatial partition size to the client.",
+    "Star Citizen has moved past static meshing: Alpha 4.9.0 went live 15 Jul 2026 and Alpha 4.10.0 (build 4.10.193) is LIVE with 'quasi-dynamic server meshing', i.e. an instance manager that spawns instanced sub-areas (e.g. a 4-player Siege of Orison) on separate game servers while the shard stays at ~500 players; full dynamic meshing remains WIP. This is the closest shipped analogue to the brief's 'cells + event mode' design.",
+    "Roblox FY2025 10-K: infrastructure and T&S was $878.4M (2023), $915.4M (2024), $1,153.5M (2025); cost of revenue rose 34% (payment processing) and developer exchange fees rose 63% (+$580.3M), both faster than bookings. Creator payouts, not servers, are the fastest-growing cost line of a UGC world.",
+    "VRChat set three successive concurrency records in Q1 2026 (148,886 on 1 Jan; 156,716 on 15 Feb; 158,192 on 8 Mar), all driven by Japanese virtual concerts inside instanced worlds during Sanrio Virtual Festival; VRChat also launched full iOS/Android apps on 24 Oct 2025. Reinforces 'many instances plus events' as the scaling pattern.",
+    "For GPU-streaming cost models use US$0.526/h (g4dn.xlarge Linux, us-east-1), roughly US$0.16/h on Spot, plus ~US$0.18/h for a Windows licence; the gap to a native client remains two orders of magnitude per user-hour.",
+    "Second Life Homestead Land Impact appears to be 5,625 (not 5,000) since the June 2023 capacity increase; re-check wiki.secondlife.com/wiki/Land before quoting tier figures."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/networking-scale-tech-refute.md",
+    "docs/research/fact-checks/networking-scale-tech-precision.md"
+  ]
+}

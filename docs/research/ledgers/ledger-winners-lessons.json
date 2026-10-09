@@ -1,0 +1,219 @@
+{
+  "key": "winners-lessons",
+  "title": "What the winners did right: Roblox, Fortnite/UEFN, Minecraft, GTA RP, FFXIV, Habbo, Zepeto, Discord",
+  "file": "docs/research/briefs/winners-lessons.md",
+  "summary": "IMPORTANT CAVEAT: no live research was possible in this run. The shared WebSearch budget for the turn was already exhausted (200-call limit across agents) and the sandbox proxy refused every outbound fetch except api.github.com (Wikipedia, sec.gov, ir.roblox.com, epicgames.com, rockstargames.com, minecraft.net all unreachable via WebFetch and curl). The brief was therefore written from prior knowledge (cutoff mid-2026); every figure is tagged with a confidence level and a canonical URL for re-verification, and nothing should be quoted externally until checked. A follow-up run with search budget restored can verify the [L]/[M] items.\n\nFindings in brief. Roblox is the scale benchmark: 111.8M DAU and 27.4B hours in Q2 2025, rising to roughly 151.5M DAU in Q3 2025; DevEx payouts were $741M (2023) and $923M (2024), with Roblox claiming >$1B trailing-twelve-month by RDC Sept 2025; DevEx pays $0.0038/Robux so creators net roughly 28-30% of consumer spend. Fortnite's UEFN/Creator Economy 2.0 (March 22, 2023) pools 40% of net revenue and pays by engagement; Epic reported $320M to creators in 2023 and ~$350M+ in 2024, and its concerts set the shared-event benchmark (Marshmello 10.7M, Travis Scott 12.3M concurrent in April 2020, Remix Finale ~14M in Nov 2024). Minecraft (Microsoft, $2.5B, 2014; 300M copies Oct 2023) survives on ownership: self-hosted servers, an EULA that bans pay-to-win, Tebex-run stores, and a Marketplace with ~50% creator share. GTA RP was legitimized when Rockstar absorbed Cfx.re/FiveM on Aug 11, 2023 and wrote rules permitting subscriptions and cosmetics but banning loot boxes; NoPixel sells priority queue tiers and keeps its economy in-fiction. FFXIV (30M registered, Jan 2024) manufactures purpose through scarce housing (lottery since patch 6.1, April 2022; 45-day auto-demolition) that hosts a Discord-coordinated venue scene. Habbo (2000) and Zepeto (2018; 400M cumulative, ~70% female Gen Z) show avatar-status economies endure. Discord (200M+ MAU; Activities 2024, Social SDK 2025) is the rented social layer of all of them.\n\nRoot causes: winners ship goals (games, roles, scarcity, status) rather than empty tools; onboard instantly on mobile/free; take large cuts but offer unmatched distribution; run shared events; and externalize identity to Discord. What they all lack, and a Second-Life successor can own: persistent avatar identity, real ownership and cash-out, scarce meaningful place, adult/serious/professional use, and a native social graph.",
+  "design_implications": [
+    "Ship goals, not only tools: every new user lands in a role with a quest-like loop (job, crew, venue, build commission) within 5 minutes, borrowing GTA RP job boards and Roblox progression instead of Second Life's empty orientation island.",
+    "Mobile, browser and console clients from day one with a UE5-class renderer (Nanite/Lumen) on PC and pixel-streaming fallback for weak devices; one-tap account creation via Discord/Apple/Google.",
+    "Scarce shared land, abundant private land: FFXIV-style lottery and 45-day demolition for public-facing plots, unlimited instanced private 'sanctuaries' for building, so land is status and venue real estate rather than a tax.",
+    "A Creator Economy 2.0-style engagement pool (40-50% of net revenue) distributed transparently by retention/new-player metrics, plus direct sales with a published creator share of at least 70%, combining Roblox-scale reach with Second-Life-scale ownership.",
+    "A first-party and creator event calendar (concerts, seasons, festivals) with concurrency engineering for 100k+ in a shard-synchronized show; events are the shared 'when' Second Life never had.",
+    "Own the social layer natively (voice, text, crews, scheduling, whitelists, a Social SDK) and treat the Discord Social SDK as a bridge, not the backbone, to avoid dependence on Discord pricing and 2026 age-assurance policy.",
+    "Persistent avatar identity with portable inventory and reputation across shards, including verified-adult tiers that enable 18+ districts, real-money payouts and professional/enterprise use that Roblox and Fortnite structurally cannot host.",
+    "Monetization rules modeled on Rockstar's 2023 RP policy: subscriptions, cosmetics, priority access and real-money creator sales allowed; loot boxes and pay-to-win banned; cash-out limited to verified adults.",
+    "Publish the money flow (per-dollar breakdown like Roblox's S-1 chart) and the engagement formula, because creator revolts on Roblox and Fortnite came from opacity rather than from the size of the cut."
+  ],
+  "open_questions": [
+    "All figures in this brief were written from prior knowledge because WebSearch budget was exhausted and WebFetch/curl were blocked by the proxy allowlist; a follow-up run must verify every [M] and [L] item before external use.",
+    "Exact Roblox trailing-twelve-month creator payouts at Q2/Q3 2025 and the current effective creator share after 2025 pricing changes.",
+    "Epic's exact creator split on in-island real-money sales introduced December 2025, and whether 2025 total payouts exceeded 2024's.",
+    "Verified cumulative Minecraft Marketplace creator payouts and current Minecraft MAU.",
+    "FiveM's current concurrent-player record post-acquisition and any change in Rockstar's RP monetization terms ahead of GTA VI (Nov 19, 2026).",
+    "Size of the FFXIV venue economy (number of venues, gil volume) and Square Enix's 2025-2026 stance on client mods used by venues.",
+    "Zepeto's current MAU and creator payout totals after Naver Z's 2024 restructuring.",
+    "Discord's IPO timing and whether 2026 age-assurance rules change what third-party worlds can rely on from Discord.",
+    "Habbo's current MAU and the one-year retention effect of Habbo Origins (June 2024)."
+  ],
+  "claims": [
+    {
+      "claim": "Roblox reported 111.8 million DAU and 27.4 billion hours engaged for Q2 2025 (quarter ended June 30, 2025).",
+      "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence: fetch of ir.roblox.com failed (DNS ENOTFOUND) and the shared WebSearch budget was exhausted. Checker's recollection: consistent with Roblox's Q2 2025 release of July 31, 2025 (DAU 111.8M +41%, hours 27.4B +58%, bookings ~$1.44B). Company-reported figure; no contradiction expected.",
+          "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified: WebSearch budget exhausted and proxy returned 403 for ir.roblox.com. Knowledge-based assessment: consistent with Roblox's July 31, 2025 Q2 release (111.8M DAU +41% YoY, 27.4B hours +58%, quarter ended June 30, 2025). Low risk.",
+          "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Second-Quarter-2025-Financial-Results/default.aspx"
+        }
+      ]
+    },
+    {
+      "claim": "Roblox DevEx payouts to creators were $741 million in 2023 and $923 million in 2024 (+25% YoY); the DevEx rate has been $0.0038 per Robux (100,000 Robux = $380) since September 2023.",
+      "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (ir.roblox.com unreachable, search budget exhausted). Checker's recollection: $923M (2024, +25%) and $741M (2023) match Roblox FY releases; the $0.0035 to $0.0038 per Robux DevEx increase was announced at RDC September 2023 and 100,000 Robux = $380 is arithmetic on that rate. Nuance: 'payouts' is Roblox's 'earnings paid to developers' line, which includes all DevEx cash-outs.",
+          "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified (proxy 403). Knowledge-based: $741M (2023) and $923M (2024) match the FY2024 letter; 923/741 = +24.6%, so +25% is fair rounding. DevEx rate rose $0.0035 -> $0.0038 effective Sept 2023 with a 30,000 Robux minimum. Source-support issue: the DevEx rate and effective date are on create.roblox.com DevEx docs, not in the IR press release cited.",
+          "source_url": "https://ir.roblox.com/news/news-details/2025/Roblox-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx"
+        }
+      ]
+    },
+    {
+      "claim": "Unreal Editor for Fortnite and Creator Economy 2.0 launched March 22, 2023; Epic pools 40% of Fortnite net revenue and distributes it to island creators by engagement, paying out $320 million in 2023.",
+      "source_url": "https://create.fortnite.com/news/introducing-unreal-editor-for-fortnite",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (create.fortnite.com and unrealengine.com unreachable). Checker's recollection: March 22, 2023 launch date is right; the pool is 40% of Fortnite's net revenue from the Item Shop and most real-money purchases (not all net revenue); the $320M-for-2023 figure comes from Epic's March 2024 ecosystem update, not the March 2023 launch article cited, so the citation is misattributed even if the number holds. Epic's own islands draw from the same pool.",
+          "source_url": "https://create.fortnite.com/news/introducing-unreal-editor-for-fortnite"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified (proxy 403 on create.fortnite.com). Knowledge-based: March 22, 2023 launch and the 40% net-revenue engagement pool are consistent. Source-support problem: the $320M 2023 payout was disclosed by Epic in March 2024 (GDC/State of Unreal) and cannot appear in the March 2023 launch article cited; needs a March 2024 Epic source.",
+          "source_url": "https://create.fortnite.com/news/introducing-unreal-editor-for-fortnite"
+        }
+      ]
+    },
+    {
+      "claim": "Travis Scott's 'Astronomical' Fortnite concert (April 23, 2020) drew 12.3 million concurrent players at its first show and 27.7 million unique players across five shows.",
+      "source_url": "https://en.wikipedia.org/wiki/Astronomical_(concert)",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (en.wikipedia.org unreachable). Checker's recollection: matches Epic's announcement of 12.3M concurrent at the April 23, 2020 premiere and 27.7M unique players over five shows (April 23-25, 45.8M total views). No contradiction expected; the ~$20M earnings figure in the brief body is a Forbes estimate, not a company statement.",
+          "source_url": "https://en.wikipedia.org/wiki/Astronomical_(concert)"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified (proxy 403 on en.wikipedia.org). Knowledge-based: five shows April 23-25, 2020; 12.3M concurrent at the first show; 27.7M unique players (45.8M total participations) per Epic. Low risk.",
+          "source_url": "https://en.wikipedia.org/wiki/Astronomical_(concert)"
+        }
+      ]
+    },
+    {
+      "claim": "Rockstar Games announced on August 11, 2023 that Cfx.re (FiveM and RedM) had officially joined Rockstar, with a policy allowing roleplay servers to monetize via subscriptions and cosmetics but not loot boxes.",
+      "source_url": "https://en.wikipedia.org/wiki/FiveM",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (Wikipedia and rockstargames.com unreachable). Checker's recollection: the Newswire post 'Cfx.re is now a part of Rockstar Games' is dated August 11, 2023, but the roleplay-server monetization policy (subscriptions/cosmetics/donations allowed; loot boxes, real-money gameplay currency, real-money gambling, third-party IP banned) was published separately later in 2023 (around November). The claim conflates two events with different dates; the policy should be cited from Rockstar Support, not the acquisition post.",
+          "source_url": "https://www.rockstargames.com/newswire"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified. Knowledge-based: Aug 11, 2023 Rockstar Newswire date for Cfx.re joining Rockstar is consistent. Attribution issue: the monetization rules (subscriptions/queue priority/cosmetics allowed; loot boxes, real-money gambling, pay-to-win banned) come from Rockstar's separate Roleplay Community Guidelines, updated later (around Nov 2023), not the Aug 11 announcement. The claim conflates two documents.",
+          "source_url": "https://en.wikipedia.org/wiki/FiveM"
+        }
+      ]
+    },
+    {
+      "claim": "Minecraft passed 300 million copies sold (announced October 15, 2023); Microsoft had acquired Mojang on September 15, 2014 for $2.5 billion.",
+      "source_url": "https://en.wikipedia.org/wiki/Minecraft",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (Wikipedia and minecraft.net unreachable). Checker's recollection: 300M sold was announced at Minecraft Live on October 15, 2023; the Microsoft-Mojang $2.5B deal was announced September 15, 2014 and closed November 6, 2014, so the brief should say 'announced' rather than 'acquired on' that date.",
+          "source_url": "https://en.wikipedia.org/wiki/Minecraft"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified. Knowledge-based: 300M copies announced at Minecraft Live, Oct 15, 2023. Mojang acquisition was ANNOUNCED Sept 15, 2014 ($2.5B) and CLOSED Nov 6, 2014; 'acquired on Sept 15' should read 'announced'. Minor wording precision.",
+          "source_url": "https://en.wikipedia.org/wiki/Minecraft"
+        }
+      ]
+    },
+    {
+      "claim": "Final Fantasy XIV reached 30 million registered players (announced January 2024) and replaced first-come housing with a lottery system in patch 6.1 (April 2022), with plots auto-demolished after 45 days of owner inactivity.",
+      "source_url": "https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/housing/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (Lodestone unreachable). Checker's recollection: 30M registered players (cumulative accounts incl. free trial, not actives) was announced at Fan Festival Tokyo in January 2024; the lottery shipped in patch 6.1 on April 12, 2022; auto-demolition is 45 days, but Square Enix has suspended the timer multiple times (pandemic, disasters). The cited Lodestone housing guide documents lottery/demolition rules but is not a source for the 30M figure.",
+          "source_url": "https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/housing/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified (proxy 403 on na.finalfantasyxiv.com). Knowledge-based: 30M registered players announced at Tokyo Fan Festival, Jan 2024; lottery housing introduced in patch 6.1 (released April 12, 2022); auto-demolition after 45 days of cumulative inactivity (timer periodically suspended). Source-support issue: the Lodestone housing guide does not state the 30M figure; that needs an SE press source.",
+          "source_url": "https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/housing/"
+        }
+      ]
+    },
+    {
+      "claim": "Zepeto (Naver Z) claims 400 million-plus cumulative users with roughly 70% female and 70% Gen Z, and raised about $150 million led by SoftBank Vision Fund 2 in November 2021 at roughly a $1 billion valuation.",
+      "source_url": "https://en.wikipedia.org/wiki/Zepeto",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (Wikipedia and naverz-corp.com unreachable). Flagged as likely needing correction: checker's recollection is that Naver Z's November 2021 Series B closed at about KRW 220 billion (~$180-190M) led by SoftBank Vision Fund 2 with HYBE, YG and JYP participating; the '$150M' figure comes from pre-close reporting and understates the round. ~$1B valuation (~KRW 1.2T) matches. 400M cumulative users and the ~70% female / ~70% Gen Z splits are unaudited company marketing claims.",
+          "source_url": "https://en.wikipedia.org/wiki/Zepeto"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified. Knowledge-based: 300M (2022)/400M+ (2023) cumulative users and ~70% female / ~70% Gen Z are Naver Z company claims. Funding: Nov 30, 2021 round led by SoftBank Vision Fund 2 at >1 trillion won (~$1B) valuation is consistent, but the round was reported in KRW (~220 billion won) and USD conversions in press ranged roughly $150M-$190M; the '$150M' figure should be cited to a specific outlet.",
+          "source_url": "https://en.wikipedia.org/wiki/Zepeto"
+        }
+      ]
+    },
+    {
+      "claim": "Discord claims more than 200 million monthly active users (2024-2025), launched Activities/Embedded App SDK in March 2024 and the Discord Social SDK in March 2025.",
+      "source_url": "https://discord.com/developers/docs",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (discord.com and Wikipedia unreachable). Checker's recollection: Discord's '200M+ MAU' line dates from 2024 and was repeated in 2025; Embedded App SDK/public Activities launched March 18, 2024; Discord Social SDK was announced at GDC, March 17-18, 2025. The cited developer-docs hub is not a dated announcement; cite the Discord blog posts. October 2025 vendor breach (~70k ID images) matches recollection.",
+          "source_url": "https://discord.com/developers/docs"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified (proxy 403 on discord.com). Knowledge-based: Embedded App SDK public launch March 18, 2024 (Activities existed in beta since 2021); Discord Social SDK announced at GDC March 2025; 'more than 200 million MAU' is Discord's own 2024-2025 wording. Source-support issue: discord.com/developers/docs does not state MAU; cite discord.com/company or the Social SDK launch post.",
+          "source_url": "https://discord.com/developers/docs"
+        }
+      ]
+    },
+    {
+      "claim": "Habbo launched in August 2000 and Sulake claimed over 273 million avatars created by 2012; Habbo Hotel: Origins, a recreation of the 2005 client, launched in June 2024.",
+      "source_url": "https://en.wikipedia.org/wiki/Habbo",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence (Wikipedia and habbo.com unreachable). Checker's recollection: Habbo launched in Finland in August 2000 (as Hotelli Kultakala); '273M avatars created' is a 2012 Sulake registration count, not unique users; Habbo Hotel: Origins recreates the 2005 Shockwave-era client and launched in mid-2024 (June is plausible but the exact month should be confirmed); Azerion took control of Sulake in 2020.",
+          "source_url": "https://en.wikipedia.org/wiki/Habbo"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "NOT live-verified. Knowledge-based: Habbo (Hotelli Kultakala) opened August 2000 in Finland; '273 million avatars created' is the circa-2012 figure Wikipedia cites; Habbo Hotel: Origins (recreation of the 2005 Shockwave-era client) launched publicly June 2024. Consistent; low risk.",
+          "source_url": "https://en.wikipedia.org/wiki/Habbo"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Network note: every primary-source host (ir.roblox.com, corp.roblox.com, sec.gov, create.fortnite.com, unrealengine.com, en.wikipedia.org, na.finalfantasyxiv.com, rockstargames.com, discord.com, minecraft.net, habbo.com) returned DNS ENOTFOUND and the turn's shared WebSearch budget was already exhausted, so no claim could be live-verified; all verdicts default to unverifiable and must be re-run with working network before any figure is quoted externally.",
+    "Roblox's own disclosures put the creator share of each consumer dollar at roughly a quarter to under a third after app-store fees; a successor promising 70% net to creators cannot deliver that on iOS/Android (30% store fee) unless the platform absorbs store fees or routes purchases through web/PC.",
+    "Epic's 40% engagement pool includes Epic's own first-party islands (Battle Royale etc.), the source of 2024 creator complaints; a successor's engagement pool should exclude first-party content or report it separately for transparency.",
+    "Rockstar's late-2023 roleplay-server policy (not the Aug 2023 acquisition post) is the clearest public legal template for a roles-first economy: subscriptions, cosmetics and donations allowed; loot boxes, real-money gameplay currency, real-money gambling and third-party IP barred.",
+    "FFXIV's 45-day housing demolition timer has been suspended repeatedly (pandemic, regional disasters); any scarcity mechanic in the successor needs an explicit, pre-announced pause policy.",
+    "Second Life context the brief omits: Linden Lab has been privately owned by the Waterfield/Oberwager investor group since 2020, sold its Tilia payments subsidiary to Thunes in 2023, and shipped an official mobile viewer beta in 2024; real-money cash-out in a successor requires Tilia-style money-transmitter licensing from day one.",
+    "Meta's Horizon Worlds (mobile pivot and lowered age floor in 2024-2025 while Reality Labs kept posting multibillion-dollar quarterly losses) is the strongest recent evidence that top-tier graphics and budget alone do not create purpose, and belongs in the 'what did not work' analysis.",
+    "Discord's October 2025 third-party-vendor breach of government-ID images and its subsequent age-assurance rollout mean a successor should not outsource identity or age verification to Discord; treat the Social SDK as a bridge only.",
+    "Verification environment note: this checker could not fetch any source. The WebSearch tool reported the 200-call per-turn budget already exhausted, and the agent proxy answered 403 to CONNECT for ir.roblox.com, create.fortnite.com, en.wikipedia.org, na.finalfantasyxiv.com and discord.com (confirmed via the proxy status endpoint). All verdicts are knowledge-based and must be re-run with network access before any figure is quoted externally.",
+    "Second Life itself is the missing comparator for the creator-economy argument: Linden Lab has historically reported on the order of $60M-$80M/year paid out to creators via the LindeX, a far higher per-user creator payout than Roblox DevEx, which quantifies the 'unserved at scale' strength the brief asserts (unverified; check Linden Lab press/Tilia disclosures).",
+    "Epic's Creator Economy 2.0 pays by engagement (retention, new-player acquisition), not in-island sales, and includes Epic's first-party modes in the same pool; creators have complained that first-party content dominates. A successor should publish the formula and exclude first-party content from the creator pool.",
+    "None of the 'winners' permit real-money cash-out to ordinary users: Rockstar's RP guidelines ban real-money gambling and currency sales, FFXIV bans real-money venues, and Roblox restricts cash-out to verified DevEx participants. The verified-adult cash-out tier the brief proposes therefore has no precedent among these platforms; Second Life/Tilia's money-transmitter licensing and KYC infrastructure is the relevant prior art.",
+    "Roblox's Q3 2025 DAU/hours surge was driven by a few viral UGC titles (Grow a Garden, Steal a Brainrot), so its scale is hit-dependent; a successor built on evergreen social loops should plan for that volatility rather than copying Roblox's numbers as a baseline."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/winners-lessons-refute.md",
+    "docs/research/fact-checks/winners-lessons-precision.md"
+  ]
+}

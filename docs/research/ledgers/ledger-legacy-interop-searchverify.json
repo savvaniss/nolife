@@ -1,0 +1,27 @@
+{
+  "brief": "legacy-interop",
+  "date": "2026-10-09",
+  "searches_used": 10,
+  "method_note": "WebFetch/curl blocked; verdicts rest on WebSearch quoted extracts only. Claims 4 and 5 not searched (budget).",
+  "verdicts": [
+    {"claim_index": 0, "verdict": "confirmed", "searched": true, "source_url": "https://www.hypergridbusiness.com/2026/01/opensim-land-grows-as-traffic-slows-slightly/", "note": "HB Jan 15, 2026: 162,771 region equivalents, 44,867 actives, 493,939 registered with OSgrid adjustment; raw 988,206; 825,435 estimated North America experiment regions excluded."},
+    {"claim_index": 1, "verdict": "confirmed", "searched": true, "source_url": "https://www.hypergridbusiness.com/?p=79686", "note": "Feb 2025 wipe article (March 21, five weeks) exists; June 15, 2026 HB article: asset filesystem metadata size limits, third week down, tracker 40%->83%, expected June 21 (approximate). No source confirms reopening."},
+    {"claim_index": 2, "verdict": "confirmed", "searched": true, "source_url": "https://modemworld.me/tag/project-zero/", "note": "End announced April 21, 2026 (post Apr 22), 14 months after launch, stayed in beta; May 2026 Web UG lists it closed, Lab calls it an experiment. The Sept 2025 '10x' figure was not in extracts (unverified sub-claim)."},
+    {"claim_index": 3, "verdict": "confirmed", "searched": true, "source_url": "https://modemworld.me/2026/07/03/2026-week-27-sl-ccug-meeting-summary-updating-sl-mesh/", "note": "July 2, 2026 CCUG: Geenz Linden asked about an easier-to-extend glTF variant; requests included more material faces, glTF hierarchies with proper origins, OpenUSD support. mid-2024/mid-2025 import timeline and April 2025 decomposition not in extracts (unverified sub-claims)."},
+    {"claim_index": 4, "verdict": "unverifiable", "searched": false, "note": "not searched (budget); consistent with prior knowledge"},
+    {"claim_index": 5, "verdict": "unverifiable", "searched": false, "note": "not searched (budget); consistent with prior knowledge"},
+    {"claim_index": 6, "verdict": "corrected", "searched": true, "source_url": "https://www.linuxfoundation.org/press/aousd_prmarch2026", "note": "Core Spec 1.0 was released/ratified around early January 2026 (Digital Production Jan 5, 2026), not March. March 25, 2026 release announced 7 new general members and the CMI interest group (charter approved Mar 2, 2026). July 21, 2026 part confirmed: ByteDance, Huawei, Physicl, Unity as General Members; ISO process begun for Core Spec 1.1; public GitHub repo (https://www.linuxfoundation.org/press/aousd-drives-global-3d-data-interoperability-ai-workflows-with-core-spec-milestones-and-members)."},
+    {"claim_index": 7, "verdict": "corrected", "searched": true, "source_url": "https://www.pocketgamer.biz/netflix-acquires-avatar-creation-platform-ready-player-me", "note": "Acquisition reported December 22, 2025, not Dec 19 (no extract supports Dec 19); price undisclosed, ~20 staff moving. Shutdown of external services Jan 31, 2026 confirmed (Schultz: creator tools Jan 30), PlayerZero and Avatar Creator SDK included."},
+    {"claim_index": 8, "verdict": "corrected", "searched": true, "source_url": "https://creators.vrchat.com/economy/welcome-to-the-ce", "note": "$100 minimum payout confirmed in Program Rules. Conflicts: seller FAQ floor 1,200 Credits (~$10) not 600; payout page says 30,000-credit (~$150) minimum, once per day, 1.5% fee, not one per two weeks. Revenue split is published on the welcome page: ~50% creator / ~30% store platform / ~20% VRChat+Tilia. May 14 and Aug 15, 2025 dates and 18+ rule not found (not refuted)."},
+    {"claim_index": 9, "verdict": "confirmed", "searched": true, "source_url": "https://roadtovr.com/vrchat-key-stats-japan-growth-concurrents/", "note": "~120,000 weekend concurrents by 2025 per VRChat staff (wiki: 120-125k). 158,192 is the corrected count (orig. 156,716) for the Feb 15, 2026 Kaguya concert, i.e. a 2026 record not 2025; NYE 2025-26 peak 148,886. arXiv 2505.00287 age/sample figures not searched (unverified sub-claim)."}
+  ],
+  "additional_findings": [
+    "HB May 15, 2026: 149,536 regions, 48,376 actives public OpenSim; OSgrid 4,420 actives; registered users down ~15,000 because EdMondo stopped reporting (https://www.hypergridbusiness.com/2026/05/opensim-users-land-area-both-up-this-month/).",
+    "Jan 2026 grid ranking: Wolf Territories Grid 11,708 actives (1st), OSgrid 3,931 (2nd).",
+    "Separate HB item 'OSgrid enters immediate long-term maintenance' (https://hypergridbusiness.com/?p=78935); no source confirms OSgrid reopened after June 21, 2026.",
+    "CCUG week 33 (Aug 14, 2026): glTF 2.0 spec foundations, blend shapes, custom rigs listed; no OpenUSD mention. Week 27 hinted LL leaning back toward Vulkan; no plans to extend prims.",
+    "Project Zero Avatar Picker ported to SL Mobile; a streamed Firestorm variant was also run briefly.",
+    "AOUSD Core Spec 1.1 targets animation-spline parity with OpenUSD 25.08; July 2026 members joined at General Member level (no steering seat).",
+    "VRChat welcome page: 30,000 Credits = $150 (1 credit = $0.005)."
+  ]
+}

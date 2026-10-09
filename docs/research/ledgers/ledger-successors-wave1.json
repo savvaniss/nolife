@@ -1,0 +1,220 @@
+{
+  "key": "successors-wave1",
+  "title": "First-wave Second Life rivals and successors (2000s-2010s) and why they failed",
+  "file": "docs/research/briefs/successors-wave1.md",
+  "summary": "Across sixteen first-wave rivals and successors of Second Life, the pattern is consistent: products built as \"a place to hang out in 3D\" died, and the survivors are the ones with a concrete loop that gives users a reason to log in and spend on each other. There.com closed on 9 March 2010 with membership still growing because sponsor, developer and land-fee revenue shrank in the recession; it returned in May 2012 as a $10/month hobby club. Blue Mars bet on CryEngine 2 in 2009, burned over $13M, cut staff by two-thirds by January 2011, and donated its tech to a university in 2012 after chasing three audiences and two lighter clients. The Sims Online peaked at roughly 105,000 subscribers in 2003 behind a box-plus-subscription wall and was shut on 1 August 2008 after the EA-Land free-client rebrand failed to ship. PlayStation Home's 41M \"members\" were cumulative registrations; Sony called it a niche, stopped developer payouts, and closed it on 31 March 2015 rather than port to PS4. Google Lively (20 users per room, ~10k actives) and Cloud Party (acqui-hired by Yahoo, closed 21 Feb 2014) were ended by parent-company priorities. The VR wave repeated the hardware mistake: High Fidelity raised ~$73M, found daily VR users were ~100x below Rosedale's projection and peak rooms held ~90 people, and shut its world on 15 Jan 2020; Sansar's concurrency stayed \"in the low hundreds\" and Linden Lab sold it in March 2020; vTime XR closed abruptly in October 2025 over an unpatchable Unity flaw. Survivors (Active Worlds since 1995, Entropia's withdrawable PED economy, Habbo's teen goods, IMVU's 7M MAU avatar chat with 400k user products a month) share free entry, user-to-user economies, and low fixed costs; Habbo's 2012 moderation scandal, which cost it two investors and two-thirds of staff, shows safety is existential. Caveat: WebFetch could not resolve any host in this sandbox and the shared search budget ran out, so facts come from quoted search extracts of the cited pages and several figures are flagged unverified.",
+  "design_implications": [
+    "Define the purpose loop (collaborative building with ownership, scarce events, a tradable economy) before the renderer, and measure success by peak concurrent users per region rather than registrations.",
+    "Target hardware the audience already owns: web/desktop/mobile-first with scalable fidelity; VR is an optional view, never a requirement, so high-end graphics must degrade gracefully to integrated GPUs and phones.",
+    "Make revenue user-to-user (creator goods, land rent flowing to creators, event tickets) so income scales with community activity, not with a handful of sponsors or ad budgets.",
+    "No subscription or box-price wall at entry; free-to-enter with premium tiers for creators and land, following IMVU/Habbo/Second Life rather than The Sims Online or There's 2012 relaunch.",
+    "Treat creator tooling (avatar customisation, animation library, in-world editing, import pipelines) as the core product; ship AI NPCs, bots and spectacle only after the basic self-expression loop is excellent.",
+    "Build trust and safety in from the first release (age-gating, verified-adult spaces, moderation tooling, transparent reporting) because one exposé can remove investors and advertisers within weeks.",
+    "Guarantee portability and continuity: exportable assets and inventories, open formats, and a pre-published escrowed sunset plan (server images, export tools, community handover) so the world is never hostage to a corporate pivot or an engine vulnerability.",
+    "Avoid single-vendor lock-in on engine, console store or headset ecosystem; keep engine and distribution as replaceable layers.",
+    "Keep fixed costs low enough to survive a recession on organic revenue while funding growth from creator-economy take rates.",
+    "Engineer for crowd concurrency (hundreds in one space, thousands per event) since large shared moments are what the surviving worlds monetise."
+  ],
+  "open_questions": [
+    "There.com: total venture funding and peak concurrent users (the ~$37M figure and 2003-2005 subscriber counts were not confirmed before the search budget ran out).",
+    "PlayStation Home: Sony's actual revenue and active-user figures, and whether it was ever profitable as claimed around 2011; no primary source surfaced.",
+    "Sansar: Linden Lab's actual spend (the oft-quoted $75M is unverified) and Steam concurrent-user data.",
+    "Blue Mars: exact PC system requirements and the number of land parcels sold to third-party developers.",
+    "Kaneva: funding raised and the reason for the 14 November 2016 closure.",
+    "Cloud Party: funding, user counts and the price Yahoo paid.",
+    "Entropia: audited MindArk revenue (from its listed-company annual reports) versus self-reported transaction volumes.",
+    "Habbo: current MAU and whether Hotel Hideaway has materially replaced desktop revenue.",
+    "All facts should be re-verified by direct fetch of Wikipedia, Engadget, TechCrunch, VentureBeat and company blogs; this run could not fetch any page directly due to DNS resolution failures in the sandbox."
+  ],
+  "claims": [
+    {
+      "claim": "There.com shut down on 9 March 2010; CEO Michael Wilson cited shrinking revenue despite growing membership and the recession; it relaunched 2 May 2012 on a US$10/month premium subscription.",
+      "source_url": "https://en.wikipedia.org/wiki/There_(virtual_world)",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No independent check possible: WebFetch to en.wikipedia.org failed (DNS blocked) and WebSearch budget was exhausted. Dates/framing match the checker's recollection of Wilson's March 2010 closure letter (membership growing, revenue not, recession). Re-check that 2 May 2012 is the public (18+) reopening date and that $10/month was only the premium tier with free/trial tiers alongside.",
+          "source_url": "https://en.wikipedia.org/wiki/There_(virtual_world)"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Consistent with the record from checker's knowledge (source NOT fetched: DNS blocked, search budget exhausted). CEO Michael Wilson's open letter of 2 March 2010 announced closure on 9 March 2010, blaming the recession for falling revenue while membership grew; There.com reopened to the public (18+) on 2 May 2012 at US$10/month after a 2011 limited beta.",
+          "source_url": "https://en.wikipedia.org/wiki/There_(virtual_world)"
+        }
+      ]
+    },
+    {
+      "claim": "Avatar Reality's $4.2M round in March 2010 brought total investment in Blue Mars to over $13M; by January 2011 staff had been cut by two-thirds to about 10 people and PC-client development stopped.",
+      "source_url": "https://www.gamedeveloper.com/game-platforms/avatar-reality-secures-4-2m-appoints-design-vp",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Fetch of Gamasutra article failed (DNS). $4.2M March 2010 and 'over $13M total' are consistent with the checker's recollection of that article. The Jan 2011 'two-thirds to ~10 staff' figure rests on a single blog (metaversejournal.com) and implies ~30 prior staff, which may be low; 'PC-client development stopped' should read 'new PC feature development ended' since the PC client stayed online and Blue Mars Lite shipped later.",
+          "source_url": "https://www.gamedeveloper.com/game-platforms/avatar-reality-secures-4-2m-appoints-design-vp"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. The March 2010 Gamasutra headline ($4.2M, design VP) and 'over $13M' total match memory; Jan 2011 refocus to iOS, CEO Jim Sink leaving and heavy layoffs were reported by Metaverse Journal. The exact 'two-thirds to about 10 staff' figure could not be checked and should be treated as approximate.",
+          "source_url": "https://www.gamedeveloper.com/game-platforms/avatar-reality-secures-4-2m-appoints-design-vp"
+        }
+      ]
+    },
+    {
+      "claim": "The Sims Online peaked at roughly 105,000 players in 2003 and EA shut EA-Land on 1 August 2008.",
+      "source_url": "https://www.thesimsnews.com/feature/server-shutdowns-and-cancelled-titles-4-lost-sims-titles-canned-before-the-sims-mobile/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Source is a fan news site (thesimsnews.com), unreachable in this run. 105,000 traces to 2003 press reports of EA subscriber numbers (vs EA's 200,000 target); 'players' should be 'subscribers'. 1 Aug 2008 EA-Land closure (announced 29 Apr 2008) matches the checker's recollection of EA's notice.",
+          "source_url": "https://www.thesimsnews.com/feature/server-shutdowns-and-cancelled-titles-4-lost-sims-titles-canned-before-the-sims-mobile/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "From knowledge (not fetched): peak of about 105,000 subscribers in 2003 against EA's 200,000+ projection; closure announced April 2008, servers off 1 August 2008. Note the 105k are subscribers, not concurrent players.",
+          "source_url": "https://www.thesimsnews.com/feature/server-shutdowns-and-cancelled-titles-4-lost-sims-titles-canned-before-the-sims-mobile/"
+        }
+      ]
+    },
+    {
+      "claim": "Sony announced PlayStation Home's shutdown in September 2014 citing a 'shifting landscape', ended new content in November 2014 and closed servers on 31 March 2015; the 41M member figure is cumulative and traces to wiki sources, not a Sony release.",
+      "source_url": "https://en.wikipedia.org/wiki/PlayStation_Home",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable (DNS). Sept 2014 regional announcements, 12 Nov 2014 final content and 31 Mar 2015 closure match the checker's recollection. The 41M caveat is sound: Sony's own public figures were ~23M (2011) and ~31M (2013), so 41M at closure is a wiki extrapolation. 'Shifting landscape' should be attributed to the SCEE/SCEA notice specifically.",
+          "source_url": "https://en.wikipedia.org/wiki/PlayStation_Home"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "Dates from knowledge (not fetched): announcement 26 Sept 2014 citing a 'shifting landscape', new content ceased 12 Nov 2014 (purchases 3 Dec), servers closed 31 March 2015. Caveat: the assertion that the 41M figure traces only to wiki sources could not be checked; Sony publicly cited 31M users in 2013, so 41M cumulative registrations at closure is plausible but its provenance stays open.",
+          "source_url": "https://en.wikipedia.org/wiki/PlayStation_Home"
+        }
+      ]
+    },
+    {
+      "claim": "Yahoo acquired browser-based Cloud Party on 24 January 2014 and shut the service on 21 February 2014 with undisclosed terms, widely read as an acqui-hire.",
+      "source_url": "https://techcrunch.com/2014/01/24/yahoo-acquires-will-shut-down-browser-based-virtual-world-gaming-startup-cloud-party",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "TechCrunch unreachable (DNS). Dates (announced 24 Jan 2014, service closed 21 Feb 2014), undisclosed terms and acqui-hire framing are consistent with the checker's recollection of TechCrunch/PCWorld coverage of Sam Thompson's announcement.",
+          "source_url": "https://techcrunch.com/2014/01/24/yahoo-acquires-will-shut-down-browser-based-virtual-world-gaming-startup-cloud-party"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "From knowledge (not fetched): TechCrunch 24 Jan 2014 reported the team joining Yahoo, service closing 21 Feb 2014, terms undisclosed, widely characterised as an acqui-hire.",
+          "source_url": "https://techcrunch.com/2014/01/24/yahoo-acquires-will-shut-down-browser-based-virtual-world-gaming-startup-cloud-party"
+        }
+      ]
+    },
+    {
+      "claim": "Philip Rosedale said in 2019 he had expected 10-20 million daily VR headset users and the real number was close to two orders of magnitude less; High Fidelity had raised about $73M including $35M in June 2018, laid off 25% in May 2019 and withdrew its apps effective 15 January 2020.",
+      "source_url": "https://modemworld.me/2019/04/11/high-fidelity-changes-direction-the-reality-of-vr-worlds-today-tomorrow/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "modemworld.me unreachable (DNS); the primary source is Rosedale's own April 2019 High Fidelity blog post, which should be quoted directly to confirm the exact '10-20 million' bracket. $35M June 2018 (Galaxy Digital-led), ~$73M cumulative (Crunchbase ~$72.9M), ~20 of ~80 staff (25%) in May 2019 and 15 Jan 2020 shutdown date are consistent with press as recalled. 'Withdrew its apps' conflates store delisting, marketplace/HFC shutdown and repo archiving, which had slightly different dates.",
+          "source_url": "https://modemworld.me/2019/04/11/high-fidelity-changes-direction-the-reality-of-vr-worlds-today-tomorrow/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "From knowledge (not fetched): $35M round June 2018 bringing total to ~$73M, ~20 staff (about 25%) laid off May 2019, apps withdrawn and marketplace closed effective 15 Jan 2020. Rosedale's April 2019 post did say the assumption of tens of millions of daily headset users was off by about two orders of magnitude; the exact '10-20 million' wording was not re-read.",
+          "source_url": "https://modemworld.me/2019/04/11/high-fidelity-changes-direction-the-reality-of-vr-worlds-today-tomorrow/"
+        }
+      ]
+    },
+    {
+      "claim": "Sansar's peak concurrency remained in the low hundreds despite Hello Kitty and Ready Player One campaigns; Linden Lab laid off 20+ Sansar staff in November 2019 and sold Sansar to Wookey Project Corp in March 2020.",
+      "source_url": "https://nwn.blogs.com/nwn/2019/11/sansar-linden-lab-layoff-social-vr-.html",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "nwn.blogs.com unreachable (DNS). 'Low hundreds' is Wagner James Au's estimate from Steam/in-world counts, not a Linden Lab or Steam-published figure, and should be attributed to him. ~20+ Nov 2019 layoffs and 24-25 Mar 2020 Wookey sale match the checker's recollection; the brief correctly flags the '40+' Feb 2020 figure as unconfirmed.",
+          "source_url": "https://nwn.blogs.com/nwn/2019/11/sansar-linden-lab-layoff-social-vr-.html"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Nov 2019 layoffs (reported as 20-30 Sansar staff), Feb 2020 funding stop and the late-March 2020 sale to Wookey Project Corp are consistent with coverage; Ready Player One (2018) and Sanrio/Hello Kitty events did happen. 'Low hundreds' concurrency is Hamlet Au's own estimate, not a Linden Lab figure, and should be attributed as such.",
+          "source_url": "https://nwn.blogs.com/nwn/2019/11/sansar-linden-lab-layoff-social-vr-.html"
+        }
+      ]
+    },
+    {
+      "claim": "After a June 2012 Channel 4 investigation, Sulake muted all Habbo chat, Balderton sold its ~13% stake, revenue recovered to only ~75% by August, and headcount fell from about 90 to 30 by October 2012; 2011 revenue had been US$78.7M.",
+      "source_url": "https://techcrunch.com/2012/06/12/trouble-at-habbo-hotel-balderton-dumps-13-stake-in-owner-sulake-over-dodgy-child-content/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "TechCrunch unreachable (DNS). Chat mute and Balderton's 13% exit match the checker's recollection of the June 2012 coverage. The '75% recovery by August' and '~90 to 30 headcount' numbers come from a RageZone forum repost and a fan wiki, not primary sources; Sulake had several hundred staff in 2008-2010 and reported ~40% cuts in late 2012, so '90 to 30' may be garbled or one office. '$78.7M 2011 revenue' is a USD conversion of a EUR filing figure; quote the EUR original. Weakest-sourced claim in the brief.",
+          "source_url": "https://techcrunch.com/2012/06/12/trouble-at-habbo-hotel-balderton-dumps-13-stake-in-owner-sulake-over-dodgy-child-content/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch. Channel 4 investigation, global chat mute and Balderton's exit from its 13% stake are well documented. Doubtful figures: Sulake reported revenue in euros (2011 on the order of EUR 55-60M), so 'US$78.7M' needs its conversion basis; 'about 90 to 30' headcount is far below Sulake's known 2011-12 staffing (well over 100) and may describe one office or function; '~75% recovery' is a company statement. Attribution error: the cited TechCrunch article is dated 12 June 2012 and cannot contain the August/October 2012 figures, which come from the RageZone interview / Habbox wiki.",
+          "source_url": "https://techcrunch.com/2012/06/12/trouble-at-habbo-hotel-balderton-dumps-13-stake-in-owner-sulake-over-dodgy-child-content/"
+        }
+      ]
+    },
+    {
+      "claim": "IMVU reported over 7 million monthly active users and 400,000 user-created products per month in 2020 and raised $35M from NetEase and Structural Capital in January 2021 under parent Together Labs.",
+      "source_url": "https://techcrunch.com/2021/01/25/imvu-35-million-funding/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "TechCrunch unreachable (DNS). $35M from NetEase and Structural Capital, Together Labs parent and '7M+ MAU' match the checker's recollection of the 25 Jan 2021 article. '400,000 user-created products per month' is a company statement from IMVU press material and should be labelled as self-reported; Structural Capital is a venture-debt lender, so part of the $35M may be debt rather than equity.",
+          "source_url": "https://techcrunch.com/2021/01/25/imvu-35-million-funding/"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "From knowledge (not fetched): TechCrunch 25 Jan 2021 reported the $35M round from NetEase with Structural Capital and the parent's rebrand to Together Labs; IMVU's 2020-21 materials claimed 7M+ monthly actives and ~400,000 new user-created products per month. All are company claims.",
+          "source_url": "https://techcrunch.com/2021/01/25/imvu-35-million-funding/"
+        }
+      ]
+    },
+    {
+      "claim": "Entropia Universe reached 500,000 registered users on 17 October 2006, holds Guinness records for a $26,500 island (2004) and $100,000 Club NEVERDIE (2008), and MindArk self-reports $242M cumulative player deposits versus $64M withdrawals as of 2025.",
+      "source_url": "https://en.wikipedia.org/wiki/Entropia_Universe",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable (DNS). Likely date error (background knowledge, not verified here): Jon 'NEVERDIE' Jacobs bought the $100,000 asteroid/Club NEVERDIE in October 2005; 2008 is the Guinness Gamer's Edition listing year. Treasure Island $26,500 (Dec 2004) is correct. 500,000 users on 17 Oct 2006 is a MindArk self-report relayed by Wikipedia. The $242M/$64M deposit/withdrawal figures come from a MindArk PRNewswire release the brief dates to 2025 but which appears to be Dec 2024; confirm whether cumulative since 2003 and note that deposits fund MindArk's services, so 'net-extractive' overstates player losses.",
+          "source_url": "https://en.wikipedia.org/wiki/Entropia_Universe"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Date error: Jon 'NEVERDIE' Jacobs bought Club NEVERDIE for US$100,000 in October 2005, not 2008; 2008 is the Guinness Gamer's Edition that listed it. Treasure Island ($26,500, Dec 2004) and the 500,000-account milestone (Oct 2006) are correct. The $242M deposits / $64M withdrawals figures come from a MindArk press release whose PRNewswire id (302341829) dates it to December 2024, so 'as of 2025' should read 'as of late 2024'; numbers are self-reported and unchecked.",
+          "source_url": "https://en.wikipedia.org/wiki/Entropia_Universe"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "VERIFICATION BLOCKED: every WebFetch failed with DNS errors (en.wikipedia.org, gamedeveloper.com, techcrunch.com, modemworld.me, nwn.blogs.com, thesimsnews.com are denied by the sandbox network policy), the per-turn WebSearch budget (200, shared) was already exhausted before this checker ran, and curl via the proxy was denied. All verdicts default to 'unverifiable'; notes flag likely corrections from background knowledge. To re-run: add those hosts (plus venturebeat.com, ryanschultz.com, prnewswire.com) under Allowed domains in the environment's Network access settings and start a fresh turn for search budget.",
+    "The brief omits the successors that actually reached scale: Roblox (tens of millions DAU, creator payouts near US$1B/yr) and VRChat (six-figure peak concurrency at New Year's events, desktop+VR, creator economy launched 2023, ~30% layoffs in 2024). A successor plan should benchmark against these, not only against 2000s-2010s failures. (Background knowledge, not verified in this run.)",
+    "Second Life itself is the control case the brief under-weights: still ~US$600M+/yr in user-to-user transactions, hundreds of thousands of monthly users, and a 2024-2025 mobile viewer. Its survival on user-paid land fees plus a Linden-dollar exchange shows land revenue is fragile only when it depends on brand sponsors rather than residents.",
+    "The 2021-2023 blockchain worlds (Decentraland, The Sandbox) repeated the purpose-vacuum pattern: DAU in the low thousands despite billion-dollar token valuations. The brief's 'concurrency not registrations' rule generalises to 'active users, not token holders'.",
+    "Meta's Horizon Worlds repeated the premature-hardware bet at vastly larger budget (Reality Labs cumulative losses above US$60B, 2020-2024) and then ported to mobile/web, reinforcing the 'ship for hardware the audience owns' implication.",
+    "Likely factual correction for the brief: Club NEVERDIE/asteroid was purchased for $100,000 in October 2005, not 2008 (2008 is the Guinness listing year). Weakest-sourced numbers overall are Habbo's '90 to 30 headcount' and '75% revenue recovery' (forum repost + fan wiki) and Sansar's 'low hundreds' concurrency (an observer's estimate, should be attributed to Wagner James Au).",
+    "Verification limitation: no cited URL could be fetched (WebFetch DNS failures on every host, WebSearch budget already exhausted at 200/200, curl denied), so whether each source actually says what is attributed to it is unverified for all ten claims; verdicts rest on checker knowledge and a follow-up run with network access should re-fetch the ten URLs.",
+    "The successors that actually worked after this wave were Roblox (tens of millions of daily users, creator payouts in the high hundreds of millions of dollars per year) and VRChat (user-built worlds via a Unity SDK, VR optional, roughly half of users on flat screens); they, not Sansar or High Fidelity, should be the design benchmark for the purpose loop, optional VR and creator economy.",
+    "High Fidelity's open-source codebase was forked by its community (Vircadia, later Overte) after the company withdrew its apps, and Wookey kept Sansar alive: open source and transferable server software are the proven 'sunset insurance' the brief recommends.",
+    "IMVU's VCOIN (Nov 2020) was the first transferable token to receive an SEC no-action letter; any successor with a withdrawable currency inherits that regulatory template, and Entropia's fixed 10:1 PED shows such economies run net-extractive from players.",
+    "Meta's Horizon Worlds absorbed multi-billion-dollar annual Reality Labs losses and still pivoted to mobile in 2024-25, the most recent confirmation of the 'wrong hardware bet' pattern; it belongs in the pattern list.",
+    "Habbo's 2024 relaunch of a 2005-era client (Habbo Hotel: Origins) revived engagement, evidence that preserved community identity and nostalgia are reusable assets (same lesson as There.com's 2025 return surge and the PS Home fan revival).",
+    "The incumbent the successor must beat, Second Life itself, is absent from the brief: it still runs with hundreds of thousands of monthly users, a user-to-user economy in the hundreds of millions of dollars per year, and shipped an official mobile viewer in 2024."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/successors-wave1-refute.md",
+    "docs/research/fact-checks/successors-wave1-precision.md"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "key": "winners-lessons",
+  "title": "What the winners did right: Roblox, Fortnite/UEFN, Minecraft, GTA RP, FFXIV, Habbo, Zepeto, Discord",
+  "file": "docs/research/briefs/winners-lessons.md",
+  "summary": "Live-search rewrite of the \"what the winners did right\" brief using all 20 WebSearch calls (page fetching blocked; citations rest on search extracts). Key corrections to the prior draft: Roblox DAU peaked at ~152M in Q3 2025 and fell to 123M by Q2 2026 (bookings +8%, guidance for Q3 declines) while 18+ DAU grew 32%; DevEx payouts exceeded $1.5B in 2025 (vs $923M in 2024), the DevEx rate rose to $0.0038/Robux on Sept 5, 2025, and a 42% DevEx bonus for age-checked 18+ US spend took effect June 8, 2026; Roblox concurrency records were set in Aug-Oct 2025 (47.3M platform-wide, 25.4M for Steal a Brainrot), not June 2025. Epic's Creator Economy 2.0 pays 40% of net revenue by engagement, crossed $1B cumulative in Jan 2026 (announced June 17, 2026), added in-island transactions in Jan 2026 with 3,000+ maps now earning more from sales than from the pool, and 47% of play hours are in creator islands. Rockstar absorbed Cfx.re on Aug 11, 2023; FiveM hit a 221k Steam-only peak in May 2026; GTA VI ships Nov 19, 2026; NoPixel 4.0 launched Dec 15, 2023. FFXIV has 30M+ registered players (incl. free trial), a housing lottery since April 2022 and a 45-day demolition timer resumed June 2025. Habbo Origins (18+, no gambling) launched June 18, 2024 on an ~800k-MAU base. Zepeto's last public numbers are 300-340M registered / 20M MAU (2022); the \"400M\" claim was not found. Discord has 200M+ MAU, filed confidentially for IPO in Jan 2026, launched its Social SDK Aug 13, 2025, and rolls out teen-by-default age assurance in H2 2026. Patterns: purpose comes from loops/roles/scarcity, adults are now the growth cohort, engagement pools and direct sales are converging, virality is not retention, events create the shared \"when\", and every world rents its social graph from Discord. Unverified: Minecraft 2025 sales/MAU and Marketplace totals, NoPixel's own prices, Zepeto/Habbo 2024-2026 status, Fortnite OG daily record.",
+  "design_implications": [
+    "Ship roles and loops in the first five minutes (job boards, crews, venue shifts, build commissions) modelled on GTA RP whitelisting and Roblox progression rather than an empty orientation island.",
+    "Lead with the verified-adult (18+) market that Roblox (18+ DAU +32%, 42% adult-spend DevEx bonus) and Habbo Origins (18+) are only now discovering: adult identity tiers, adult districts, real-money cash-out and professional use from day one.",
+    "Use hybrid creator economics with a published split: an engagement pool of 40-50% of net revenue distributed by retention and new-player acquisition, plus direct sales at a stated creator share of 70%+, with a Fortnite-style 75% bounty for creators who bring new or lapsed users.",
+    "Make public land scarce and private land unlimited: FFXIV-style lottery with full-price tickets, a 45-day use-it-or-lose-it rule with refunds, instanced private sanctuaries for building, and a legible published ward map.",
+    "Run a first-party event calendar engineered for 100k+ synchronised concurrency, and let creators schedule venue events in-world instead of on Discord.",
+    "Own voice, text, crews, scheduling and whitelists natively; treat the Discord Social SDK as a bridge, not the backbone, given Discord's IPO-era and age-assurance policy drift.",
+    "Make persistent avatar identity (one self, portable inventory and reputation across shards) the differentiator none of Roblox, Fortnite, FFXIV or Discord offers.",
+    "Adopt Rockstar's RP monetisation rules wholesale: subscriptions, cosmetics, priority access and creator sales allowed; loot boxes, pay-to-win and unlicensed brands banned; one authorised payment rail.",
+    "Design for evergreen retention rather than viral spikes: Roblox's DAU fell from ~152M to 123M and per-hour monetisation dropped when play shifted away from viral 2025 titles; Zepeto's usage collapsed when schools reopened.",
+    "Instant, free, mobile-reachable onboarding with one-tap account creation and a streamed client, since every platform that scaled is free-to-start."
+  ],
+  "open_questions": [
+    "Did Roblox Q3 2026 bookings decline as guided, and what is the effective creator share after the June 2026 42% adult-spend DevEx bonus?",
+    "What is Epic's exact creator split on in-island transactions, and what was the 2025 annual Fortnite creator payout (only the cumulative $1B through Jan 2026 is public; 2024 is reported as both $320M and $352M)?",
+    "Is there any Microsoft-stated Minecraft MAU or Marketplace cumulative payout since the 300M-copies announcement of Oct 2023? Aggregator claims ($500M payouts, ~70% share, 222M MAU) are unverified.",
+    "What are NoPixel's current priority-queue tiers, and did the Jan 12, 2026 Cfx.re Creator PLA change revenue terms ahead of GTA VI (Nov 19, 2026)? What is FiveM's non-Steam concurrency?",
+    "How large is the FFXIV venue economy, what is Square Enix's 2025-2026 stance on client mods used by venues, and did the 45-day demolition timer stay active after June 2025?",
+    "Are there any 2024-2026 MAU, revenue or restructuring disclosures for Zepeto (Naver Z) or Habbo (Sulake/Azerion)? None surfaced in English-language search.",
+    "Will Discord's S-1 become public in 2026, and does teen-by-default age assurance change what embedded worlds can assume about user age?",
+    "Was Remix: The Finale on Nov 30, 2024 or 2025 (extracts conflicted), and is the Fortnite OG 44.7M single-day record real?"
+  ],
+  "claims": [
+    {
+      "claim": "Roblox Q2 2026 (ended June 30, 2026): 123M DAU (+10% YoY), 29B hours (+5%), bookings $1.6B (+8%), revenue ~$1.5B (+36%), 18+ DAU +32%; DAU is down from the ~152M Q3 2025 peak and management guided to Q3 2026 bookings and FCF declines.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0001315098/000162828026051059/ex991-robloxq22026earnin.htm",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Roblox DevEx payouts exceeded $1.5B in 2025 (vs $923M in 2024), with Q4 2025 alone $477M (+70%, ~33.7% of revenue) and the top 1,000 creators averaging ~$1.3M; FY2025 revenue was $4.9B.",
+      "source_url": "https://quartr.com/events/roblox-rblx-q4-2025_ozGB34Pf",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "The Roblox DevEx rate rose 8.5% from $0.0035 to $0.0038 per Robux on Sept 5, 2025 (100,000 Robux = $380), and a 42% DevEx rate increase for eligible spend by age-checked US players 18+ took effect June 8, 2026.",
+      "source_url": "https://about.roblox.com/newsroom/2026/04/roblox-fuels-high-fidelity-games-over-18-players-increases-qualifying-devex-rate-42",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Fortnite Creator Economy 2.0 (March 2023) distributes 40% of net Item Shop/real-money revenue to island creators by engagement; cumulative UEFN payouts crossed $1B in January 2026 (announced June 17, 2026), in-island transactions launched January 2026, 3,000+ maps now earn more from in-game sales than from the engagement pool, and 47% of player hours are in creator islands (up from 35% in May 2025).",
+      "source_url": "https://gamesbeat.com/epic-games-has-paid-out-1-billion-to-creators-since-launching-unreal-editor-for-fortnite-in-2023/",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Fortnite in-game concert concurrency: Marshmello 10.7M (Feb 2019), Travis Scott 12.3M (April 2020), Remix: The Finale 14M+ concurrent plus ~3M stream viewers (all-time concert record); the Galactus event (Dec 2020) reached 15.3M, the largest in-game event overall.",
+      "source_url": "https://musicbusinessworldwide.com/fortnites-remix-the-finale-concert-draws-over-14m-players-breaking-records",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Rockstar announced on Aug 11, 2023 that Cfx.re (FiveM/RedM) joined Rockstar, eight years after banning the team in 2015; FiveM's rules now route all server monetization through Tebex, ban selling in-game currency or gameplay advantage, and the Creator Platform License Agreement was rewritten Jan 12, 2026.",
+      "source_url": "https://gameworldobserver.com/2023/08/11/cfx-re-joins-rockstar-deal-fivem-redm-roleplay",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "After integration into Steam in January 2026, FiveM reached an all-time Steam peak of 221,062 concurrent players (May 2026), exceeding GTA V itself; GTA VI is scheduled for Nov 19, 2026 after delays from fall 2025 and May 26, 2026.",
+      "source_url": "https://steamcharts.com/app/2676230",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "FFXIV passed 30M registered players (including free-trial accounts) as announced at Fan Festival 2024 Tokyo in January 2024; housing uses a lottery introduced in patch 6.1 (first window April 12, 2022, full plot price as ticket) and auto-demolition after 45 days without entering the house (80% gil refund), with the timer resumed on NA data centres June 6, 2025.",
+      "source_url": "https://www.inverse.com/gaming/final-fantasy-14-housing-updates-lottery-empyreum-patch-6-1",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Discord reports 200M+ MAU (April 2025), filed confidentially for a US IPO in January 2026 with Goldman Sachs and JPMorgan, launched the Discord Social SDK on Aug 13, 2025, and will roll out teen-by-default age assurance globally in H2 2026 with no SDK/integration changes required of developers.",
+      "source_url": "https://fintool.com/news/discord-ipo-confidential-filing",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Zepeto's most recent public figures are 300M registered users and ~20M MAU (March 2022, 95% outside Korea) rising to ~340M registered later in 2022 with 2.83M creators; the '400M users' claim did not appear in any search result, and Korean weekly users fell to 133,708 in May 2022 when schools reopened.",
+      "source_url": "https://m.kedglobal.com/newsView/ked202203040009",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    }
+  ],
+  "additional_findings": [],
+  "verify_files": [],
+  "note": "Re-researched with live search; supersedes ledger-winners-lessons.json"
+}

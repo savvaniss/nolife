@@ -1,0 +1,224 @@
+{
+  "key": "successors-wave2-metaverse",
+  "title": "The 2016-2026 metaverse wave: Horizon Worlds, Decentraland, Sandbox, VRChat, Rec Room, AltspaceVR and the bust",
+  "file": "docs/research/briefs/successors-wave2-metaverse.md",
+  "summary": "The 2021-2023 metaverse wave was sold on forecasts (Citi $8-13T and McKinsey $5T by 2030) and funded by scarce virtual land, but by 2026 nearly every VR-first or land-first world has shrunk, pivoted or closed. Meta's Horizon Worlds missed its 500k MAU target with ~200k (WSJ, Oct 2022), only 9% of worlds were ever visited by 50+ people, and after a teen push (2023) and a mobile/Roblox-style pivot (Nov 2024 onward) Meta formally split Worlds from Quest in Feb 2026, announced a VR shutdown in March 2026 and reversed it within 48 hours for legacy content only. Reality Labs lost $6.02B in Q4 2025 and $8.65B in H1 2026 (10-Q), with media tallies near $88B cumulative, and January 2026 cuts closed three VR studios. Microsoft closed AltspaceVR (10 Mar 2023) and then retired Mesh itself (1 Dec 2025) into 16-person Teams 'immersive events'. Crypto worlds collapsed on measurement: DappRadar's 38 on-chain DAU for Decentraland versus the Foundation's self-reported 8,000; land prices fell 60-85% in 2022 and platform volume 96%; The Sandbox cut over half of ~250 staff in Aug 2025 after $350M of 2021 land sales; Otherside raised $317M plus ~$172M gas in 2022 and has no verified populated world. Spatial pivoted to UGC games and Niantic sold its games to Scopely for $3.5B. Rec Room is the sharpest cautionary tale: UGC revenue grew 70% YoY but the host kept ~30 cents per dollar versus 70 on first-party items, leading to 2025 layoffs and a June 2026 shutdown. VRChat is the survivor: cross-platform, creator-driven, with record concurrency (148,886 on 1 Jan 2026; 158,192 at a Japanese concert) despite 30% layoffs in 2024 and a 2022 anti-cheat revolt. Hardware bets did not rescue the category: Vision Pro shipped ~390k units in 2024 then halted production; NVIDIA Omniverse thrived only by dropping 'metaverse' for industrial digital twins. Root causes: headset-gated reach, land-before-population economics, unmeasurable or opaque engagement, empty-world density failures, thin UGC margins, corporate owners cutting consumer social VR first, and trust shocks from unilateral platform changes. Method caveat: WebFetch was blocked by sandbox DNS and the shared search budget ran out, so several 2025-2026 datapoints (Decentraland, Otherside, Horizon mobile MAU) remain thin.",
+  "design_implications": [
+    "Ship PC, mobile and web clients first with VR as a first-class but optional client; never gate identity, inventory or social graph on a headset. Every VR-only world (Horizon VR, AltspaceVR, Mesh) hit a ceiling around 200k MAU or less.",
+    "Do not sell land before there is population. Allocate space by activity, reclaim idle plots, and make scarcity earned (tenure, reputation) rather than purchased; land-first worlds (Decentraland, Sandbox, Otherside, Somnium) tracked crypto prices, not usage, and emptied when speculation left.",
+    "Publish an auditable, third-party-readable activity metric (DAU defined as entered + moved + interacted with another user for N minutes). The 38-vs-8,000 DAU fight shows unmeasurable engagement destroys credibility and prevents retention management.",
+    "Treat empty worlds as a bug with an SLO: merge low-population instances, route newcomers to live events and populated hubs, and surface worlds by live occupancy. Horizon's 9%-of-worlds-visited figure is a discovery and density failure, not a content shortage.",
+    "Design the host margin on UGC from day one: cheap automated plus community moderation, a creator take-rate that still leaves the platform well above Rec Room's 30 cents per dollar, and first-party anchor content so the business is not wholly dependent on UGC margin.",
+    "Make community governance real: a public change-review process for client-affecting updates (VRChat EAC lesson), guaranteed export and portability of avatars, worlds and friend lists (AltspaceVR lesson), and a published sunset covenant with 12+ months notice and open-sourced world formats.",
+    "Build explicitly for Japan and VTuber/avatar culture: localisation, VRM/Booth-compatible avatar pipelines, and event capacity for 100k+ concurrent attendees, since VRChat's growth and concurrency records are concert- and Japan-driven.",
+    "Minimise exposure to any single hardware vendor's roadmap (Quest, Vision Pro); January 2026 Reality Labs cuts and the Vision Pro production halt show platforms that depend on a headset partner inherit its retreat.",
+    "Use open interchange formats (OpenUSD/glTF-style) and engine-agnostic world descriptions so content is never stranded by an engine migration, as Horizon's Unity-to-Horizon Engine switch stranded its VR worlds.",
+    "Fund for a long runway at low usage rather than hype-scale burn: survivors (VRChat, Decentraland's vesting-funded Foundation) persisted by being cheap to keep alive; Rec Room died when it could no longer raise."
+  ],
+  "open_questions": [
+    "Decentraland 2025-2026 usage: no independent DAU/MAU figure was found; Foundation runway to February 2030 is known but burn rate is not.",
+    "Otherside: has any playable, persistent Otherside world shipped as of 2026? Searches surfaced no evidence.",
+    "Horizon Worlds mobile: Meta has published no MAU for the mobile pivot; is the 2025 'comeback' measurable?",
+    "VRChat finances: is the company profitable after the 2024 layoffs and the 2025 avatar marketplace, and what is the creator take-rate?",
+    "Rec Room: did the 1 June 2026 shutdown complete, and was there an acquisition (one low-quality source mentions Snap)?",
+    "The Sandbox: the bot allegation versus Animoca's denial is unresolved; no independent DAU exists.",
+    "Somnium Space and Voxels: no reliable 2024-2025 activity or pricing data was found.",
+    "Meta full-year 2025 Reality Labs loss and post-January-2026 headcount were not retrieved as primary figures (quarterly figures are).",
+    "Apple Vision Pro: all production and sales numbers are third-party estimates; Apple has not confirmed discontinuation.",
+    "Method gap: WebFetch was blocked by sandbox DNS and the shared search budget was exhausted before a confirmation pass; a follow-up should directly read the Meta 10-Q, the CoinDesk 38-DAU piece, Road to VR's Rec Room and VRChat articles, and Microsoft's Mesh retirement page."
+  ],
+  "claims": [
+    {
+      "claim": "In October 2022 the WSJ, citing internal Meta documents, reported Horizon Worlds had under 200,000 MAU against an end-2022 target of 500,000 (cut to 280,000), most users did not return after the first month, and only 9% of worlds were ever visited by 50+ people.",
+      "source_url": "https://www.cnbc.com/2022/10/15/meta-horizon-worlds-metaverse-losing-users-falling-short-of-goals.html",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No live evidence retrievable this session (search budget exhausted; WebFetch DNS failed for cnbc.com and en.wikipedia.org). Consistent with checker's prior knowledge at high confidence: WSJ 15 Oct 2022 reported <200k MAU, 500k target cut to 280k, most users not returning after month one, 9% of worlds visited by 50+ people. Low risk.",
+          "source_url": "https://www.cnbc.com/2022/10/15/meta-horizon-worlds-metaverse-losing-users-falling-short-of-goals.html"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "WSJ 15 Oct 2022 (via CNBC same day): under 200,000 MAU, 500,000 end-2022 goal cut to 280,000, most users gone after month one, only 9% of worlds visited by 50+ people. All figures, date and attribution correct per checker's knowledge. Live fetch failed (DNS blocked).",
+          "source_url": "https://www.cnbc.com/2022/10/15/meta-horizon-worlds-metaverse-losing-users-falling-short-of-goals.html"
+        }
+      ]
+    },
+    {
+      "claim": "Meta's Reality Labs segment lost $4,028M in Q1 2026 and $4,619M in Q2 2026 (H1 2026: $8,647M) on revenue of $402M and $431M, per Meta's Form 10-Q for the quarter ended June 30, 2026; Q4 2025 loss was $6.02B on $955M revenue.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026050705/meta-20260630.htm",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Could not fetch the 10-Q (sec.gov DNS failure) or Meta's investor site. Q4 2025 ($6.02B loss, $955M revenue) matches prior knowledge; Q1 2026 magnitudes are plausible vs Q1 2025 comparables ($412M rev, $4.21B loss); Q2 2026 (reported July 2026) is after the checker's knowledge cutoff and is wholly unverified. H1 arithmetic (4,028+4,619=8,647) is internally consistent. Fetch the 10-Q segment table directly to confirm.",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026050705/meta-20260630.htm"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Q4 2025 ($6.02B loss on $955M) confirmed from knowledge. Q1/Q2 2026 figures ($402M/-$4,028M; $431M/-$4,619M; H1 -$8,647M) are internally consistent and the SEC accession format is correct, but Q2 2026 post-dates checker knowledge and the 10-Q could not be fetched. Note a Q2 10-Q would not contain Q4 2025 figures; that part rests on the brief's separate CNBC cite.",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026050705/meta-20260630.htm"
+        }
+      ]
+    },
+    {
+      "claim": "On 17-18 March 2026 Meta announced Horizon Worlds would be delisted from Quest on 31 March and shut down in VR on 15 June 2026; CTO Andrew Bosworth reversed the decision within roughly 48 hours but only for existing Unity-built worlds, with new Horizon Engine worlds flatscreen-only.",
+      "source_url": "https://euronews.com/next/2026/03/20/meta-u-turns-on-horizon-worlds-vr-shutdown-after-user-backlash",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Euronews and Wikipedia unreachable. Broad arc (March 2026 announcement that Horizon Worlds would leave Quest VR with a mobile/Horizon Engine focus, rapid partial reversal attributed to Bosworth) is consistent with prior knowledge at medium confidence. The reversal scope (only existing Unity worlds; new Horizon Engine worlds flatscreen-only) and the exact dates (17/18 Mar, 31 Mar, 15 Jun) rest on a single secondary source and are the parts most at risk; cross-check against Meta's Horizon blog or Bosworth's post.",
+          "source_url": "https://euronews.com/next/2026/03/20/meta-u-turns-on-horizon-worlds-vr-shutdown-after-user-backlash"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Sequence (Feb 2026 mobile-only shift, mid-March VR shutdown notice, Bosworth reversal within ~2 days keeping VR only for existing worlds) matches checker's recall; exact dates (31 Mar delisting, 15 Jun VR end) and the Unity-vs-Horizon-Engine split could not be checked live. Nothing contradicts; researcher's medium confidence is appropriate.",
+          "source_url": "https://euronews.com/next/2026/03/20/meta-u-turns-on-horizon-worlds-vr-shutdown-after-user-backlash"
+        }
+      ]
+    },
+    {
+      "claim": "Microsoft closed AltspaceVR on 10 March 2023 (announced January 2023 alongside 10,000 layoffs) and then retired Microsoft Mesh as a standalone platform on 1 December 2025, replacing it with Teams 'immersive events' that support 16 participants in standard sessions versus Mesh's 330.",
+      "source_url": "https://techcommunity.microsoft.com/blog/microsoftteamsblog/immersive-events-in-microsoft-teams-now-generally-available/4468628",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Microsoft Tech Community page unreachable. AltspaceVR half (announced 18 Jan 2023 with the 10,000-job cut, closed 10 Mar 2023) is high-confidence prior knowledge. Mesh half is medium: checker recalls the 2025 Mesh retirement with the Toolkit retired first, Mesh immersive spaces in Teams capped at 16 and custom Mesh events at up to 330, but cannot confirm the 1 Dec 2025 date or that the '16 participants' figure applies to the new Teams immersive events rather than the old Teams immersive-space view.",
+          "source_url": "https://techcommunity.microsoft.com/blog/microsoftteamsblog/immersive-events-in-microsoft-teams-now-generally-available/4468628"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "AltspaceVR closure (announced 20 Jan 2023 with 10,000 layoffs, closed 10 Mar 2023) confirmed. Mesh retirement 1 Dec 2025 matches recall; Mesh's 330 limit is correct, but the '16 participants' figure for immersive events is unconfirmed and may be carried over from the older Teams immersive space. Source-support concern: the cited Teams blog is an immersive-events GA post and cannot support the AltspaceVR/layoff parts of the claim.",
+          "source_url": "https://techcommunity.microsoft.com/blog/microsoftteamsblog/immersive-events-in-microsoft-teams-now-generally-available/4468628"
+        }
+      ]
+    },
+    {
+      "claim": "On 7 October 2022 CoinDesk/DappRadar reported Decentraland had 38 daily active users (The Sandbox 522) using a metric that counts only wallets transacting with smart contracts; Decentraland countered with a self-reported ~8,000 DAU and 56,697 September MAU, and DappRadar later recalculated to ~650.",
+      "source_url": "https://www.coindesk.com/web3/2022/10/07/its-lonely-in-the-metaverse-decentralands-38-daily-active-users-in-a-13b-ecosystem",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "CoinDesk unreachable. All elements (38 and 522 DAU on 7 Oct 2022; DappRadar's smart-contract-wallet metric; Sam Hamilton's ~8,000 daily users and 56,697 September MAU; DappRadar's ~650 recalculation on 11 Oct 2022) match prior knowledge at high confidence. Minor: the Decentraland daily figure was reported as both ~7,000 (PC Gamer) and ~8,000 (Decentraland blog); the brief's own sources show both.",
+          "source_url": "https://www.coindesk.com/web3/2022/10/07/its-lonely-in-the-metaverse-decentralands-38-daily-active-users-in-a-13b-ecosystem"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "CoinDesk 7 Oct 2022 via DappRadar: Decentraland 38, Sandbox 522, wallet-transaction metric; Decentraland countered with ~8,000 daily and 56,697 Sept MAU; DappRadar recalculated to ~650. All consistent with checker's knowledge. Minor caveat: contemporaneous outlets quoted Hamilton's daily figure as 7,000 or 8,000 (the PC Gamer piece the brief also cites says 7,000).",
+          "source_url": "https://www.coindesk.com/web3/2022/10/07/its-lonely-in-the-metaverse-decentralands-38-daily-active-users-in-a-13b-ecosystem"
+        }
+      ]
+    },
+    {
+      "claim": "In August 2025 The Sandbox cut more than half of its ~250 staff, closed offices in five countries, sidelined co-founders Madrid and Borget under Animoca's Yat Siu, and was reported to have DAU down to a few hundred, after selling over $350M of land parcels in 2021 and raising ~$300M over eight years.",
+      "source_url": "https://www.coindesk.com/business/2025/08/28/the-sandbox-cuts-50-staff-restructures-as-animoca-brands-take-control",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "CoinDesk unreachable. Core restructuring (The Big Whale, Aug 2025: ~50% cut, Animoca control, Robby Yung as CEO, founders stepping back) is consistent with prior knowledge at medium confidence. Three elements look weakest and should be rechecked: (a) '~$300M raised over eight years' -- publicly known rounds (seed ~$2-3M, $93M Series B Nov 2021, ~$20M May 2024) sum to far less unless Animoca internal funding counts; (b) 'DAU a few hundred' is a single-source allegation Animoca disputed; (c) 'five countries' depends on whether Lyon (listed as 'expected') is counted alongside Argentina, Uruguay, South Korea, Thailand, Turkey.",
+          "source_url": "https://www.coindesk.com/business/2025/08/28/the-sandbox-cuts-50-staff-restructures-as-animoca-brands-take-control"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Aug 2025 restructuring (roughly half of ~250 staff cut, Animoca/Yat Siu control, co-founders sidelined, Robby Yung CEO, DAU reportedly in the hundreds, disputed) matches recall of The Big Whale/CoinDesk reporting but could not be fetched. Precision flag: public equity rounds sum to well under $300M; '~$300M raised over eight years' likely includes land/token sales and should be attributed to The Big Whale's tally, not stated as fact.",
+          "source_url": "https://www.coindesk.com/business/2025/08/28/the-sandbox-cuts-50-staff-restructures-as-animoca-brands-take-control"
+        }
+      ]
+    },
+    {
+      "claim": "Rec Room, once valued at $3.5B, laid off 16% of staff in March 2025 and about half (141 positions) in August 2025, disclosed that it kept only ~30 cents per dollar on UGC items versus ~70 cents on first-party items despite UGC revenue growing 70% YoY, and announced on 31 March 2026 that it would shut down on 1 June 2026.",
+      "source_url": "https://techcrunch.com/2026/03/31/social-gaming-platform-rec-room-once-valued-at-3-5b-is-shutting-down/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "TechCrunch unreachable. $3.5B valuation (Dec 2021), ~16% cut in Mar 2025 and ~half in Aug 2025 are high-confidence prior knowledge; the 30c-vs-70c margin and 70% YoY UGC growth are medium (recalled from Cameron Brown's Aug 2025 explanation). The 31 Mar 2026 shutdown announcement and 1 Jun 2026 shutdown date cannot be confirmed from memory and the brief itself lists completion and a possible Snap acquisition as open questions. This is the most consequential unverified claim for successor design and should be rechecked first.",
+          "source_url": "https://techcrunch.com/2026/03/31/social-gaming-platform-rec-room-once-valued-at-3-5b-is-shutting-down/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "$3.5B valuation (Dec 2021), March 2025 16% cut, Aug 2025 ~half/141 positions, and the 30c-vs-70c UGC margin with UGC revenue +70% YoY all match checker's recall of Aug 2025 coverage. The 31 Mar 2026 shutdown announcement and 1 Jun 2026 go-dark could not be fetched and recall is weak. Note the cited TechCrunch shutdown URL is unlikely to contain the margin figures; those come from the Road to VR piece the brief cites separately.",
+          "source_url": "https://techcrunch.com/2026/03/31/social-gaming-platform-rec-room-once-valued-at-3-5b-is-shutting-down/"
+        }
+      ]
+    },
+    {
+      "claim": "VRChat laid off about 30% of staff in June 2024, with CEO Graham Gaylor citing pandemic-era overhiring and a year-over-year shrinking user base, yet reached a record 148,886 concurrent users on 1 January 2026 and 158,192 at a Japanese-language concert in February 2026.",
+      "source_url": "https://www.roadtovr.com/vrchat-new-record-new-years-eve-2025-2026/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Road to VR unreachable. June 2024 ~30% layoff with Gaylor citing pandemic overhiring and a shrinking YoY user base is high-confidence prior knowledge. The 148,886 (1 Jan 2026) and 158,192 (Feb 2026 Japanese concert) concurrency figures are plausible given the ~136k 1 Jan 2025 trajectory but rest on a community-lead post and third-party trackers (VRChat publishes no official stats); the brief notes the 158,192 figure was 'corrected', implying an earlier misreport.",
+          "source_url": "https://www.roadtovr.com/vrchat-new-record-new-years-eve-2025-2026/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "June 2024 ~30% layoff with Gaylor citing pandemic overhiring and a year-over-year shrinking user base: confirmed from knowledge. 148,886 (1 Jan 2026) and 158,192 (Feb 2026 Japanese concert) could not be fetched; plausible given the ~136k Jan 2025 peak. The cited New Year's Eve URL would not contain the February figure (that is from the brief's second Road to VR URL). All VRChat 'records' are staff posts or third-party trackers, not official metrics.",
+          "source_url": "https://www.roadtovr.com/vrchat-new-record-new-years-eve-2025-2026/"
+        }
+      ]
+    },
+    {
+      "claim": "Yuga Labs' Otherdeed mint in April 2022 sold 55,000 parcels at 305 ApeCoin (~$5,800) each for about $317M and generated roughly $172M in Ethereum gas fees; Yuga later laid off staff (Oct 2023) and CEO Greg Solano said in April 2024 that 'Yuga lost its way'.",
+      "source_url": "https://www.theblock.co/linked/144549/otherside-land-nfts-sell-out-in-hours-as-yuga-labs-rakes-in-317-million",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "The Block unreachable. Mint facts (30 Apr 2022, 55,000 parcels, 305 APE ~$5,800, ~$317M), Oct 2023 layoffs, and Solano's 'Yuga lost its way' (April 2024 restructuring memo; he had returned as CEO in Feb 2024) match prior knowledge at high confidence. The '$172M gas' figure is medium: contemporaneous estimates ranged roughly $157M-$180M and the brief's own secondary source (Blockonomi) says $200M, so the number is not canonical.",
+          "source_url": "https://www.theblock.co/linked/144549/otherside-land-nfts-sell-out-in-hours-as-yuga-labs-rakes-in-317-million"
+        },
+        {
+          "verdict": "confirmed",
+          "note": "30 Apr-1 May 2022: 55,000 Otherdeeds at 305 APE (~$5,800) for ~$317M; Oct 2023 layoffs; Solano's April 2024 'Yuga lost its way'. All correct. Caveat: gas estimates in contemporaneous coverage ranged roughly $120M-$200M (commonly ~55,000 ETH, $157M-$176M); '$172M' is within range but not canonical and should be given as a range.",
+          "source_url": "https://www.theblock.co/linked/144549/otherside-land-nfts-sell-out-in-hours-as-yuga-labs-rakes-in-317-million"
+        }
+      ]
+    },
+    {
+      "claim": "IDC (via the Financial Times) estimated Apple shipped about 390,000 Vision Pro units in 2024; The Information reported production cuts in October 2024 and manufacturing partner Luxshare reportedly halted production in early 2025, with Apple never disclosing sales figures.",
+      "source_url": "https://www.businessoffashion.com/news/technology/apple-cuts-vision-pro-headset-prodcution/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "Business of Fashion unreachable. 'Apple never disclosed sales' and The Information's Oct 2024 production-cut report are high-confidence prior knowledge. The IDC '~390,000 for 2024' figure is medium-low: checker recalls IDC/FT estimates in the ~370k-400k range and analyst 'under 500k' framing, so 390k may be one of several snapshots. 'Luxshare halted production in early 2025' is medium-low; some reporting placed the halt instruction in late 2024. The researcher's 'all third-party' caveat is correct.",
+          "source_url": "https://www.businessoffashion.com/news/technology/apple-cuts-vision-pro-headset-prodcution/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Apple never disclosing sales: confirmed. The Information's Oct 2024 production-cut report and later Luxshare wind-down: consistent with knowledge. The 'IDC via FT ~390,000 units in 2024' figure could not be confirmed; third-party 2024 estimates clustered in the 400k-500k range, so 390k is plausible but single-source. Source-support concern: the BoF URL is a syndicated Bloomberg story on the production cut and predates/cannot contain the IDC estimate or Luxshare halt. Missing context: Apple shipped an M5 Vision Pro refresh in Oct 2025 at the same price, so the halt was of the original model, not the line.",
+          "source_url": "https://www.businessoffashion.com/news/technology/apple-cuts-vision-pro-headset-prodcution/"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "Tooling note: zero live evidence was obtained. The shared WebSearch budget (200/turn) was exhausted before this checker ran, and WebFetch failed DNS for all 20 URLs tried across 11 hosts (cnbc, sec.gov, euronews, techcommunity.microsoft, coindesk, techcrunch, roadtovr, theblock, businessoffashion, en.wikipedia, investor.atmeta). All verdicts are 'unverifiable' by rule; notes carry prior-knowledge triage only.",
+    "Roblox is the missing control group: the one UGC virtual world that scaled through 2016-2026 (DAU in the ~80M-100M+ range by 2025, creator payouts in the high hundreds of millions/yr). It is mobile-first, owns its engine and economy, keeps a large platform share per transaction, and grew via under-16s. Rec Room's 30c-vs-70c disclosure should be read against Roblox's publicly filed take-rate.",
+    "Fortnite/UEFN Creator Economy 2.0 (March 2023) pays creators from a pooled ~40% of net revenue by engagement rather than per-item sales, a structurally different answer to the UGC-margin problem the brief identifies.",
+    "Second Life itself did not die: Linden Lab reported it remained profitable at roughly ~1M MAU through the 2020s and shipped an official mobile client (beta 2024-25). A 2003 economy-first, user-owned world outlived Horizon, AltspaceVR, Mesh and (if claim 6 holds) Rec Room; that is the strongest datum for a 'nolife' successor.",
+    "Meta's January 2026 Reality Labs cuts (~10% of the division, several first-party VR studios closed, shift to AI glasses/wearables) are in the brief's source list but not its findings; they are the proximate cause of the March 2026 Horizon VR decision and should be linked to claim 2.",
+    "Meta's Horizon Engine / mobile pivot (Connect, Sept 2025) replaced Unity as the world runtime; this is the mechanism that stranded Unity-built VR worlds and explains the Unity-vs-Horizon-Engine split in claim 2. Design lesson: engine migrations strand UGC unless formats are open.",
+    "Smart glasses, not headsets, became the mass-market hardware story in 2025-26 (Ray-Ban Meta in the millions of units; Meta Ray-Ban Display Sept 2025). A successor targeting 'best graphics of the era' should plan for non-immersive wearables plus PC/mobile, reinforcing the brief's cross-platform conclusion.",
+    "An industry-standard activity metric already exists (authenticated session with >N minutes of input, as published by Roblox and Second Life); the brief recommends inventing a public metric but could instead adopt the existing one to end the DappRadar-vs-platform measurement dispute.",
+    "Recheck priority when tools are available: claim 6 (Rec Room shutdown; largest design consequence), claim 1 (fetch the 10-Q), claim 2 (reversal scope), claim 5 ($300M funding total), claim 9 (IDC number), claim 8 (gas figure).",
+    "Verification was blocked: all ten WebFetch calls failed with DNS ENOTFOUND, the shared WebSearch budget (200/turn) was already exhausted, and curl via the sandbox proxy returned 403. Verdicts rest on the checker's knowledge (reliable to mid-2026) and internal consistency; a follow-up with working fetch should prioritise the Meta 10-Q, Euronews, the Microsoft Teams blog, CoinDesk Sandbox, TechCrunch Rec Room, Road to VR VRChat and BoF Vision Pro pages.",
+    "Apple released an M5-based Vision Pro refresh on 22 Oct 2025 at the unchanged $3,499 price. The 'production halt' concerns the original M2 model; Apple has not exited the category. A successor's hardware plan should assume a small but persistent premium-headset market rather than a dead one.",
+    "Meta's cumulative Reality Labs operating losses passed $80B by end-2025 (FY2025 ~$19.2B) and the Jan 2026 layoffs explicitly redirected spend from VR to AI glasses. The subsidised-growth capital that funded the 2021-2025 wave is gone; a successor must be designed for capital efficiency from day one.",
+    "The surviving UGC economic models are Roblox (DAU on the order of 100M+ in 2025, ~$1B/yr creator payouts, roughly a quarter of spend reaching creators) and Fortnite/UEFN (40% of net revenue pool distributed by engagement). Both pay creators from a platform-controlled currency with the platform keeping the majority, the inverse of Rec Room's 30-cents-per-dollar problem. Model take-rates on these.",
+    "Second Life, the actual predecessor, is still alive and profitable at Linden Lab with on the order of 200,000+ MAU and a user-to-user economy in the hundreds of millions of dollars per year, because it was never VR-gated, never tokenised land, and charged recurring land tier. Its failed VR-first successor Sansar (2017-2020, sold to Wookey) is the closest analogue to this brief's VR-first failure pattern and deserves its own postmortem in the nolife plan.",
+    "Several claims bundle facts from multiple reports under a single URL that cannot contain them (claims 3, 6, 7, 9). The researcher's brief body cites the right secondary sources; the key-claim list should cite the specific source for each sub-fact to survive a source-support audit.",
+    "Every disputed number in the brief (Horizon leaks, Decentraland 38-vs-8,000, Sandbox bot allegations, VRChat staff-posted records) arises from platforms not publishing auditable activity metrics. A public, precisely defined DAU metric with a third-party-readable API is the highest-leverage trust feature a successor can ship."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/successors-wave2-metaverse-refute.md",
+    "docs/research/fact-checks/successors-wave2-metaverse-precision.md"
+  ]
+}

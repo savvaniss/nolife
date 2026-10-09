@@ -1,0 +1,220 @@
+{
+  "key": "sl-ux-onboarding-governance",
+  "title": "Second Life UX, onboarding, retention, governance and public perception",
+  "file": "docs/research/briefs/sl-ux-onboarding-governance.md",
+  "summary": "IMPORTANT CAVEAT: this session had no working network. The shared WebSearch budget was already exhausted before my first query, and every WebFetch (wikipedia.org, wired.com, techcrunch.com, secondlife.com, wiki.secondlife.com, community.secondlife.com, nwn.blogs.com) failed DNS resolution because the environment's network policy denies outbound hosts. Zero searches and zero fetches succeeded, so the required method (10 searches, 6 fetched sources) could not be executed. Rather than fabricate fetched results, I wrote the brief from prior knowledge of the published record, tagged every claim with a confidence level and the canonical URL to verify, and the file carries a prominent verification banner. Treat it as a draft requiring confirmation once network access is allowed in the environment settings.\n\nSubstantive findings. Second Life's headline \"Residents\" count (1M Oct 2006, ~15M 2008, 36M accounts by June 2013) counted every sign-up ever; independent critics (Clay Shirky, Dec 2006) showed active users were a fraction of that. The retention figure Linden itself gave the press in 2007 was that only about 10% of sign-ups were still active after 30 days, and executives (Rosedale, Humble, Altberg) repeatedly said most newcomers were lost in the first hour. Company claims in 2013-2016 of ~400,000 sign-ups/month against ~900k-1M monthly actives imply the same leaky funnel a decade later. Root causes: a heavy GPU-dependent streamed viewer that exposed the full creator toolchain at login; a region-sharded architecture (~30,000 regions at the 2010 peak vs ~60k concurrency, ~40-100 avatars per region cap) that made the world deserted by construction; no goals or social hook in the first hour; and repeated orientation redesigns (Orientation Island, Viewer 2 in Feb 2010, Basic mode 2011) that never moved the funnel. Trust was damaged by griefing (grey goo Nov 2006, Anshe Chung Dec 2006), CopyBot (Nov 2006), the Ginko bank collapse (Aug 2007) and gambling/banking bans. Corporate presence (American Apparel 2006-07, Reuters bureau Oct 2006-early 2009, IBM, Coca-Cola, Sweden's embassy 30 May 2007) collapsed into the July 2007 LA Times and Wired backlash. Governance oscillated between hands-off and unilateral decree: Zindra adult segregation (announced 12 Mar 2009), Openspace repricing (Oct 2008), education discount removal (Oct 2010), the 30% layoffs (9 June 2010), and the 15 Aug 2013 ToS Section 2.3 content-licence grab that drove Renderosity and CGTextures to ban their assets. Resident institutions (CDS constitution since 2004, Virtual Ability since 2007, resident-run SL9B/SL10B, Relay for Life, live music) are what retained people, and they had no platform-level powers.",
+  "design_implications": [
+    "Instrument and publish first-hour and 30-day retention from day one, and define first-hour success as 'connected with a specific person or group', not 'created an avatar'.",
+    "Replace region sharding with interest-based instancing and density management so newcomers always spawn where there are people and a host; the world must never look emptier than its population.",
+    "Ship two interfaces to one world: a consumer client that hides the creator toolchain until requested, and a creator/pro mode, so incumbent power users cannot veto the newcomer experience (the Viewer 2 / Firestorm lesson).",
+    "Run in the browser or a thin client with pre-baked or server-assisted rendering so a discrete GPU is not the price of admission and something finished appears within seconds (no grey un-rezzed world).",
+    "Provide purpose without quests: host-led activities, scheduled events, apprenticeship paths into existing communities (music, building, education, disability support) and visible community goals, since these are what retained SL residents.",
+    "Adopt constitutional governance: a published charter, a resident assembly with real but bounded powers, independent dispute resolution, and mandatory notice-and-consultation periods for ToS and pricing changes so Zindra/Openspace/2013-ToS style shocks cannot happen by blog post.",
+    "Content rights stay with creators by default under a narrow explicit operating licence; enforce permissions server-side with provenance tracking so a CopyBot cannot collapse trust in the economy.",
+    "Build maturity zoning and age assurance in from the start, with adult communities given first-class but segregated space rather than a forced 2009-style relocation.",
+    "Do not sell land to brands; sell hosted, programmed, measurable experiences or decline corporate presence entirely, to avoid a repeat of the 2007 press backlash.",
+    "Guarantee pricing stability for education, non-profit and disability institutions, because those communities create the world's reputation and were the first to leave when tier doubled."
+  ],
+  "open_questions": [
+    "Network access must be restored (allow en.wikipedia.org, wired.com, techcrunch.com, secondlife.com, wiki.secondlife.com, community.secondlife.com, nwn.blogs.com, gridsurvey.com in the environment's Network settings) and the web-search budget reset so that every claim in the file can be verified; none was fetched in this session.",
+    "What are the exact Linden-published first-hour, day-7 and day-30 retention figures (Humble 2011-2013, Altberg 2014-2019), and were any independently verified?",
+    "How many regions did Zindra comprise at opening, and how many adult businesses relocated versus closed?",
+    "What were Linden's actual revenue splits (tier vs Marketplace vs premium vs LindeX fees) across 2007-2020?",
+    "Did Basic mode (2011) measurably improve retention, and why was it withdrawn?",
+    "What share of the 2010-2011 education exodus returned after the 2013 discount reinstatement?",
+    "What is the precise wording and date of the 2014 ToS Section 2.3 revision, and did Renderosity/CGTextures lift their bans?",
+    "Which SL Birthday years were fully resident-run, and what did Linden's withdrawal do to attendance?"
+  ],
+  "claims": [
+    {
+      "claim": "Linden Lab told the press in 2007 (LA Times, 14 July 2007) that only about 10% of new sign-ups were still active 30 days later; this remained the standard retention figure cited through the decade. NOT VERIFIED IN SESSION (network blocked).",
+      "source_url": "https://en.wikipedia.org/wiki/Second_Life",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "No source reachable (search budget exhausted; WebFetch DNS/refusal on wikipedia, latimes, wired, archive.org). Recollection: the ~10%-of-sign-ups-remain figure circulated in mid-2007 and is most reliably anchored to Wired 15.08 and Rosedale interviews; attribution to the 14 Jul 2007 LA Times Semuels piece is the weakest link and may be a misattribution rather than a wrong number.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "No search or fetch succeeded (WebSearch budget exhausted; proxy returns 403 to CONNECT for wikipedia.org and DNS fails for latimes/other hosts). Checker recollection agrees the LA Times piece (Semuels, 14 Jul 2007) exists and discussed registered-vs-active accounts, but cannot confirm the 10%/30-day phrasing or that it was attributed to a Linden spokesperson rather than derived by the reporter. The add-on 'remained the standard figure cited through the decade' is unsupported and conflicts with the brief's own later Humble/Altberg funnel figures; drop it.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life"
+        }
+      ]
+    },
+    {
+      "claim": "Wired 15.08 (Frank Rose, published 24 July 2007) ran 'How Madison Avenue Is Wasting Millions on a Deserted Second Life', documenting brand sites with near-zero visitors; Time listed SL among its 5 worst websites of 2007. NOT VERIFIED IN SESSION.",
+      "source_url": "https://www.wired.com/2007/07/ff-sheep/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "wired.com and archive.org unreachable. Recollection: title, author Frank Rose, issue 15.08 and URL wired.com/2007/07/ff-sheep match; 24 Jul 2007 posting is plausible for the August 2007 issue; Time's July 2007 '5 Worst Websites' list included Second Life. Nothing recalled that refutes it.",
+          "source_url": "https://www.wired.com/2007/07/ff-sheep/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "wired.com fetch refused. Checker recollection matches: Wired 15.08 (Aug 2007 issue), Frank Rose, online 24 Jul 2007, slug ff-sheep; Time's 5 Worst Websites of 2007 included Second Life. Not confirmed against the page.",
+          "source_url": "https://www.wired.com/2007/07/ff-sheep/"
+        }
+      ]
+    },
+    {
+      "claim": "On 9 June 2010 Linden Lab laid off about 30% of its staff (roughly 100 people); CEO Mark Kingdon left on 24 June 2010, Philip Rosedale returned as interim CEO, and Rod Humble became CEO from January 2011. NOT VERIFIED IN SESSION.",
+      "source_url": "https://techcrunch.com/2010/06/09/linden-lab-lays-off-30-of-its-staff/",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "techcrunch.com, nytimes.com, theguardian.com unreachable. Recollection matches: ~30% of ~300+ staff cut on 9 Jun 2010; Kingdon departure announced 24 Jun 2010 with Rosedale interim; Humble announced Dec 2010, effective Jan 2011.",
+          "source_url": "https://techcrunch.com/2010/06/09/linden-lab-lays-off-30-of-its-staff/"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "techcrunch.com unreachable. Recollection matches the 9 Jun 2010 30% layoff, Kingdon's exit announced 24 Jun 2010 with Rosedale interim, and Humble announced 23 Dec 2010 to start Jan 2011. Note that 'roughly 100 people' is the researcher's derivation from ~300+ staff, not a reported figure; label it as such.",
+          "source_url": "https://techcrunch.com/2010/06/09/linden-lab-lays-off-30-of-its-staff/"
+        }
+      ]
+    },
+    {
+      "claim": "On 15 August 2013 Linden Lab changed ToS Section 2.3 to claim a royalty-free, perpetual, irrevocable, sublicensable licence to use, modify, 'sell, re-sell' user content; Renderosity and CGTextures banned use of their assets in SL and the language was softened in 2014 under Ebbe Altberg. NOT VERIFIED IN SESSION.",
+      "source_url": "https://en.wikipedia.org/wiki/Linden_Lab",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "community.secondlife.com, nwn.blogs.com, wikipedia unreachable. Recollection: 15 Aug 2013 effective date and the quoted Section 2.3 licence language are correct; Renderosity and CGTextures restrictions reported Sept-Oct 2013; the softened Section 2.3 (dropping 'sell, re-sell') took effect around July 2014 under Altberg (appointed Feb 2014). Exact 2014 date and whether vendor bans were lifted remain open.",
+          "source_url": "https://en.wikipedia.org/wiki/Linden_Lab"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable. Recollection matches: ToS revision dated 15 Aug 2013 with the quoted licence language; Renderosity and CGTextures banned SL use in autumn 2013; Section 2.3 revised mid-2014 (recollection: July/Aug 2014) after Altberg took over Feb 2014. The 2014 revision date remains the weakest element.",
+          "source_url": "https://en.wikipedia.org/wiki/Linden_Lab"
+        }
+      ]
+    },
+    {
+      "claim": "Linden announced the General/Moderate/Adult maturity system on 12 March 2009 and relocated adult mainland content to the Zindra continent (working name Ursula, renamed by resident vote), which opened in June 2009 with age/payment verification required for Adult regions. NOT VERIFIED IN SESSION.",
+      "source_url": "https://wiki.secondlife.com/wiki/Zindra",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "wiki.secondlife.com and wikipedia unreachable. Recollection matches: Linden 'Adult content' blog post 12 Mar 2009; Ursula renamed Zindra by resident vote (May 2009); opened to residents June 2009 with migration through summer; Adult access required age verification or payment info on file. Region count at opening not recalled.",
+          "source_url": "https://wiki.secondlife.com/wiki/Zindra"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "wiki.secondlife.com unreachable. Recollection matches: adult-content/maturity announcement 12 Mar 2009; working name Ursula; 'Zindra' chosen by resident poll (May 2009); opened June 2009 with migration over the summer; Adult access originally required age verification OR payment info on file (later broadened to 'account verification'). Region count unconfirmed.",
+          "source_url": "https://wiki.secondlife.com/wiki/Zindra"
+        }
+      ]
+    },
+    {
+      "claim": "CopyBot, built by libsecondlife members, appeared in November 2006 and could duplicate any visible object or avatar; Linden declared it a ToS violation on 14 Nov 2006 and merchants closed shops in protest. NOT VERIFIED IN SESSION.",
+      "source_url": "https://en.wikipedia.org/wiki/CopyBot",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "wikipedia unreachable. Recollection matches (libsecondlife origin, Nov 2006, Ondrejka blog ~14 Nov 2006 declaring ToS violation, merchant shop closures). Nuance: CopyBot copied prim geometry/textures and avatar appearance but not scripts, and began as an internal libsecondlife debugging tool that leaked.",
+          "source_url": "https://en.wikipedia.org/wiki/CopyBot"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable. Dates and attribution (libsecondlife members, Nov 2006, Linden ToS statement 14 Nov 2006, merchant shop closures) match recollection. Precision issue: CopyBot copied visible geometry, textures and avatar appearance but NOT scripts or object inventory; 'duplicate any visible object' overstates it and should be narrowed.",
+          "source_url": "https://en.wikipedia.org/wiki/CopyBot"
+        }
+      ]
+    },
+    {
+      "claim": "Reuters opened a Second Life bureau in October 2006 (Adam Pasick, 'Adam Reuters') and wound it down by early 2009; American Apparel opened the first real-world retail store in June 2006 and closed it in 2007; Sweden's Second House of Sweden opened 30 May 2007. NOT VERIFIED IN SESSION.",
+      "source_url": "https://en.wikipedia.org/wiki/Second_Life",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "reuters.com, sweden.se, wikipedia unreachable. Recollection matches all three: Reuters bureau opened 15/16 Oct 2006 with Adam Pasick ('Adam Reuters'), succeeded by Eric Krangel, closed around Feb-Mar 2009; American Apparel opened June 2006 and closed in 2007; Second House of Sweden inaugurated 30 May 2007 by Carl Bildt.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable. Recollection matches: Reuters bureau opened mid-Oct 2006 with Adam Pasick, Eric Krangel succeeded him, bureau effectively closed early 2009; American Apparel opened June 2006 and closed in 2007 (recollection: autumn 2007); Second House of Sweden opened 30 May 2007 (Carl Bildt). None confirmed.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life"
+        }
+      ]
+    },
+    {
+      "claim": "Independent Grid Survey counts put the world at a peak of roughly 31,000-32,000 regions in mid-2010, falling to roughly 23,000-24,000 by 2016-2018, against peak concurrency of about 88,000 avatars in 2009, i.e. under two avatars per region on average. NOT VERIFIED IN SESSION.",
+      "source_url": "http://www.gridsurvey.com/",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "gridsurvey.com unreachable (also via archive.org). Recollection: peak ~31,800 regions around June 2010 and ~88,000 peak concurrency in early 2009 are in the right range; 2016-2018 floor of ~23-25k is plausible but exact values need gridsurvey.com. Caveat: the 'under two avatars per region' ratio mixes 2009 concurrency with 2010 region counts; same-date figures should be used.",
+          "source_url": "http://www.gridsurvey.com/"
+        },
+        {
+          "verdict": "corrected",
+          "note": "Underlying figures (peak just under 32,000 regions mid-2010; ~23-24k by 2016-18; all-time concurrency record ~88,000 in early 2009) match recollection but gridsurvey.com was unreachable so they stay unconfirmed. The derived figure is wrong on the brief's own numbers: 88,000 / ~31,500 regions = ~2.8 avatars per region, not 'under two', and it mixes a 2009 concurrency peak with a 2010 region peak. Corrected: at typical concurrency (40-60k) across ~30k regions the average was ~1.3-2 avatars per region; even at the all-time concurrency peak it was under three. The 'ghost town by construction' conclusion survives.",
+          "source_url": "http://www.gridsurvey.com/"
+        }
+      ]
+    },
+    {
+      "claim": "Linden Lab ended the 50% education/non-profit region discount effective 1 January 2011 (announced October 2010), driving a university exodus to OpenSimulator; the discount was partially reinstated in 2013. NOT VERIFIED IN SESSION.",
+      "source_url": "https://en.wikipedia.org/wiki/Second_Life_in_education",
+      "confidence": "high",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "wikipedia unreachable. Recollection matches: announcement 4 Oct 2010, effective 1 Jan 2011; 50% discount for accredited education and registered non-profits reinstated in 2013. 'Driving a university exodus' is supported anecdotally by press but not quantified.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life_in_education"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable. Recollection matches: announced 4 Oct 2010, effective 1 Jan 2011, institutional full-region tier from US$147.50 to US$295/month, exodus to OpenSimulator. Reinstatement announced May 2013 restored a 50% discount on private-region fees for accredited institutions/non-profits; 'partially' is only right if the researcher names what was excluded (recollection: setup fees), otherwise drop the qualifier.",
+          "source_url": "https://en.wikipedia.org/wiki/Second_Life_in_education"
+        }
+      ]
+    },
+    {
+      "claim": "The Confederation of Democratic Simulators, founded in 2004 as the Neualtenburg Projekt, operates under a written constitution with a Representative Assembly, Scientific Council and Guild, holds elections and still exists, but has never held any platform-level powers beyond land it pays tier on. NOT VERIFIED IN SESSION.",
+      "source_url": "https://en.wikipedia.org/wiki/Confederation_of_Democratic_Simulators",
+      "confidence": "medium",
+      "checks": [
+        {
+          "verdict": "unverifiable",
+          "note": "wikipedia unreachable. Recollection matches: Neualtenburg Projekt founded 2004 (renamed Neufreistadt 2006), constitution with Representative Assembly, Scientific Council and Artisanal Collective/Guild, elections, multiple regions, still operating. 'No platform-level powers' is true by construction since Linden has never delegated governance powers to resident bodies beyond standard estate tools.",
+          "source_url": "https://en.wikipedia.org/wiki/Confederation_of_Democratic_Simulators"
+        },
+        {
+          "verdict": "unverifiable",
+          "note": "Wikipedia unreachable. Recollection matches: founded 2004 as Neualtenburg Projekt, original region renamed Neufreistadt after the 2006 split, branches are Representative Assembly, Scientific Council and Artisanal Collective/Guild, regular elections, several regions. 'Still exists' was true as of checker's knowledge but should be confirmed on the CDS's own site, not Wikipedia. 'No platform-level powers' is a true-by-construction characterisation rather than a sourced statement.",
+          "source_url": "https://en.wikipedia.org/wiki/Confederation_of_Democratic_Simulators"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "VERIFIER HAD NO NETWORK ACCESS: the shared WebSearch budget (200/turn) was already exhausted and every WebFetch failed (DNS or refused) for wikipedia, wired, techcrunch, secondlife.com, gridsurvey, latimes, reuters, guardian, nytimes, nwn.blogs.com, sweden.se and web.archive.org. All verdicts default to unverifiable per the lens; notes are recollection only. Re-run research and verification in a networked session before quoting anything.",
+    "Linden Lab's own successor attempt Sansar (announced 2014, opened 2017, sold to Wookey 2020) failed despite far better graphics and VR support because it launched without a user-owned economy, persistent institutions or resident content; the brief's design section does not learn from Sansar, which is the most direct evidence that graphics alone do not create retention. (recollection; verify)",
+    "High Fidelity (Rosedale, 2013-2019) also pivoted away from a social virtual world to spatial audio after failing to sustain concurrency, despite being open-source and distributed; two post-SL projects by SL's founders failed on community rather than technology. (recollection; verify)",
+    "Linden shipped an official mobile viewer (iOS/Android, 2024) and a PBR/glTF rendering pipeline (2023-2024), so 'thin client' and 'modern graphics' recommendations describe what the incumbent is already doing; a successor must differentiate elsewhere. (recollection; verify)",
+    "Tilia, Linden's licensed money-transmitter subsidiary, underpins the creator cash-out economy; a successor with cash-out needs an equivalent regulated payments entity from day one, which the brief omits. (recollection; verify)",
+    "Age assurance in Second Life changed materially in 2024-2025 (moves toward mandatory age verification for Adult access under UK and other regulation), which bears on the 'maturity zoning built in' recommendation. (recollection; verify)",
+    "Recent Linden-stated scale (2022-2024 interviews): roughly 200,000 daily users, ~750,000-900,000 monthly actives and ~350,000 new sign-ups per month, implying the first-hour funnel problem is unchanged two decades on. (recollection; verify)",
+    "Network block: all WebFetch calls failed (proxy gateway answers 403 to CONNECT for en.wikipedia.org; DNS failure for wired.com, techcrunch.com, wiki.secondlife.com, gridsurvey.com, nwn.blogs.com, community.secondlife.com) and the shared per-turn WebSearch budget was already exhausted, so zero claims were checked against a source. Every verdict is based on checker recollection and internal consistency only; a networked re-run is required before any figure is quoted.",
+    "Linden Lab already built and abandoned a successor: Sansar (open beta July 2017, VR-first, experience-based rather than one contiguous world) never carried over SL's users, inventory or economy, lost most of its team in 2019-2020 and was sold to Wookey Project Corp in March 2020. A nolife plan must say explicitly why it avoids Sansar's failure modes (no creator economy at launch, no continuity of avatars/inventory, hardware barrier worse than SL's).",
+    "A convertible in-world currency is a regulated money-transmission business: Linden spun out Tilia (2019) and obtained US money-transmitter licences to keep the LindeX and cash-outs running. A successor with real-money cash-out must plan compliance from day one.",
+    "Philip Rosedale's High Fidelity pivoted away from social VR in 2019; his own post-mortems argue SL survived because of its economy and existing communities, not graphics. This cuts against a 'best graphics' thesis as the primary retention lever.",
+    "OpenSimulator/Hypergrid is the open, federated alternative built on SL's protocols and is where the 2010-2011 education exodus went; it shows federated land is far cheaper but fragments identity and economy.",
+    "Linden stopped publishing detailed economic and concurrency statistics around 2010-2011, so post-2011 retention/population figures are interview statements or third-party estimates (Grid Survey for regions). The researcher's open question about Linden-published first-hour/day-30 retention is unlikely to be answerable from primary sources.",
+    "Internal precision problems in the brief found without network access: claim 7's 'under two avatars per region' arithmetic is wrong for the numbers given; claim 0's 'standard figure through the decade' is unsupported; claim 5 overstates CopyBot (it could not copy scripts or inventory); claim 2's '~100 people' is a derivation, not a reported figure."
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/sl-ux-onboarding-governance-refute.md",
+    "docs/research/fact-checks/sl-ux-onboarding-governance-precision.md"
+  ]
+}

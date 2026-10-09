@@ -1,0 +1,193 @@
+{
+  "key": "legacy-interop",
+  "title": "Legacy content, interoperability and the people a successor must serve",
+  "file": "docs/research/briefs/legacy-interop.md",
+  "summary": "The OpenSimulator hypergrid is the only existing \"elsewhere\" for SL communities: ~45k monthly actives and ~163k standard-region equivalents (Jan 2026) across hundreds of grids, regions priced $8-40/month, with OAR/IAR archives as the migration mechanism; but its largest free grid, OSgrid, wiped its database in March 2025 and was offline for weeks in May-June 2026 after an asset-filesystem failure. SL content export is governed by rights not formats: viewer export (Kokua/Firestorm) is creator-only, SL never adopted the OpenSim Export permission bit, the 2013 ToS Section 2.3 episode left creators distrustful, and Linden Lab's modernisation is slow (glTF mesh import mid-2024 to mid-2025, scene import decomposed in 2025, Project Zero browser streaming killed April 2026, mobile still beta, CCUG now discussing USD). Standards are converging on glTF (+VRM 1.0 for humanoids) for runtime and OpenUSD for scenes (AOUSD Core Spec 1.0 March 2026, ISO process for 1.1 July 2026, new characters/animation group), while proprietary avatar services (Ready Player Me, shut 31 Jan 2026 after Netflix acquisition) are dying and VRChat's Avatar Marketplace (May 2025, 600-credit floor, $100 payouts, undisclosed split) sets the economy comparator. The SL audience is older (sample means ~45 male / ~39 female), long-tenured, and organised around education (VWBPE, 2,200-3,500 attendees claimed), disability (Virtual Ability, 1,000+ members), live music (Cafe Musique 60+ shows/week) and roleplay; it is distinct from VRChat's ~120k weekend concurrents, Japan-heavy, younger VR crowd. Page fetching was blocked; all facts rest on search extracts, with gaps on current grid pricing, official SL/VRChat demographics and 2026 round-table content.",
+  "design_implications": [
+    "Ship OAR and IAR import (terrain, objects, prim/sculpt/llmesh geometry, LSL script text, inventory) on day one; it is the only existing mass-migration path and the OpenSim diaspora already uses it after OSgrid's 2025 wipe and 2026 outage.",
+    "Adopt glTF 2.0 with VRM 1.0 extensions as the canonical runtime asset and OpenUSD as the scene/authoring interchange, matching where AOUSD, MSF and even Linden Lab's CCUG are heading.",
+    "Implement a creator-set Export permission bit from launch and honour it in every client; SL never shipped it and that absence is why SL content cannot legally follow residents.",
+    "Write the content licence in plain language with a defined 'affirmative action' clause for any platform re-use; the 2013 Section 2.3 episode is institutional memory among creators.",
+    "Provide a first-party, open-licensed Bento/BOM-class avatar body and a vendor opt-in programme, because SL avatar looks are no-mod third-party bodies that cannot be imported.",
+    "Prioritise stability, inventory integrity and reliable teleport over graphics features; those top resident complaints over twenty years and asset loss destroys trust (OSgrid).",
+    "Target desktop first and native mobile second; do not depend on a streamed browser viewer as the on-ramp (Project Zero was cancelled after 14 months).",
+    "Design for a 40-60-year-old, long-tenured audience: text-chat parity, accessibility (Virtual Ability, Radegast lineage), event tooling for live music and education, and land/group governance for roleplay sims.",
+    "Keep an economy with low minimum prices and creator-friendly, transparent payout terms; VRChat's 600-credit floor, $100 payout threshold and undisclosed split are the comparator to beat.",
+    "Price land competitively with hypergrid norms ($8-40/month per region) and consider Kitely-style idle-region suspension to make that sustainable."
+  ],
+  "open_questions": [
+    "Current (2026) Kitely, DigiWorldz and OSgrid pricing and region counts, and whether OSgrid fully recovered after June 2026.",
+    "The actual July 2026 OpenSim active-user record figure (headline only was retrieved).",
+    "Whether Linden Lab will ship a glTF scene importer or an OpenUSD path, and its Land Impact rules for scenes.",
+    "Any post-2008 official Second Life demographic data (age, gender, tenure, country) and 2026 concurrency/daily-login figures.",
+    "VRChat's official age/gender split and the real Avatar Marketplace revenue share.",
+    "Whether major SL mesh-body vendors (Maitreya, Legacy, LeLutka etc.) would license bodies for an Export-enabled successor.",
+    "Firestorm's current export behaviour in SL and on OpenSim after the 2025-26 viewer merges.",
+    "Metaverse Standards Forum 2026 membership and the status of its avatar/wearables working groups.",
+    "Content of any 2026 Linden Lab Community Round Table and the 2026 roadmap statements."
+  ],
+  "claims": [
+    {
+      "claim": "Hypergrid Business's January 2026 tally counted public OpenSim at 162,771 standard-region equivalents, 44,867 monthly active users and 493,939 registered users (adjusted for an OSgrid user modelling all of North America, which inflated raw regions to ~988,206).",
+      "source_url": "https://www.hypergridbusiness.com/2026/01/opensim-land-grows-as-traffic-slows-slightly/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 0,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://www.hypergridbusiness.com/2026/01/opensim-land-grows-as-traffic-slows-slightly/",
+          "note": "HB Jan 15, 2026: 162,771 region equivalents, 44,867 actives, 493,939 registered with OSgrid adjustment; raw 988,206; 825,435 estimated North America experiment regions excluded."
+        }
+      ]
+    },
+    {
+      "claim": "OSgrid announced in February 2025 it would wipe its database on March 21, 2025, and in spring 2026 went offline for over three weeks after hitting asset-filesystem metadata size limits, with completion expected ~June 21-22, 2026.",
+      "source_url": "https://www.hypergridbusiness.com/?p=79686",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 1,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://www.hypergridbusiness.com/?p=79686",
+          "note": "Feb 2025 wipe article (March 21, five weeks) exists; June 15, 2026 HB article: asset filesystem metadata size limits, third week down, tracker 40%->83%, expected June 21 (approximate). No source confirms reopening."
+        }
+      ]
+    },
+    {
+      "claim": "Linden Lab announced on April 21, 2026 that it was ending Project Zero, its AWS-streamed browser viewer, 14 months after launch, despite claiming in September 2025 a '10x' increase in people trying SL via Zero and the mobile app.",
+      "source_url": "https://modemworld.me/tag/project-zero/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 2,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://modemworld.me/tag/project-zero/",
+          "note": "End announced April 21, 2026 (post Apr 22), 14 months after launch, stayed in beta; May 2026 Web UG lists it closed, Lab calls it an experiment. The Sept 2025 '10x' figure was not in extracts (unverified sub-claim)."
+        }
+      ]
+    },
+    {
+      "claim": "glTF mesh import in Second Life has been possible since mid-2024 with public viewer release mid-2025 (converted to llmesh); the full glTF scene importer was broken into smaller projects in April 2025; in July 2026 Geenz Linden solicited requests for an extensible glTF variant, with creators asking for hierarchies with proper origins and OpenUSD support.",
+      "source_url": "https://modemworld.me/2026/07/03/2026-week-27-sl-ccug-meeting-summary-updating-sl-mesh/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 3,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://modemworld.me/2026/07/03/2026-week-27-sl-ccug-meeting-summary-updating-sl-mesh/",
+          "note": "July 2, 2026 CCUG: Geenz Linden asked about an easier-to-extend glTF variant; requests included more material faces, glTF hierarchies with proper origins, OpenUSD support. mid-2024/mid-2025 import timeline and April 2025 decomposition not in extracts (unverified sub-claims)."
+        }
+      ]
+    },
+    {
+      "claim": "Collada export in SL viewers (Kokua 2013, code from Singularity) honours permissions so only objects the user created can be exported; the OpenSim 'Export' permission bit was proposed by Firestorm in September 2012 explicitly to attract creators to OpenSim and does not stop Copybot-style theft.",
+      "source_url": "https://www.hypergridbusiness.com/2012/09/hypergrid-permissions-need-viewer-change/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 4,
+          "verdict": "unverifiable",
+          "searched": false,
+          "note": "not searched (budget); consistent with prior knowledge"
+        }
+      ]
+    },
+    {
+      "claim": "The August 2013 ToS Section 2.3 revision caused creators to fear Linden Lab could sell or license their content; the July 16, 2014 revision limited use to 'inworld or otherwise on the Service' and required an undefined 'affirmative action' for sublicensing.",
+      "source_url": "https://modemworld.me/2014/07/16/lab-updates-section-2-3-of-their-terms-of-service-will-it-calm-doubts/",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 5,
+          "verdict": "unverifiable",
+          "searched": false,
+          "note": "not searched (budget); consistent with prior knowledge"
+        }
+      ]
+    },
+    {
+      "claim": "AOUSD ratified OpenUSD Core Specification 1.0 in March 2026 with a new Characters, Motion and Interactivity interest group, and on July 21, 2026 added ByteDance, Huawei, Physicl and Unity and began ISO certification of Core Spec 1.1.",
+      "source_url": "https://www.linuxfoundation.org/press/aousd-drives-global-3d-data-interoperability-ai-workflows-with-core-spec-milestones-and-members",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 6,
+          "verdict": "corrected",
+          "searched": true,
+          "source_url": "https://www.linuxfoundation.org/press/aousd_prmarch2026",
+          "note": "Core Spec 1.0 was released/ratified around early January 2026 (Digital Production Jan 5, 2026), not March. March 25, 2026 release announced 7 new general members and the CMI interest group (charter approved Mar 2, 2026). July 21, 2026 part confirmed: ByteDance, Huawei, Physicl, Unity as General Members; ISO process begun for Core Spec 1.1; public GitHub repo (https://www.linuxfoundation.org/press/aousd-drives-global-3d-data-interoperability-ai-workflows-with-core-spec-milestones-and-members)."
+        }
+      ]
+    },
+    {
+      "claim": "Netflix acquired Ready Player Me on December 19, 2025 and RPM shut down its public services, including the PlayerZero creator, on January 31, 2026; apps can no longer create or update avatars.",
+      "source_url": "https://genies.com/blog/ready-player-me-shutdown",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 7,
+          "verdict": "corrected",
+          "searched": true,
+          "source_url": "https://www.pocketgamer.biz/netflix-acquires-avatar-creation-platform-ready-player-me",
+          "note": "Acquisition reported December 22, 2025, not Dec 19 (no extract supports Dec 19); price undisclosed, ~20 staff moving. Shutdown of external services Jan 31, 2026 confirmed (Schultz: creator tools Jan 30), PlayerZero and Avatar Creator SDK included."
+        }
+      ]
+    },
+    {
+      "claim": "VRChat's Avatar Marketplace (announced May 14, 2025; rules effective August 15, 2025) requires sellers to be 18+, sets a 600-credit minimum per distinct avatar, requires $100 earned credits for payout with one request per two weeks, and does not publish the revenue split.",
+      "source_url": "https://hello.vrchat.com/legal/economy",
+      "confidence": "high",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 8,
+          "verdict": "corrected",
+          "searched": true,
+          "source_url": "https://creators.vrchat.com/economy/welcome-to-the-ce",
+          "note": "$100 minimum payout confirmed in Program Rules. Conflicts: seller FAQ floor 1,200 Credits (~$10) not 600; payout page says 30,000-credit (~$150) minimum, once per day, 1.5% fee, not one per two weeks. Revenue split is published on the welcome page: ~50% creator / ~30% store platform / ~20% VRChat+Tilia. May 14 and Aug 15, 2025 dates and 18+ rule not found (not refuted)."
+        }
+      ]
+    },
+    {
+      "claim": "VRChat averaged about 120,000 concurrent users on weekends in 2025 with a company-cited record of 158,192 concurrents; a 2025 arXiv sample of SL users had mean ages ~45 (men, n=960) and ~38.6 (women, n=522), and no official SL age/gender breakdown after 2008 (41% female) was found.",
+      "source_url": "https://roadtovr.com/vrchat-key-stats-japan-growth-concurrents/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": [
+        {
+          "claim_index": 9,
+          "verdict": "confirmed",
+          "searched": true,
+          "source_url": "https://roadtovr.com/vrchat-key-stats-japan-growth-concurrents/",
+          "note": "~120,000 weekend concurrents by 2025 per VRChat staff (wiki: 120-125k). 158,192 is the corrected count (orig. 156,716) for the Feb 15, 2026 Kaguya concert, i.e. a 2026 record not 2025; NYE 2025-26 peak 148,886. arXiv 2505.00287 age/sample figures not searched (unverified sub-claim)."
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    "HB May 15, 2026: 149,536 regions, 48,376 actives public OpenSim; OSgrid 4,420 actives; registered users down ~15,000 because EdMondo stopped reporting (https://www.hypergridbusiness.com/2026/05/opensim-users-land-area-both-up-this-month/).",
+    "Jan 2026 grid ranking: Wolf Territories Grid 11,708 actives (1st), OSgrid 3,931 (2nd).",
+    "Separate HB item 'OSgrid enters immediate long-term maintenance' (https://hypergridbusiness.com/?p=78935); no source confirms OSgrid reopened after June 21, 2026.",
+    "CCUG week 33 (Aug 14, 2026): glTF 2.0 spec foundations, blend shapes, custom rigs listed; no OpenUSD mention. Week 27 hinted LL leaning back toward Vulkan; no plans to extend prims.",
+    "Project Zero Avatar Picker ported to SL Mobile; a streamed Firestorm variant was also run briefly.",
+    "AOUSD Core Spec 1.1 targets animation-spline parity with OpenUSD 25.08; July 2026 members joined at General Member level (no steering seat).",
+    "VRChat welcome page: 30,000 Credits = $150 (1 credit = $0.005).",
+    "Method: WebFetch/curl blocked; all verdicts rest on WebSearch quoted extracts. JSON ledger at docs/research/ledgers/ledger-legacy-interop-searchverify.json"
+  ],
+  "verify_files": [
+    "docs/research/fact-checks/legacy-interop-search.md"
+  ],
+  "note": "Researched with live search; verified with live search"
+}

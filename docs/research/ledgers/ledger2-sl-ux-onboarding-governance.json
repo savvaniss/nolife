@@ -1,0 +1,104 @@
+{
+  "key": "sl-ux-onboarding-governance",
+  "title": "Second Life UX, onboarding, retention, governance and public perception",
+  "file": "docs/research/briefs/sl-ux-onboarding-governance.md",
+  "summary": "Live-search revision of the Second Life UX/onboarding/governance brief, using all 20 searches (fetching blocked; facts rest on search extracts). Linden Lab's own stated retention was ~10% at 90 days (Jan 2007, \"unchanged over 12 months\"); Wired (Frank Rose, July 2007) reported >85% of avatars abandoned and ~1M of 7M logged in within 30 days; peak concurrency hit an all-time 88,000 in 2009 and 2008 U2U transactions were US$361M. The empty-world problem is arithmetic: 76,000 peak avatars over ~30,000 regions then, and a 32,000 median over 26,663 regions in late 2025 (third-party tracker; Linden publishes no official numbers). Altberg named viewer complexity and hardware as the second-login blocker; Firestorm became the dominant viewer. Governance followed a repeated arc of unilateral decree then partial reversal: Openspace pricing (Oct-Nov 2008), Zindra adult segregation (announced 12 Mar 2009, opened 15 Jun 2009 with 157 regions, ~850 move tickets), the 30% layoffs (9 Jun 2010) and CEO exit (24 Jun 2010), the education discount removal (1 Jan 2011, restored 2013), and the August 2013 ToS Section 2.3 that caused Renderosity/CG Textures bans until the July 2014 revision. Corporate presence (Reuters Oct 2006-Nov 2008, Sweden's embassy 30 May 2007, IBM's 1,850-avatar Italian strike 27 Sep 2007) ended in the 2007 press backlash. The durable things were resident-owned: the CDS democracy (since 21 Sep 2004, still six regions), Virtual Ability (first Linden Prize 2009), and the resident-run SL9B (2012). Corrections to the prior draft: retention figure was 90-day not 30-day; Homestead pricing was phased $75->$95->$125, not a climb-down; Basic-mode withdrawal and 400k signups/month unverified.",
+  "design_implications": [
+    "Instrument and publish first-hour, 7/30/90-day retention from launch; define first-hour success as 'met a person or joined a group', since SL's 10%-at-90-days figure never moved across a decade of orientation redesigns.",
+    "Abandon fixed region sharding in favour of density management so newcomers always land where people and a host are; SL's emptiness was arithmetic (76k peak avatars over ~30k regions in 2008; 32k median over 26,663 regions in 2025).",
+    "Ship separate consumer and creator/pro interfaces over one world and never let incumbents veto the newcomer client; expect and bless a third-party client ecosystem early (Firestorm lesson).",
+    "Keep the hardware floor low with a thin/streaming client and instant first render; Linden's CEO named viewer complexity and client performance as the top second-login blocker.",
+    "Provide purpose without quests: hosted scheduled activities and apprenticeship routes into communities (music, building, education, disability support), which were SL's durable retention engines.",
+    "Adopt constitutional change control: a published charter, notice periods and a resident assembly with bounded but real powers over mainland rules, pricing and ToS, so Openspace (2008), education pricing (2010), Zindra (2009) and ToS (2013)-style shocks cannot happen by blog post.",
+    "Grant content rights to creators by default with a narrow operating licence, and enforce permissions server-side with provenance, so neither a CopyBot nor a ToS rewrite can trigger a creator strike.",
+    "Design maturity zoning and age assurance in from day one with first-class segregated adult space, rather than a forced relocation of ~850 parcels later.",
+    "Set financial rules up front (no unregulated interest-bearing products; clear currency redemption terms) rather than banning gambling and banks after a Ginko-scale collapse.",
+    "Guarantee pricing stability for institutional communities (education, non-profit, disability) and sell brands outcomes (hosts, events, measured traffic) rather than land."
+  ],
+  "open_questions": [
+    "Has Linden Lab ever published first-hour or 30-day retention figures (as opposed to the 90-day ~10% figure), and did Altberg's 2014-2018 town halls give numbers?",
+    "Was Viewer 2 'Basic mode' actually withdrawn, when, and with what retention evidence? (Search found only its 2011 introduction and feature additions.)",
+    "Did Homestead pricing in fact step to US$125 in July 2009, or was the second increase cancelled after further protest?",
+    "What share of the ~850 Zindra move tickets were relocations versus closures, and how many regions did Zindra reach after the July 2009 expansion?",
+    "What is Linden Lab's current official MAU (last stated ~900,000 in 2015 versus a reported ~500,000 plateau), and what are the 2020 Oberwager acquisition and 2022 Rosedale-return details (unsearched)?",
+    "Did Renderosity and CG Textures lift their asset bans after the July 2014 Section 2.3 revision?",
+    "How many of the 2011 education departures returned after the 2013 discount restoration?",
+    "What are Linden's revenue splits (tier vs Marketplace vs LindeX fees) across 2007-2025?",
+    "Is the '400,000 sign-ups per month' (Humble, 2013) figure real, and what is the current sign-up rate against the ~69M account total?"
+  ],
+  "claims": [
+    {
+      "claim": "Linden Lab stated in January 2007 that new-user retention to 90 days was about 10% and had remained roughly unchanged over the prior 12 months (Massively, via Andrew Chen).",
+      "source_url": "https://andrewchen.com/interesting-graph-on-second-life-usage/",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Wired's July 2007 Frank Rose cover story reported that more than 85% of avatars created had been abandoned; ~7M avatars, ~4M distinct individuals per Linden, ~1M logged in during the previous 30 days; Sears' traffic score was 281 and Coke's Virtual Thirst pavilion 27.",
+      "source_url": "https://jerz.setonhill.edu/?p=56",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Linden Lab's 2008 metrics: nearly 400M user hours (+61%), Q4 2008 peak concurrency 76,000, US$361M user-to-user transactions; the all-time peak concurrency was 88,000 (2009), with Q3 2009 at >77,000 after a bot-restriction policy.",
+      "source_url": "https://abcnews.go.com/Technology/PCWorld/story?id=6688909",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "On 9 June 2010 Linden Lab laid off about 30% of its 300+ staff and merged product and engineering; CEO Mark Kingdon stepped down 24 June 2010 with Rosedale as interim CEO.",
+      "source_url": "https://www.theregister.com/2010/06/09/linden_labs_lays_off_30_per_cent_of_staff/",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "The August 2013 ToS Section 2.3 revision led Renderosity and CG Textures to ban use of their assets in Second Life; Linden revised 2.3 in July 2014 to limit rights to use 'inworld or otherwise on the Service' and require affirmative user action for sale/sublicensing.",
+      "source_url": "https://www.hypergridbusiness.com/2013/09/outrage-grows-over-new-second-life-terms",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Adult-content segregation was announced 12 March 2009; Zindra (built as 'Ursula') opened 15 June 2009 with Viewer 1.23 and age verification, with an initial 157 regions, ~850 move tickets filed 29 Jun-24 Jul 2009, and a 15 September 2009 relocation deadline.",
+      "source_url": "https://wiki.secondlife.com/wiki/Zindra",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Reuters opened its Second Life bureau in early October 2006 (Adam Pasick, 'Adam Reuters') and closed it in November 2008; Sweden's Second House of Sweden opened 30 May 2007 (cost 400,000 SEK, ~US$57,000), days after the Maldives' first virtual embassy.",
+      "source_url": "https://thebaron.info/news/article/2008/11/21/reuters-closes-virtual-bureau",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "Linden ended the 50% education/non-profit discount effective 1 January 2011 (announced late 2010, doubling region costs) and restored it in 2013; the move drove institutions toward OpenSim.",
+      "source_url": "https://thejournal.com/Articles/2010/11/03/Linden-Lab-To-End-Second-Life-Educational-Discounts.aspx",
+      "confidence": "high",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "The Confederation of Democratic Simulators began 21 September 2004 as the Neualtenburg Project, has a three-person Executive, a five-member Representative Assembly and a five-member Scientific Council, ties citizenship to land ownership, and still operates (land store lists six regions).",
+      "source_url": "https://wiki.secondlife.com/wiki/Confederation_of_Democratic_Simulators",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    },
+    {
+      "claim": "In 2025 (third-party grid tracker) Second Life's peak concurrency was 49,798 (24 March 2025), the mid-December daily median was ~32,000-35,000, and there were 26,663 regions on 10 August 2025 (about 9,033 Linden-owned, down ~800 during the year); registered accounts ~68.98M.",
+      "source_url": "https://danielvoyager.wordpress.com/2025/08/11/second-life-statistics-august-2025-update/",
+      "confidence": "medium",
+      "searched": true,
+      "checks": []
+    }
+  ],
+  "additional_findings": [],
+  "verify_files": [],
+  "note": "Re-researched with live search; supersedes ledger-sl-ux-onboarding-governance.json"
+}
