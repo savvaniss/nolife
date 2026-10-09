@@ -1,0 +1,85 @@
+{
+  "file": "docs/research/fact-checks/community-purpose-search.md",
+  "searches_used": 12,
+  "verdicts": [
+    {
+      "claim_index": 0,
+      "verdict": "corrected",
+      "searched": true,
+      "source_url": "https://danielvoyager.wordpress.com/2025/12/31/second-life-monthly-maximum-concurrency-peaks-for-2025/",
+      "note": "2025 part corrected from the source blog itself: the 2025 yearly maximum was 49,798 on 24 March 2025 (a March post says the 23rd), monthly peaks ran 45,270 (Aug) to 49,798 (Mar), and the blog calls 2025 'a flat year ... no major high peaks over 48,000' after Q1. So '47,000-49,000' should read 'roughly 45,000-49,800, max 49,798'. The 88,220 (29 Mar 2009) and 53,016 (19 Feb 2024) figures were not found in any extract (two searches); a forum post citing the same blog gives only ranges (2009/10 max ~85-88k; 2022 max ~46-53k), so those remain fan-blog figures on prior knowledge. Caveats found: the public login counter reportedly stuck at 39,122 in summer 2024 and the blog's API feeds were broken in Dec 2025 ('missing a lot of data'), so the series has gaps. 2026 status: Jan 2026 peak just over 47,000."
+    },
+    {
+      "claim_index": 1,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://danielvoyager.wordpress.com/2025/11/04/second-life-region-statistics-early-november-2025-update/",
+      "note": "Core numbers confirmed from the cited post (data as of 2 Nov 2025, from the independent Grid Survey): 26,785 total, 17,589 private estates, 9,196 Linden-owned; post also states the count passed 28,000 in mid-2024. The '-270 (~1.5%) private estates in 2024' sub-claim comes from a different post (2024 last report) and was not visible in extracts. Useful reconciliation for the earlier checker's puzzle: 5 Jan 2025 = 27,769 (17,939 / 9,830) and 22 Jun 2025 = 27,731; most of the 2025 drop is Linden-owned (-634), attributed to retiring first-generation Linden Home regions, not private estates (-350). Later data: 26,858 on 25 Jan 2026 and 27,239 on 8 Jul 2026 (forum profile, unverified), i.e. the grid is recovering slightly in 2026."
+    },
+    {
+      "claim_index": 2,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://www.eveonline.com/news/view/heres-your-csm-20",
+      "note": "CCP's official CSM 20 results post (14 Nov 2025) confirms 55 candidates and 49,870 voters, 'the second highest voter turnout ever recorded, eclipsed only by CSM 7', which also corroborates CSM7 as the record (59,109 / 16.63% from prior knowledge, not searched). Wording fix: 49,870 is the number of voters/ballots (Wright-STV, up to 10 ranked choices each), not 'votes'. CCP also appointed two extra members from the 11th-20th places. CCP publishes no turnout percentage for CSM20."
+    },
+    {
+      "claim_index": 3,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://ojs.aaai.org/index.php/ICWSM/article/view/14884",
+      "note": "Paper abstract (ICWSM 2017, vol 11 pp 132-141; Lin, Salehi, Yao, Chen, Bernstein) confirms >45M comments, 10 subreddits added to the default set, language did not converge toward the rest of Reddit, a temporary dip then recovery in upvote scores, complaints did not rise, and 'strong moderation also helps keep upvotes common and complaint levels low'. Also: activity clustered around a smaller share of posts after defaulting."
+    },
+    {
+      "claim_index": 4,
+      "verdict": "corrected",
+      "searched": true,
+      "source_url": "https://virtualability.org/history/",
+      "note": "Confirmed: name adopted Jan 2008, 501(c)(3) received in 2008 (month not visible in extract), Virtual Ability Island opened August 2008, 2009 prize won. Two corrections: (1) the 2009 prize was co-won with Studio Wikitecture, each receiving $10,000 (AFP, 1 May 2009, solardaily.com), so 'won the first Linden Prize' should be 'co-won'; (2) the organisation's current About Us page says 'over 1,000 members from six continents', and no source gave 1,300+ (2025) or 850+ (2014), so quote 'over 1,000' or attribute 1,300+ to the specific page it came from. Also found: in July 2026 Virtual Ability launched a L$250,000 wheelchair-design contest funded by Linden Lab (modemworld.me), so the group is active in 2026."
+    },
+    {
+      "claim_index": 5,
+      "verdict": "corrected",
+      "searched": true,
+      "source_url": "https://extremismterms.adl.org/sites/default/files/pdfs/2022-12/Free%20to%20Play%2007242019.pdf",
+      "note": "Numbers hold but two fixes are needed. 2019 'Free to Play?' PDF confirms: 23% avoided certain games and 19% 'stopped playing certain games altogether' because of harassment, but the denominator is online multiplayer gamers WHO HAD BEEN HARASSED (ages 18-45), not all gamers. 2022 figures (86% any harassment, 77% severe) were confirmed via a House letter to the FTC citing ADL's Dec 2022 'Hate Is No Game' report (trahan.house.gov); the ADL report excerpt itself showed only 'fourth consecutive year' of rising rates, and 'up from 71%' (2021) was not visible (prior knowledge). Attribution error: the cited URL is the 2019 press release ('two-thirds ... severe harassment' = 65%); cite the 2022 figures to https://www.adl.org/resources/report/hate-no-game-hate-and-harassment-online-games-2022."
+    },
+    {
+      "claim_index": 6,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://www.inverse.com/input/gaming/club-penguin-rewritten-disney-london-police-shutdown-arrests",
+      "note": "Confirmed from extracts: Disney bought Club Penguin in 2007 for up to $700M; original closed in 2017 citing declining users; Club Penguin Rewritten had 'more than 11 million accounts' (Input) and was shut on 13 April 2022 by City of London Police (PIPCU) under a Disney copyright investigation, with three arrests on 12 April and operators handing control of the site to police. Not visible in extracts (prior knowledge only): 12M users at the 2007 purchase, ~200M registered by 2013, and the exact 30 March 2017 closure date. Precision: 'shut by police' is slightly strong; the operators handed the site over after the arrests."
+    },
+    {
+      "claim_index": 7,
+      "verdict": "corrected",
+      "searched": true,
+      "source_url": "https://ryanschultz.com/2021/10/09/burn2-celebrate-burning-man-in-second-life-october-8th-to-17th-2021/",
+      "note": "Confirmed: BURN2 occupies a year-round SL region called Deep Hole, adds regions for events (12 regions in 2021, 4 in 2016), and describes itself as 'the only virtual world event out of more than 100 real world Regional groups and the only regional event allowed to burn the man' (self-description on event pages, repeated by modemworld.me 2015). Correction: no source dates BURN2 to 2003; sources say Burning Man has had a presence in SL 'since its beginning' and BURN2 is 'the latest incarnation' / 'first sanctioned Burning Man regional in the virtual world'. Prior knowledge (not searched): 2003-2009 the event was Linden Lab's 'Burning Life'; BURN2 became the community-run sanctioned regional in 2010. 'Five main events a year' not found in any extract; sources say 'events year around, culminating in an annual major festival in the fall'. Most recent extract is 2021; 2026 status not checked."
+    },
+    {
+      "claim_index": 8,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://community.secondlife.com/blogs/entry/13615-sl20b-is-open-celebrate-two-decades-of-innovation-on-second-life%E2%80%99s-20th-birthday/",
+      "note": "Dates (22 June-11 July 2023) and 60 sims confirmed via Ryan Schultz; the official Second Life blog and secondlife.com/sl20b confirm Shop & Hop with 480+ merchants across 24 regions (modemworld.me says 20, treat the official 24 as correct); Schultz gives the remaining 36 sims for the Festival. 'Over 425 performers on four stages' (25 June-2 July) appears only in Schultz's guide; no Linden Lab release containing it was found, so the brief's attribution of 425+ to the Linden press release is unsupported. Official blog separately mentions a three-day Music Fest, 22-24 June."
+    },
+    {
+      "claim_index": 9,
+      "verdict": "confirmed",
+      "searched": true,
+      "source_url": "https://www.cesifo.org/en/publications/2001/working-paper/virtual-worlds-first-hand-account-market-and-society-cyberian",
+      "note": "CESifo WP 618 (Dec 2001) abstract confirms: nominal hourly wage about USD 3.42; GNP per capita 'somewhere between that of Russia and Bulgaria'; currency unit traded at USD 0.0107 ('higher than the Yen and the Lira'); ~12,000 permanent residents, ~60,000 present at any time. The survey size (3,619) and the term 'platinum piece' were not in the abstract (a secondary write-up says 'over three thousand players'); the '77th highest GNP per capita' figure appears in a secondary blog summarising this same 2001 paper, which supports the earlier checker's point that the brief's body text wrongly dates $2,266 / '77th' to a 2005 Guinness measurement."
+    }
+  ],
+  "additional_findings": [
+    "Method: 12 WebSearch calls (10 standard, 2 extended); WebFetch/curl blocked, so all verdicts rest on quoted extracts in search results, not full pages. Claim 0's 2009 and Feb-2024 figures and claim 2's CSM7 numbers were not individually searched.",
+    "Concurrency data quality: an SL forum thread reports the public login counter stuck at 39,122 in summer 2024 (possibly turned off), and Daniel Voyager's Dec 2025 post says his API feeds were broken and December 2025 is 'missing a lot of data'. Any 2024-2025 concurrency series from this blog has gaps; treat it as indicative, not audited.",
+    "2026 status updates: SL peak concurrency had 'only just surpassed 47,000' as of 24 Jan 2026 (daily max 41,000-46,000); region count recovered to 26,858 (25 Jan 2026) and 27,239 (8 Jul 2026, forum profile, unverified). Daniel Voyager also reported 'Second Life now at 620,000 monthly active users' on 19 Dec 2025, a useful MAU denominator the brief lacks. SL23B (the 23rd birthday) ran in 2026 (secondlife.com/sl23b).",
+    "The 2025 region decline was mostly Linden-owned regions (9,830 in Jan 2025 to 9,196 in Nov 2025) from retiring first-generation Linden Homes, not private estates (17,939 to 17,589). This resolves the earlier checker's reconciliation puzzle and weakens the brief's 'rising costs drove the decline' framing for 2025.",
+    "CSM 20 mechanics worth stating: Wright-STV with up to 10 ranked choices, 49,870 is a voter count, and CCP appointed two members from outside the top 10 (Mick Fightmaster, Val Auroris), so the council is not purely elected.",
+    "Virtual Ability is active in 2026: a July 2026 'Mobility Without Limits' wheelchair design contest funded by a L$250,000 Linden Lab donation (modemworld.me 2026/07/28). Its current site says 'over 1,000 members', lower than the brief's 1,300+.",
+    "ADL 2019 19% figure: denominator is harassed online multiplayer gamers aged 18-45, so the brief's line 'harassment is what makes 19% quit' overstates it; roughly 19% of the ~74% harassed, i.e. ~14% of all gamers surveyed, quit at least one game."
+  ]
+}

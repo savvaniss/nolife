@@ -1,0 +1,86 @@
+{
+  "verdicts": [
+    {
+      "claim_index": 0,
+      "verdict": "confirmed",
+      "note": "SEC 8-K + quartr/wnhub/outlookindia extracts: 123M DAU +10%, >29B hours, revenue ~$1.5B +36%, bookings ~$1.6B +8%, 18+ DAU +32%/hours +27%, Q3 bookings guided $1.58-1.65B (14-18% YoY decline). ~152M Q3 2025 peak not in extracts (prior knowledge 151.5M).",
+      "searched": true,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0001315098/000162828026051059/ex991-robloxq22026earnin.htm"
+    },
+    {
+      "claim_index": 1,
+      "verdict": "confirmed",
+      "note": "Quartr Q4 2025: DevEx $477M, 33.7% of revenue, +70% YoY; call summary >$1.5B creator earnings in 2025; $923M in 2024; top 1,000 averaged $1.3M (+50%). FY2025 revenue $4.9B not in extracts (prior knowledge).",
+      "searched": true,
+      "source_url": "https://quartr.com/events/roblox-rblx-q4-2025_ozGB34Pf"
+    },
+    {
+      "claim_index": 2,
+      "verdict": "confirmed",
+      "note": "Fintool/earnings commentary: standard rate rose to $0.0038 per earned Robux on Sept 5, 2025 (+8.5%). Roblox newsroom: 42% DevEx increase for age-checked US 18+ spend in eligible games from June 8, 2026. 8-K adds: effective share 26.6%->37.8%, R15 games only. Some third-party guides still list $0.0035.",
+      "searched": true,
+      "source_url": "https://about.roblox.com/newsroom/2026/04/roblox-fuels-high-fidelity-games-over-18-players-increases-qualifying-devex-rate-42"
+    },
+    {
+      "claim_index": 3,
+      "verdict": "corrected",
+      "note": "$1B announced June 17, 2026 at Unreal Fest Chicago (Jan 2026 crossing per tech-insider only); 3,000+ islands earn more from in-island transactions than engagement; 40% split confirmed. Correction: 47% of player hours in May 2026 was up from 38% a year earlier, not 35%. 'In-island transactions launched January 2026' not confirmed by any extract. Extra: >75% of in-game transactions now outside Battle Royale.",
+      "searched": true,
+      "source_url": "https://gamesbeat.com/epic-games-has-paid-out-1-billion-to-creators-since-launching-unreal-editor-for-fortnite-in-2023/"
+    },
+    {
+      "claim_index": 4,
+      "verdict": "confirmed",
+      "note": "Remix: The Finale (Nov 30, 2024) >14M concurrent (~14.3M per Fortnite.GG; Epic gave no exact figure), >3M streamed; Travis Scott 12.3M; Galactus ~15.3M overall record (sources split 2020/2021). Marshmello 10.7M not in extracts (prior knowledge).",
+      "searched": true,
+      "source_url": "https://musicbusinessworldwide.com/fortnites-remix-the-finale-concert-draws-over-14m-players-breaking-records"
+    },
+    {
+      "claim_index": 5,
+      "verdict": "confirmed",
+      "note": "Creator PLA 'Last Updated Jan. 12 2026' at fivem.net/terms; Cfx Marketplace launched same day; secondary guides: no selling virtual currency, loot boxes or items for real money. Caveat: Tebex exclusivity rests on a vendor page, not the primary PLA; a rival vendor calls Tebex only the 'default' (15% fee). Aug 11, 2023 date not in extracts (prior knowledge).",
+      "searched": true,
+      "source_url": "https://www.gameserverkings.com/knowledge-base/fivem/server-monetisation/"
+    },
+    {
+      "claim_index": 6,
+      "verdict": "confirmed",
+      "note": "Steamcharts all-time peak 221,062 in May 2026 (SteamPulse 221,685; earlier record 202,756 on Mar 15, 2026); Steam-only count. players.com.ua: FiveM surpassed GTA 5 over a week. GTA VI Nov 19, 2026 after moves from fall 2025 to May 2026 to November (latest extract July 2026). 'Jan 2026 Steam integration' wording not confirmed.",
+      "searched": true,
+      "source_url": "https://steamcharts.com/app/2676230"
+    },
+    {
+      "claim_index": 7,
+      "verdict": "confirmed",
+      "note": "30M registered players announced at Fan Festival Tokyo, reported Jan 8, 2024 (registered, not active). NA demolition timer resumed June 6, 2025 (relinquished plots purchasable July 22). 45-day demolition per TechRaptor/ExpertBeacon schedule (30/35/42/45 days), though Icy Veins says 30 days; Twinfinite confirms full plot price reserved on lottery bid (Guild Order says 50%). 80% refund and Apr 12, 2022 date not in extracts (prior knowledge).",
+      "searched": true,
+      "source_url": "https://techraptor.net/gaming/news/final-fantasy-xiv-passes-30-million-players-as-xbox-open-beta-gets-tentative-release"
+    },
+    {
+      "claim_index": 8,
+      "verdict": "corrected",
+      "note": "IPO: Bloomberg Jan 7, 2026, confidential filing with Goldman Sachs and JPMorgan; 200M+ monthly users per a December 2025 statement (claim says April 2025). Correction: Social SDK was announced/launched in closed beta March 17, 2025; Aug 13, 2025 is when it left closed beta and opened to all developers with in-game voice/chat. Developer support article confirms global teen-by-default/age assurance in H2 2026 with no developer action expected, but the consumer rollout was first set for early March 2026, delayed after backlash, then reported live.",
+      "searched": true,
+      "source_url": "https://support-dev.discord.com/hc/en-us/articles/38338398970263-Upcoming-Discord-Age-Assurance-Changes-What-You-Need-To-Know"
+    },
+    {
+      "claim_index": 9,
+      "verdict": "corrected",
+      "note": "Naver release Mar 4, 2022: >300M registered, 20M MAU, ~95% overseas, 2M creators (not 2.83M), 68M creator items sold. Aug 2022: still 20M MAU, >5B creations, 3B item sales. Not found: 340M registered, 2.83M creators, 133,708 Korean weekly users, or any 400M figure.",
+      "searched": true,
+      "source_url": "https://www.navercorp.com/media/pressReleasesDetail?seq=30721"
+    }
+  ],
+  "additional_findings": [
+    "Roblox Q3 2026 guidance: bookings $1.58-1.65B, implying a 14-18% YoY decline; no revised full-year guidance.",
+    "Roblox 8-K (Apr 30, 2026): the 42% adult-spend DevEx uplift raises effective creator share from 26.6% to 37.8% and applies only to R15-framework games (partly answers the open question on effective creator share).",
+    "Fortnite: >75% of all in-game transactions now come from experiences outside Battle Royale (Lowry, June 17, 2026); 2024 payout still quoted as both $320M and $352M.",
+    "Remix: The Finale is dated Nov 30, 2024 in all extracts, resolving the ledger's open question.",
+    "FiveM's prior 2026 record was 202,756 on March 15, 2026; Cfx Marketplace (official mod storefront) launched Jan 12, 2026, the same day as the PLA rewrite.",
+    "FFXIV: relinquished NA plots became purchasable from July 22, 2025, 45 days after the June 6 timer resumption; one fan guide (Icy Veins) states a 30-day demolition threshold, conflicting with the documented 45-day schedule.",
+    "Discord: last private valuation ~$15B (2021); a Teen Council of 10-12 members was recruited with applications open until May 2026; Social SDK studios must implement their own age-restricted-user safeguards.",
+    "Method: page fetching blocked; all verdicts rest on search-result extracts, several from secondary/aggregator sites."
+  ],
+  "searches_used": 12,
+  "file": "docs/research/fact-checks/winners-lessons-search.md"
+}
