@@ -87,9 +87,9 @@ Verdict: **unverifiable** (consistent with prior knowledge; one adjacent stateme
 ## Sources consulted
 
 Live sources: none reachable (see limitation above). In-sandbox:
-- /tmp/claude-0/-home-user-nolife/d4696900-d73b-5efa-ba36-41eadc9a535f/scratchpad/research/community-purpose.md (the brief)
-- /tmp/claude-0/-home-user-nolife/d4696900-d73b-5efa-ba36-41eadc9a535f/scratchpad/research/sl-history-stagnation.md (88,220 / 29 Mar 2009; 2025 peaks)
-- /tmp/claude-0/-home-user-nolife/d4696900-d73b-5efa-ba36-41eadc9a535f/scratchpad/verify/sl-history-stagnation-precision.md and -refute.md (2025 concurrency band, bot caveat)
-- /tmp/claude-0/-home-user-nolife/d4696900-d73b-5efa-ba36-41eadc9a535f/scratchpad/research/sl-ux-onboarding-governance.md (Burning Life 2003, Virtual Ability 2007, Linden Prize 2009, SL20B June 2023)
+- docs/research/briefs/community-purpose.md (the brief)
+- docs/research/briefs/sl-history-stagnation.md (88,220 / 29 Mar 2009; 2025 peaks)
+- docs/research/fact-checks/sl-history-stagnation-precision.md and -refute.md (2025 concurrency band, bot caveat)
+- docs/research/briefs/sl-ux-onboarding-governance.md (Burning Life 2003, Virtual Ability 2007, Linden Prize 2009, SL20B June 2023)
 
 Cited-but-unreached primary URLs: the ten listed in the task; all should be fetched on a re-run.

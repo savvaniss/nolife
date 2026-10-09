@@ -1,6 +1,6 @@
 # Precision check: "Artificial life in games and the AI-agent era"
 
-Checked 2026-10-09 against /tmp/claude-0/-home-user-nolife/d4696900-d73b-5efa-ba36-41eadc9a535f/scratchpad/research/alife-and-ai-npcs.md
+Checked 2026-10-09 against docs/research/briefs/alife-and-ai-npcs.md
 
 ## Tooling status (read this first)
 
