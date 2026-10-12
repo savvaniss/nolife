@@ -4,7 +4,7 @@ Design document 04, written 2026-10-09 against the spine (C.3, C.4, B.4, D.3, D.
 
 ## Summary
 
-Creators are nolife's supply side, and most come from Second Life. SL paid them about US$78M a year, but behind its "90/10" marketing the all-in take was 20-31%. This document specifies the creator's whole path:
+Creators are nolife's supply side, and most come from Second Life. SL paid them about US$78M a year ([source](https://gamesbeat.com/linden-lab-has-spent-1-3b-building-second-life-and-paid-1-1b-to-creators/)), but behind its "90/10" marketing residents put the all-in take at 20-31%. This document specifies the creator's whole path:
 - **Workshop**, a creator interface kept separate from the consumer one;
 - the **Foundry**, which checks every upload at US$0.01 per asset;
 - Luau under per-owner budgets, with LSL running unchanged;
@@ -41,12 +41,11 @@ Generative assistants (text-to-mesh, texture synthesis, code completion) tag the
 ### Blocks
 
 **Blocks** are parametric building, compiled to meshes. In-world creation is first-class because maker cultures grew inside SL, Resonite and Dreams, while worlds that made Unity the real editor never grew an economy (alt-survivors brief). Rules *(this doc)*:
-- **Shapes and parameters.** Box, cylinder, prism, sphere, torus, tube and ring, with SL's prim parameters: path cut, hollow, twist, taper, shear and skew. Ferry therefore rebuilds legacy prims exactly as Blocks.
-- **Snapping and scale.** A 5 cm grid and 15° rotation, at 1 unit = 1 m.
-- **Linksets.** Up to 256 Blocks; each linkset compiles to one mesh plus collision.
-- **Compiling.** The client previews instantly. The Foundry compiles on commit, after 10 s without an edit, within doc 05's 90 s p95 prop latency.
-- **Build rights.** These come from Holding ownership or a Charter role. Each Block keeps its author, so Workshop can propose a Split from the build log.
-- **Rank.** The Foundry derives Block LODs analytically, so Blocks always rank Excellent or Good.
+- **Shapes.** Box, cylinder, prism, sphere, torus, tube and ring, with SL's prim parameters (path cut, hollow, twist, taper, shear, skew), so Ferry rebuilds legacy prims exactly as Blocks.
+- **Snapping.** A 5 cm grid and 15° rotation, at 1 unit = 1 m. Up to 256 Blocks per linkset, compiled to one mesh plus collision.
+- **Compiling.** The client previews instantly; the Foundry compiles after 10 s without an edit, within doc 05's 90 s p95.
+- **Build rights** come from Holding ownership or a Charter role. Each Block keeps its author, so Workshop can propose a Split from the build log.
+- **Rank.** Block LODs are derived analytically, so Blocks always rank Excellent or Good.
 
 ### Import and format policy (R3)
 
@@ -250,19 +249,13 @@ A vendor is any object that calls `nl.bazaar.sell`. Vendors in Halls, Estates an
 
 A sale that fails any test settles at 10%, and the stall says so before payment. Market Day sales earn Pool weight like any other sale.
 
-### Refunds
-
-Delivery is immediate, so the EU 14-day withdrawal right is waived only with the buyer's express consent at checkout. Separately, an item that fails to deliver, or that renders materially differently from its Foundry preview, is refunded from the seller's `earned` balance within 7 days *(this doc)*.
+**Refunds.** The EU 14-day withdrawal right is waived only with express consent at checkout. An item that fails to deliver or renders materially unlike its Foundry preview is refunded from the seller's `earned` balance within 7 days *(this doc)*.
 
 ## Splits, royalties and the creator ladder
 
 ### Splits and royalties
 
-A **Split** divides a sale among up to **10 contributors** *(spine)*. Its rules *(this doc)*:
-- It is a signed Ledger object. Every member signs to create it.
-- Reducing a member's share needs that member's signature.
-- A change applies only to sales made after it.
-- A member may be a Charter treasury, which makes charity splits possible.
+A **Split** divides a sale among up to **10 contributors** *(spine)*. It is a signed Ledger object *(this doc)*: every member signs to create it, reducing a share needs that member's signature, changes apply only to later sales, and a member may be a Charter treasury (charity splits).
 
 A **Component Royalty** of up to 10% *(spine)* attaches to an asset others may build on: a body, a rig, a texture set or a script module. It is paid from gross before the Split, and the platform takes nothing extra. This is how one body maker becomes a platform for a hundred clothing makers without SL's no-mod lock-in. Two further rules *(this doc)*:
 - **Stacking cap.** Royalties stacked on one item are capped at 25% of gross and scaled pro rata above it. Workshop warns before publishing.
@@ -296,13 +289,7 @@ Census publishes retention **by ladder rung** *(spine)*. The baseline is SL's 20
 
 ### Founding Merchants and Re-delivery
 
-The first 1,000 verified creators become **Founding Merchants** *(spine)*. They get:
-- 5% commission for 12 months from L;
-- funded conversion of their catalogue;
-- the Ferry **creator claim**, in which a one-time code in their SL profile signs their imported catalogue to their Passport;
-- **Re-delivery**, which pays them 10 Coin each time a migrant proves an SL purchase and claims the nolife edition.
-
-Body and head vendors' Re-delivery editions pay 0% commission for 12 months, because the avatar's look is the migrant's main switching cost. Kitely used the same principle to rescue stranded OSgrid buyers ([source](https://www.hypergridbusiness.com/?p=79686)).
+The first 1,000 verified creators become **Founding Merchants** *(spine)*: 5% commission for 12 months from L, funded conversion, the Ferry **creator claim** (a one-time code in their SL profile signs the imported catalogue to their Passport), and **Re-delivery** (10 Coin each time a migrant proves an SL purchase and claims the nolife edition). Body and head vendors' Re-delivery editions pay 0% for 12 months, because the avatar's look is the migrant's main switching cost. Kitely rescued stranded OSgrid buyers the same way ([source](https://www.hypergridbusiness.com/?p=79686)).
 
 **Example: an SL clothing maker's first month.**
 1. **Day 0:** she places the Ferry code in her SL profile.
@@ -478,6 +465,7 @@ Catalogues signed through the Ferry creator claim are indexed before their creat
 
 ## Sources
 
+- https://gamesbeat.com/linden-lab-has-spent-1-3b-building-second-life-and-paid-1-1b-to-creators/
 - https://modemworld.me/2014/06/29/ebbe-altberg-on-user-retention-now-and-in-the-future/
 - https://corp.roblox.com/newsroom/2025/03/introducing-roblox-cube
 - https://vrm.dev/vrm1/

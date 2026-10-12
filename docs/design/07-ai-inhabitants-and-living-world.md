@@ -413,13 +413,13 @@ By default Keepers remember no individual; a Greeter forgets a cohort at handove
 
 | Req | How this document addresses it |
 |---|---|
-| R25 | The four jobs; badge and on-whose-behalf notice; 20% cap with one-for-one withdrawal; no companion loops and scripted-only Campus; licensed or synthetic voices with provenance; T0/T1/T2 at US$0.003/0.015/0.20, blended ≤ US$0.02, published quarterly; spend ≤10% of infrastructure plus T&S; D30 parity test stepping to 10% then zero; deferred to L+12 |
+| R25 | Four jobs; badge and principal notice; 20% cap with one-for-one withdrawal; no companion loops; licensed or synthetic voices; T0/T1/T2 costs published quarterly; spend ≤10% of infra plus T&S; D30 parity test (10%, then zero); deferred to L+12 |
 | R11 | Greeter tested against the self-guided Landing by randomised cohort; it never replaces a human Host, and it hands over on arrival |
-| R12 | Keepers are excluded from the density SLO and the newcomer median of ≥10; empty places get no Keepers (K_max = 0 at H = 0) |
-| R13 | Keeper share beside bot share; Keeper costs, hours and experiment reads in the Census; "active" counts humans only |
+| R12 | Keepers excluded from the density SLO and the newcomer median; K_max = 0 when H = 0 |
+| R13 | Keeper share beside bot share; costs, hours and reads in the Census; "active" counts humans only |
 | R8 | Keepers excluded from Pool weighting; Stand-in sales are never Market Day in-person sales |
 | R9 | Keepers hold no Coin; Stand-in sales run as the resident's own vendor sales under the Fee Page |
-| R15 | The Director never overrides Calendar events; Quiet Day forces Still; the Chronicler drafts and a human signs; no Keeper holds a Post |
+| R15 | Director never overrides Calendar events; Quiet Day forces Still; humans sign the Chronicle; no Keeper Posts |
 | R19 | Keepers cannot vote or stand; job specs and changes are published in the Chronicle; quiet Wards by council vote |
 | R21 | Campus Keepers are T0 only; no companion loops at any age |
 | R22 | 0% Keepers in Night Wards and Adult places during the experiment |
